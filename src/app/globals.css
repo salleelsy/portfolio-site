@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+/*
+  Brand tokens for Sallee's portfolio.
+  Colors confirmed against Figma (file qDIlnYWZKTGpLr7gTztKq2):
+    - #FFFFFF Background/backgroundPrimary, #000000 Content/contentPrimary,
+      #1A1A1A color/grey/10 (cod-gray), #3C3C3C folder outline (Tab node 280:17872).
+  Values marked (CLAUDE.md) come from the project brief and were NOT yet bound as
+  Figma variables on the nodes pulled this session — reconfirm against Figma Dev Mode
+  before building the sections that use them.
+*/
+@theme {
+  /* Surfaces */
+  --color-paper: #ffffff; /* background primary */
+  --color-ink: #000000; /* content primary */
+  --color-cod-gray: #1a1a1a; /* near-black text */
+  --color-card-dark: #0b0f14; /* About card bg (CLAUDE.md) */
+  --color-card-border: #2a2f36; /* About card border (CLAUDE.md) */
+  --color-body-bg: #f3f4f6; /* content body bg */
+
+  /* Grays */
+  --color-hairline: #e5e7eb;
+  --color-muted: #6b7280;
+  --color-line: #d1d5db;
+  --color-brand-chip: #f2f2f2;
+
+  /* Tab / folder art (from Figma node 280:17872) */
+  --color-folder-active: #f3f4f6;
+  --color-folder-inactive: #000000;
+  --color-folder-outline: #3c3c3c;
+
+  /* Accent — macOS folder blue gradient (CLAUDE.md) */
+  --color-folder-blue-from: #73d7ff;
+  --color-folder-blue-to: #6bcbf3;
+
+  /* Radii (CLAUDE.md — reconfirm vs Figma) */
+  --radius-card: 16px;
+  --radius-hero: 50px;
+  --radius-chip: 8px;
+  --radius-cta: 32px;
+}
+
+@theme inline {
+  /* Fonts wired to next/font CSS variables set on <html> in layout.tsx */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif; /* Inter — primary */
+  --font-label: var(--font-work-sans), var(--font-inter), sans-serif; /* Work Sans — small labels */
+  /* Skill-badge font. Design uses "Uber Move Text" which is PROPRIETARY (Uber-owned).
+     TODO(license): do not self-host without a license — falling back to Inter. */
+  --font-badge: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Brand logo marquee — one full set width is 50% of the duplicated track. */
+@theme {
+  --animate-marquee: marquee 40s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-cod-gray);
+  font-family: var(--font-sans);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none !important;
+  }
+}
