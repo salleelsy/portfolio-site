@@ -1,0 +1,18 @@
+{
+  "projectId": "85fab184-acbc-4889-b551-6d4f401839f8",
+  "shape": "package",
+  "pkg": "portfolio-site",
+  "globalName": "PortfolioSite",
+  "tsconfig": ".design-sync/tsconfig.dsync.json",
+  "srcDir": "src/components",
+  "buildCmd": "npx -y @tailwindcss/cli@4 -i .design-sync/ds-entry.css -o .design-sync/.cache/ds-tailwind.css",
+  "cssEntry": ".design-sync/.cache/ds-tailwind.css",
+  "readmeHeader": ".design-sync/conventions.md",
+  "extraFonts": [".design-sync/fonts/fonts.css"],
+  "overrides": {
+    "CaseStudyBlock": { "cardMode": "column" },
+    "PhotoFrame": { "cardMode": "column" },
+    "Tab": { "cardMode": "column" },
+    "TabList": { "cardMode": "column" }
+  }
+}

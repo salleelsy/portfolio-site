@@ -1,5 +1,5 @@
 import Image from "next/image";
-import avatar from "../../../public/hero/avatar.jpeg";
+import avatar from "../../../public/hero/avatar.png";
 
 type Stat = { label: string; value: string };
 

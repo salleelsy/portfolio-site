@@ -1,0 +1,10 @@
+/* design-sync CSS entry: compiles the app's Tailwind v4 stylesheet to a static
+   file for the Claude Design bundle. next/font injects --font-inter and
+   --font-work-sans at runtime in the real app; outside Next we map them to the
+   shipped @font-face families (see fonts/fonts.css). */
+@import "../src/app/globals.css";
+
+:root {
+  --font-inter: "Inter";
+  --font-work-sans: "Work Sans";
+}

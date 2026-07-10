@@ -4,6 +4,14 @@
  * the source. Screens are image placeholders until Sallee drops in real assets.
  */
 
+import type { StaticImageData } from "next/image";
+import loyaltyCover from "../../public/work/loyalty/cover.png";
+
+// Static import so the cover travels with the compiled bundle (design-system
+// export) as well as the Next build; both resolve through imgSrc below.
+const imgSrc = (img: StaticImageData | string): string =>
+  typeof img === "string" ? img : img.src;
+
 type CaseImage = { src?: string; label: string; alt?: string; caption?: string };
 
 type Compare = {
@@ -93,7 +101,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Designing a five-tier membership system across malls, offices, and residences — one that users actually understand.",
     cardSummary:
       "A five-tier loyalty membership for a commercial real-estate group (CCG) — making tiers, points, and upgrade paths legible at a glance.",
-    cover: "/work/loyalty/cover.png",
+    cover: imgSrc(loyaltyCover),
     meta: {
       role: "Product Designer",
       timeline: "Jan 2023 — Apr 2023",

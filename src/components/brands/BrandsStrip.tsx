@@ -1,15 +1,27 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { StaticImageData } from "next/image";
+import tangerine from "../../../public/brands/tangerine.png";
+import rbc from "../../../public/brands/rbc.png";
+import ccg from "../../../public/brands/ccg.png";
+import powerassets from "../../../public/brands/powerassets.png";
+import hkelectric from "../../../public/brands/hkelectric.png";
+import kln from "../../../public/brands/kln.png";
+
+// Static imports so the logos travel with the compiled bundle (design-system
+// export) as well as the Next build; both resolve through logoSrc below.
+const logoSrc = (img: StaticImageData | string): string =>
+  typeof img === "string" ? img : img.src;
 
 // Real brands (Figma 289:4391). Transparent PNG logos.
 const LOGOS = [
-  { src: "/brands/tangerine.png", alt: "Tangerine" },
-  { src: "/brands/rbc.png", alt: "RBC Wealth Management" },
-  { src: "/brands/ccg.png", alt: "CCG Hearts" },
-  { src: "/brands/powerassets.png", alt: "Power Assets" },
-  { src: "/brands/hkelectric.png", alt: "HK Electric" },
-  { src: "/brands/kln.png", alt: "Kerry Logistics" },
+  { src: logoSrc(tangerine), alt: "Tangerine" },
+  { src: logoSrc(rbc), alt: "RBC Wealth Management" },
+  { src: logoSrc(ccg), alt: "CCG Hearts" },
+  { src: logoSrc(powerassets), alt: "Power Assets" },
+  { src: logoSrc(hkelectric), alt: "HK Electric" },
+  { src: logoSrc(kln), alt: "Kerry Logistics" },
 ];
 
 /**
