@@ -14,7 +14,7 @@ const imgSrc = (img: StaticImageData | string): string =>
 
 type CaseImage = { src?: string; label: string; alt?: string; caption?: string };
 
-type Compare = {
+export type Compare = {
   title: string;
   note?: string;
   images?: CaseImage[];
@@ -28,12 +28,13 @@ type Tier =
   | { level: string; tone: TierTone; span: string };
 
 export type PersonaTint = "sky" | "amber";
-type Persona = {
+export type Persona = {
   personaLabel: string;
   name: string;
   role: string;
   tier: string;
-  quote: string;
+  /** Pull quote — shown in the Personas grid, omitted on ideation-case chips. */
+  quote?: string;
   initials: string;
   tint: PersonaTint;
   src?: string;
@@ -41,6 +42,12 @@ type Persona = {
 type IdeationCase = {
   title: string;
   label?: string;
+  /** Small uppercase case number, e.g. "Case 1" (Figma 576:21412). */
+  caseLabel?: string;
+  /** Uppercase accent line between title and body, e.g. "Take it easy!". */
+  kicker?: string;
+  /** Persona chip shown above the case (same card as the Personas grid, no quote). */
+  persona?: Persona;
   body: string[];
   images: CaseImage[];
 };
@@ -86,6 +93,24 @@ export type CaseStudy = {
   cardSummary: string;
   /** 21:9 cover image, reused as the portfolio-card thumbnail. */
   cover?: string;
+  /**
+   * Filter tags — drawn from the landing page's filter vocabulary
+   * ("Design system" | "UX" | "UI") so the banner chips and the case-study
+   * grid filters stay in sync.
+   */
+  tags?: string[];
+  /**
+   * Live banner component content (Figma 576:25865) — replaces the static
+   * cover image on the case-study page when present. Tags come from `tags`.
+   */
+  banner?: {
+    title: string;
+    subtitle: string;
+    platform: string;
+    timeline: string;
+    /** Right-side artwork (phone collage). */
+    artwork?: string;
+  };
   meta: { role: string; timeline: string; tools: string; note?: string };
   /**
    * Sectioned layout (Figma 576:21176): each entry opens at the first block
@@ -95,6 +120,25 @@ export type CaseStudy = {
    */
   sections?: { title: string; inStepper?: boolean }[];
   blocks: Block[];
+};
+
+// Loyalty-study personas — shared between the Personas grid (with quotes)
+// and the ideation-case chips (without).
+const ALBERT: Persona = {
+  personaLabel: "Persona A",
+  name: "Albert Yip",
+  role: "Property buyer",
+  tier: "Lv3 · Passionates — normal user",
+  initials: "AY",
+  tint: "sky",
+};
+const CHRISTY: Persona = {
+  personaLabel: "Persona B",
+  name: "Christy Hui",
+  role: "Employee",
+  tier: "Lv2 · Engaged — employee",
+  initials: "CH",
+  tint: "amber",
 };
 
 export const CASE_STUDIES: CaseStudy[] = [
@@ -109,6 +153,15 @@ export const CASE_STUDIES: CaseStudy[] = [
     cardSummary:
       "A five-tier loyalty membership for a commercial real-estate group (CCG) — making tiers, points, and upgrade paths legible at a glance.",
     cover: imgSrc(loyaltyCover),
+    tags: ["UX", "UI"],
+    banner: {
+      title: "5-tier membership system for a commercial real estate group",
+      subtitle:
+        "Designing a five-tier membership system across malls, offices, and residences. One that users actually understand.",
+      platform: "iOS & Android",
+      timeline: "12 Weeks",
+      artwork: "/work/loyalty/banner-screens.png",
+    },
     meta: {
       role: "Product Designer",
       timeline: "Jan 2023 — Apr 2023",
@@ -212,22 +265,12 @@ export const CASE_STUDIES: CaseStudy[] = [
         heading: "Personas",
         items: [
           {
-            personaLabel: "Persona A",
-            name: "Albert Yip",
-            role: "Property buyer",
-            tier: "Lv3 · Passionates — normal user",
-            initials: "AY",
-            tint: "sky",
+            ...ALBERT,
             quote:
               "The requirement to upgrade to the next level (Lv4 · VIP) is to spend $300K and complete one mission. How is ‘one mission’ defined?",
           },
           {
-            personaLabel: "Persona B",
-            name: "Christy Hui",
-            role: "Employee",
-            tier: "Lv2 · Engaged — employee",
-            initials: "CH",
-            tint: "amber",
+            ...CHRISTY,
             quote:
               "Do I only need to complete one of the requirements (Employee Missions / Missions / Spending) to upgrade to the next level?",
           },
@@ -238,8 +281,10 @@ export const CASE_STUDIES: CaseStudy[] = [
         heading: "Ideations",
         cases: [
           {
-            title: "Take it easy!",
-            label: "Persona A · Case 1 — completed spending goal, no mission points",
+            title: "Completed spending goal, no mission points",
+            caseLabel: "Case 1",
+            kicker: "Take it easy!",
+            persona: ALBERT,
             body: [
               "Albert tracks his upgrade progress bar at the top of the Membership Tier page.",
               "Once the spending goal is complete, the Missions progress bar takes priority.",
@@ -251,8 +296,10 @@ export const CASE_STUDIES: CaseStudy[] = [
             ],
           },
           {
-            title: "I got Missions points!",
-            label: "Persona A · Case 2 — completed one mission goal",
+            title: "Completed one mission goal",
+            caseLabel: "Case 2",
+            kicker: "I got Missions points!",
+            persona: ALBERT,
             body: [
               "If a user has earned any mission points, both the Spending and Missions progress bars are displayed.",
             ],
@@ -262,8 +309,10 @@ export const CASE_STUDIES: CaseStudy[] = [
             ],
           },
           {
-            title: "Employee edition!",
-            label: "Persona B — employee",
+            title: "Employee missions, kept separate",
+            caseLabel: "Case 3",
+            kicker: "Employee edition!",
+            persona: CHRISTY,
             body: [
               "An “Employee Missions” section is added for employee users only.",
               "A separate column keeps personal points from mixing with employee missions.",
@@ -328,6 +377,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     subtitle: "A usability test to validate core functions before launch.",
     cardSummary:
       "A qualitative usability study on an electric utility app — 15 interviews, scored tasks, and prioritized, shippable fixes.",
+    tags: ["UX"],
     meta: {
       role: "UX Researcher & Designer",
       timeline: "2024",
@@ -458,6 +508,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     subtitle: "A centralised platform for teams to manage emissions data and reporting.",
     cardSummary:
       "A centralised emissions dashboard for a logistics group that cut form-management time in half and made reporting far more accurate.",
+    tags: ["UX", "UI"],
     meta: {
       role: "Product Designer",
       timeline: "4 months",

@@ -7,24 +7,29 @@ import { CASE_STUDIES } from "@/lib/caseStudies";
 
 const FILTERS = ["All", "Design system", "UX", "UI"] as const;
 
-// Real case studies, linked to their detail pages.
-const PROJECTS: ProjectCardProps[] = CASE_STUDIES.map((c) => ({
+// Real case studies, linked to their detail pages. Tags share the FILTERS
+// vocabulary, so the pills below actually filter the grid.
+const PROJECTS: (ProjectCardProps & { tags: string[] })[] = CASE_STUDIES.map((c) => ({
   badge: c.category,
   title: c.title,
   description: c.cardSummary,
   href: `/work/${c.slug}`,
   thumbnailSrc: c.cover,
+  tags: c.tags ?? [],
 }));
 
 /**
  * CaseStudySection — Portfolio / case-study grid (Figma 280:17776).
  * Header (CASE STUDY + grid/list view toggle) → filter pills → project cards →
- * Load more. Filter/view selection is visual only for now; actual filtering,
- * list view, and pagination are TODO pending real project data.
+ * Load more. Filters match on each study's tags; list view and pagination are
+ * TODO pending real project data.
  */
 export function CaseStudySection() {
   const [activeFilter, setActiveFilter] = useState<string>("All");
   const [view, setView] = useState<"grid" | "list">("grid");
+  const visible = PROJECTS.filter(
+    (p) => activeFilter === "All" || p.tags.includes(activeFilter),
+  );
 
   return (
     <section
@@ -91,8 +96,8 @@ export function CaseStudySection() {
 
         {/* Cards */}
         <div className="mt-8 flex flex-col gap-4">
-          {PROJECTS.map((project, i) => (
-            <ProjectCard key={i} {...project} />
+          {visible.map((project) => (
+            <ProjectCard key={project.href} {...project} />
           ))}
         </div>
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Work_Sans, Poppins } from "next/font/google";
+import { Inter, Work_Sans, Poppins, Outfit, Geist } from "next/font/google";
 import "./globals.css";
 
 // Inter — primary typeface (ExtraBold headlines → Regular body).
@@ -16,10 +16,24 @@ const workSans = Work_Sans({
   display: "swap",
 });
 
-// Poppins Bold — case-study section titles (Base-pill headers, Figma 576:21195).
+// Poppins — case-study section titles (Bold) and banner tag chips (Medium).
 const poppins = Poppins({
   variable: "--font-poppins",
-  weight: "700",
+  weight: ["500", "700"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Outfit ExtraBold — case-study banner headline (Figma 576:25865).
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Geist — case-study banner subtitle and meta (Figma 576:25865).
+const geist = Geist({
+  variable: "--font-geist",
   subsets: ["latin"],
   display: "swap",
 });
@@ -39,7 +53,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${workSans.variable} ${poppins.variable} h-full antialiased`}
+      className={`${inter.variable} ${workSans.variable} ${poppins.variable} ${outfit.variable} ${geist.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

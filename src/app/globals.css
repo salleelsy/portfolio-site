@@ -52,6 +52,8 @@
      TODO(license): do not self-host without a license — falling back to Inter. */
   --font-badge: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-section: var(--font-poppins), var(--font-inter), sans-serif; /* Poppins — case-study section titles */
+  --font-display: var(--font-outfit), var(--font-inter), sans-serif; /* Outfit — banner headline */
+  --font-geist-alt: var(--font-geist), var(--font-inter), sans-serif; /* Geist — banner subtitle/meta */
 }
 
 /* Brand logo marquee — one full set width is 50% of the duplicated track. */

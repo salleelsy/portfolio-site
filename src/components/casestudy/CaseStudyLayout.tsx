@@ -5,6 +5,7 @@ import { CaseStudyBlock } from "./CaseStudyBlocks";
 import { SectionTitle } from "./SectionTitle";
 import { BackButton } from "./BackButton";
 import { CaseStudyStepper, type StepperItem } from "./CaseStudyStepper";
+import { CaseStudyBanner } from "./CaseStudyBanner";
 import { ArrowRightIcon } from "../icons";
 
 // Site-wide content margins: 120px left/right on desktop (Figma 576:21185),
@@ -104,8 +105,10 @@ export function CaseStudyLayout({ study }: { study: CaseStudy }) {
         </header>
       )}
 
-      {/* Banner — always full-bleed (Figma: 1890×810 thumbnail spans the page) */}
-      {study.cover ? (
+      {/* Banner — always full-bleed (Figma: the banner spans the page) */}
+      {study.banner ? (
+        <CaseStudyBanner study={study} />
+      ) : study.cover ? (
         <div className="relative aspect-[21/9] w-full">
           <Image
             src={study.cover}

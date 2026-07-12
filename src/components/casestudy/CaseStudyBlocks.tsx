@@ -1,5 +1,114 @@
-import type { Block } from "@/lib/caseStudies";
+import type { Block, Compare, Persona } from "@/lib/caseStudies";
 import { PhotoFrame } from "../PhotoFrame";
+
+const PERSONA_TINT = {
+  sky: { card: "bg-[#eaf6fb]", avatar: "bg-[#c9eaf6]" },
+  amber: { card: "bg-[#fbf6e3]", avatar: "bg-[#fbe7be]" },
+} as const;
+
+/**
+ * PersonaCard — avatar + label/name/role chip, with an optional pull quote.
+ * Used by the Personas grid (with quote) and inside ideation cases (without).
+ */
+function PersonaCard({ persona: p }: { persona: Persona }) {
+  const t = PERSONA_TINT[p.tint];
+  return (
+    <figure
+      className={`flex flex-col gap-4 rounded-card border border-hairline p-6 ${t.card}`}
+    >
+      <div className="flex items-center gap-4">
+        <div
+          className={`relative flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-full ${t.avatar}`}
+        >
+          {p.src ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={p.src} alt={p.name} className="size-full object-cover" />
+          ) : (
+            <span className="text-[18px] font-extrabold text-ink">{p.initials}</span>
+          )}
+        </div>
+        <figcaption className="flex flex-col gap-[2px]">
+          <span className="font-label text-[12px] font-semibold uppercase tracking-wide text-base-blue">
+            {p.personaLabel}
+          </span>
+          <span className="text-[20px] font-extrabold leading-tight text-ink">
+            {p.name}
+          </span>
+          <span className="text-[13px] text-muted">
+            {p.role} · {p.tier}
+          </span>
+        </figcaption>
+      </div>
+      {p.quote && (
+        <blockquote className="text-[16px] leading-[1.6] text-cod-gray">
+          <span aria-hidden>“</span>
+          {p.quote}
+          <span aria-hidden>”</span>
+        </blockquote>
+      )}
+    </figure>
+  );
+}
+
+/**
+ * ComparePanel — one Before/After card (Figma 576:21346): title + note on top,
+ * then the phone shot(s) on the left with the +/- takeaways stacked to their
+ * right (pros over cons), per the updated Challenge 1 layout.
+ */
+function ComparePanel({ data, highlight }: { data: Compare; highlight?: boolean }) {
+  return (
+    <div
+      className={[
+        "flex flex-col gap-5 rounded-card border p-6",
+        highlight ? "border-ink bg-paper" : "border-hairline bg-body-bg",
+      ].join(" ")}
+    >
+      <div className="flex flex-col gap-3">
+        <p className="font-label text-[13px] uppercase tracking-wide text-muted">
+          {data.title}
+        </p>
+        {data.note && (
+          <p className="max-w-[70ch] text-[15px] leading-[1.6] text-cod-gray">
+            {data.note}
+          </p>
+        )}
+      </div>
+      <div className="flex flex-col gap-6 lg:flex-row lg:gap-10">
+        {data.images && (
+          <div className="flex min-w-0 flex-1 gap-4 overflow-x-auto pb-1">
+            {data.images.map((img) => (
+              <PhoneShot key={img.label} src={img.src} alt={img.alt} label={img.label} />
+            ))}
+          </div>
+        )}
+        {(data.pros || data.cons) && (
+          <div className="flex flex-col gap-4 pt-1 lg:w-[340px] lg:shrink-0">
+            {data.pros && (
+              <ul className="flex flex-col gap-2">
+                {data.pros.map((p, i) => (
+                  <li key={i} className="flex gap-2 text-[14px] leading-[1.5] text-cod-gray">
+                    <span aria-hidden className="font-bold text-ink">+</span>
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            )}
+            {data.cons && (
+              <ul className="flex flex-col gap-2">
+                {data.cons.map((c, i) => (
+                  <li key={i} className="flex gap-2 text-[14px] leading-[1.5] text-muted">
+                    <span aria-hidden className="font-bold">–</span>
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
@@ -209,7 +318,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
           {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
           {block.heading && <Heading>{block.heading}</Heading>}
           <div className="flex items-stretch gap-2">
-            <div className="hidden w-6 flex-col items-center justify-center gap-2 text-muted sm:flex">
+            <div className="hidden w-6 flex-col items-center justify-center gap-2 text-base-blue sm:flex">
               <span aria-hidden>↑</span>
               <span className="rotate-180 font-label text-[11px] uppercase tracking-wide [writing-mode:vertical-rl]">
                 Upgrade
@@ -222,7 +331,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                     {block.columns.map((col) => (
                       <th
                         key={col}
-                        className="rounded-lg bg-[#2b2bee] px-4 py-3 text-[14px] font-semibold text-white"
+                        className="rounded-lg bg-ink px-4 py-3 text-[14px] font-semibold text-white"
                       >
                         {col}
                       </th>
@@ -260,7 +369,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                 </tbody>
               </table>
             </div>
-            <div className="hidden w-6 flex-col items-center justify-center gap-2 text-muted sm:flex">
+            <div className="hidden w-6 flex-col items-center justify-center gap-2 text-base-blue sm:flex">
               <span className="font-label text-[11px] uppercase tracking-wide [writing-mode:vertical-rl]">
                 Downgrade
               </span>
@@ -274,60 +383,18 @@ export function CaseStudyBlock({ block }: { block: Block }) {
       );
     }
 
-    case "personas": {
-      const tint = {
-        sky: { card: "bg-[#eaf6fb]", avatar: "bg-[#c9eaf6]" },
-        amber: { card: "bg-[#fbf6e3]", avatar: "bg-[#fbe7be]" },
-      };
+    case "personas":
       return (
         <div className="flex flex-col gap-6">
           {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
           {block.heading && <Heading>{block.heading}</Heading>}
           <div className="grid gap-4 md:grid-cols-2">
-            {block.items.map((p) => {
-              const t = tint[p.tint];
-              return (
-                <figure
-                  key={p.name}
-                  className={`flex flex-col gap-4 rounded-card border border-hairline p-6 ${t.card}`}
-                >
-                  <div className="flex items-center gap-4">
-                    <div
-                      className={`relative flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-full ${t.avatar}`}
-                    >
-                      {p.src ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img src={p.src} alt={p.name} className="size-full object-cover" />
-                      ) : (
-                        <span className="text-[18px] font-extrabold text-ink">
-                          {p.initials}
-                        </span>
-                      )}
-                    </div>
-                    <figcaption className="flex flex-col gap-[2px]">
-                      <span className="font-label text-[12px] font-semibold uppercase tracking-wide text-[#2b2bee]">
-                        {p.personaLabel}
-                      </span>
-                      <span className="text-[20px] font-extrabold leading-tight text-ink">
-                        {p.name}
-                      </span>
-                      <span className="text-[13px] text-muted">
-                        {p.role} · {p.tier}
-                      </span>
-                    </figcaption>
-                  </div>
-                  <blockquote className="text-[16px] leading-[1.6] text-cod-gray">
-                    <span aria-hidden>“</span>
-                    {p.quote}
-                    <span aria-hidden>”</span>
-                  </blockquote>
-                </figure>
-              );
-            })}
+            {block.items.map((p) => (
+              <PersonaCard key={p.name} persona={p} />
+            ))}
           </div>
         </div>
       );
-    }
 
     case "ideation":
       return (
@@ -340,21 +407,34 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                 key={c.title}
                 className="flex flex-col gap-5 rounded-card border border-hairline bg-body-bg p-6 lg:flex-row lg:gap-8"
               >
-                <div className="flex flex-col gap-3 lg:w-[320px] lg:shrink-0">
-                  {c.label && (
-                    <p className="font-label text-[12px] uppercase tracking-wide text-muted">
-                      {c.label}
-                    </p>
-                  )}
-                  <p className="text-[20px] font-extrabold text-[#2b2bee]">
-                    {c.title}
-                  </p>
-                  <div className="flex flex-col gap-2">
-                    {c.body.map((b, i) => (
-                      <p key={i} className="text-[14px] leading-[1.6] text-cod-gray">
-                        {b}
+                <div className="flex flex-col gap-4 lg:w-[360px] lg:shrink-0">
+                  {c.persona && <PersonaCard persona={c.persona} />}
+                  <div className="flex flex-col gap-3">
+                    {c.caseLabel && (
+                      <p className="font-label text-[12px] font-semibold uppercase tracking-wide text-base-blue">
+                        {c.caseLabel}
                       </p>
-                    ))}
+                    )}
+                    <p className="text-[24px] font-extrabold leading-tight text-ink">
+                      {c.title}
+                    </p>
+                    {c.kicker && (
+                      <p className="font-label text-[12px] font-semibold uppercase tracking-wide text-base-blue">
+                        {c.kicker}
+                      </p>
+                    )}
+                    {c.label && (
+                      <p className="font-label text-[12px] uppercase tracking-wide text-muted">
+                        {c.label}
+                      </p>
+                    )}
+                    <div className="flex flex-col gap-2">
+                      {c.body.map((b, i) => (
+                        <p key={i} className="text-[14px] leading-[1.6] text-cod-gray">
+                          {b}
+                        </p>
+                      ))}
+                    </div>
                   </div>
                 </div>
                 <div className="flex flex-1 gap-4 overflow-x-auto pb-1">
@@ -375,7 +455,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
 
     case "hierarchy": {
       const tone: Record<string, string> = {
-        high: "bg-[#2b2bee] text-white",
+        high: "bg-base-blue text-white",
         mid: "bg-[#c7c4f7] text-ink",
         low: "bg-[#eae8fb] text-ink",
       };
@@ -394,15 +474,19 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                 </div>
               ))}
             </div>
+            {/* Importance indicators (Figma 576:37691): centered indigo column */}
             {(block.topLabel || block.bottomLabel) && (
-              <div className="flex w-24 shrink-0 flex-col items-center justify-between py-1">
-                <span className="font-label text-[11px] uppercase tracking-wide text-muted">
+              <div className="flex w-24 shrink-0 flex-col items-center justify-center gap-1 py-1 text-base-blue">
+                <span className="font-label text-[11px] uppercase tracking-wide">
                   {block.topLabel}
                 </span>
-                <span aria-hidden className="my-1 flex-1 text-muted">
-                  ↓
+                <span aria-hidden className="flex flex-col items-center py-1 text-[16px] leading-6">
+                  <span>↓</span>
+                  <span>↓</span>
+                  <span>↓</span>
+                  <span>↓</span>
                 </span>
-                <span className="font-label text-[11px] uppercase tracking-wide text-muted">
+                <span className="text-center font-label text-[11px] uppercase tracking-wide">
                   {block.bottomLabel}
                 </span>
               </div>
@@ -423,7 +507,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                 key={item.title}
                 className="flex flex-col gap-3 rounded-card border border-hairline bg-body-bg p-6"
               >
-                <p className="text-[20px] font-extrabold text-[#2b2bee]">
+                <p className="text-[20px] font-extrabold text-base-blue">
                   {item.title}
                 </p>
                 {item.body.map((b, i) => (
@@ -437,73 +521,17 @@ export function CaseStudyBlock({ block }: { block: Block }) {
         </div>
       );
 
-    case "beforeAfter": {
-      const Panel = ({ data, highlight }: { data: (typeof block)["before"]; highlight?: boolean }) => (
-        <div
-          className={[
-            "flex flex-col gap-5 rounded-card border p-6",
-            highlight ? "border-ink bg-paper" : "border-hairline bg-body-bg",
-          ].join(" ")}
-        >
-          <div className="flex flex-col gap-3">
-            <p className="font-label text-[13px] uppercase tracking-wide text-muted">
-              {data.title}
-            </p>
-            {data.note && (
-              <p className="max-w-[70ch] text-[15px] leading-[1.6] text-cod-gray">
-                {data.note}
-              </p>
-            )}
-          </div>
-          {(data.pros || data.cons) && (
-            <div className="grid gap-4 sm:grid-cols-2">
-              {data.pros && (
-                <ul className="flex flex-col gap-2">
-                  {data.pros.map((p, i) => (
-                    <li key={i} className="flex gap-2 text-[14px] leading-[1.5] text-cod-gray">
-                      <span aria-hidden className="font-bold text-ink">+</span>
-                      {p}
-                    </li>
-                  ))}
-                </ul>
-              )}
-              {data.cons && (
-                <ul className="flex flex-col gap-2">
-                  {data.cons.map((c, i) => (
-                    <li key={i} className="flex gap-2 text-[14px] leading-[1.5] text-muted">
-                      <span aria-hidden className="font-bold">–</span>
-                      {c}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          )}
-          {data.images && (
-            <div className="flex gap-4 overflow-x-auto pb-1">
-              {data.images.map((img) => (
-                <PhoneShot
-                  key={img.label}
-                  src={img.src}
-                  alt={img.alt}
-                  label={img.label}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-      );
+    case "beforeAfter":
       return (
         <div className="flex flex-col gap-6">
           {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
           {block.heading && <Heading>{block.heading}</Heading>}
           <div className="flex flex-col gap-4">
-            <Panel data={block.before} />
-            <Panel data={block.after} highlight />
+            <ComparePanel data={block.before} />
+            <ComparePanel data={block.after} highlight />
           </div>
         </div>
       );
-    }
 
     case "features":
       return (
