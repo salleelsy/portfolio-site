@@ -5,7 +5,7 @@
 export function VibingSection() {
   return (
     <section aria-labelledby="vibing-heading" className="bg-body-bg">
-      <div className="mx-auto w-full max-w-[1440px] px-6 py-14 sm:px-10 lg:px-16">
+      <div className="mx-auto w-full px-6 py-14 sm:px-10 lg:px-[120px]">
         <h2 id="vibing-heading" className="text-[40px] font-extrabold text-ink">
           JUST VIBING
         </h2>

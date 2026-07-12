@@ -32,7 +32,7 @@ const INTERESTS = [
 export function AboutMeSection() {
   return (
     <section aria-labelledby="about-heading" className="bg-body-bg">
-      <div className="mx-auto w-full max-w-[1440px] px-6 py-14 sm:px-10 lg:px-16">
+      <div className="mx-auto w-full px-6 py-14 sm:px-10 lg:px-[120px]">
         <h2 id="about-heading" className="text-[40px] font-extrabold text-ink">
           ABOUT ME
         </h2>

@@ -87,6 +87,13 @@ export type CaseStudy = {
   /** 21:9 cover image, reused as the portfolio-card thumbnail. */
   cover?: string;
   meta: { role: string; timeline: string; tools: string; note?: string };
+  /**
+   * Sectioned layout (Figma 576:21176): each entry opens at the first block
+   * whose `eyebrow` equals `title`, rendered with a SectionTitle pill header.
+   * Entries appear in the sticky reading stepper unless `inStepper: false`.
+   * Studies without `sections` render the classic flat block list.
+   */
+  sections?: { title: string; inStepper?: boolean }[];
   blocks: Block[];
 };
 
@@ -107,6 +114,14 @@ export const CASE_STUDIES: CaseStudy[] = [
       timeline: "Jan 2023 — Apr 2023",
       tools: "Figma, Miro, Microsoft Azure, Cloudifier",
     },
+    sections: [
+      { title: "Project Overview" },
+      { title: "Background" },
+      { title: "Problem Statement", inStepper: false },
+      { title: "Challenge 1" },
+      { title: "Challenge 2" },
+      { title: "Challenge 3" },
+    ],
     blocks: [
       {
         kind: "prose",

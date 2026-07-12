@@ -42,7 +42,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-6 pb-12 pt-12 sm:px-10 lg:px-16">
+      <div className="relative z-10 mx-auto w-full px-6 pb-12 pt-12 sm:px-10 lg:px-[120px]">
         {/* Top: headline + folder nav (folder nav stays right on every width) */}
         <div className="flex flex-row items-start justify-between gap-6">
           <h1 className="text-[40px] font-extrabold leading-[1.03] tracking-[-0.02em] text-ink sm:text-[64px] lg:text-[96px]">

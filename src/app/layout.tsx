@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Work_Sans } from "next/font/google";
+import { Inter, Work_Sans, Poppins } from "next/font/google";
 import "./globals.css";
 
 // Inter — primary typeface (ExtraBold headlines → Regular body).
@@ -12,6 +12,14 @@ const inter = Inter({
 // Work Sans — small caption/label text (e.g. folder labels).
 const workSans = Work_Sans({
   variable: "--font-work-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Poppins Bold — case-study section titles (Base-pill headers, Figma 576:21195).
+const poppins = Poppins({
+  variable: "--font-poppins",
+  weight: "700",
   subsets: ["latin"],
   display: "swap",
 });
@@ -31,7 +39,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${workSans.variable} h-full antialiased`}
+      className={`${inter.variable} ${workSans.variable} ${poppins.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

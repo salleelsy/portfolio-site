@@ -33,6 +33,10 @@
   --color-folder-blue-from: #73d7ff;
   --color-folder-blue-to: #6bcbf3;
 
+  /* Case-study accents (Figma 576:21176 — Uber Base case-study page) */
+  --color-base-blue: #404cd2; /* section-title pill + text */
+  --color-content-secondary: #4b4b4b; /* Uber Base contentSecondary — stepper idle labels */
+
   /* Radii (CLAUDE.md — reconfirm vs Figma) */
   --radius-card: 16px;
   --radius-hero: 50px;
@@ -47,6 +51,7 @@
   /* Skill-badge font. Design uses "Uber Move Text" which is PROPRIETARY (Uber-owned).
      TODO(license): do not self-host without a license — falling back to Inter. */
   --font-badge: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-section: var(--font-poppins), var(--font-inter), sans-serif; /* Poppins — case-study section titles */
 }
 
 /* Brand logo marquee — one full set width is 50% of the duplicated track. */
