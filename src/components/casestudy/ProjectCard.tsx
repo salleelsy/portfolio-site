@@ -49,7 +49,7 @@ export function ProjectCard({
               className="flex h-full w-full items-center justify-center rounded-xl border border-dashed border-line bg-body-bg"
             >
               {/* TODO(content): real project thumbnail */}
-              <span className="font-label text-[13px] uppercase tracking-wide text-muted/70">
+              <span className="font-label text-[14px] uppercase tracking-wide text-muted/70">
                 TODO: thumbnail
               </span>
             </div>

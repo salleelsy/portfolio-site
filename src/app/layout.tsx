@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Work_Sans, Poppins, Outfit, Geist } from "next/font/google";
+import { Work_Sans, Poppins, Outfit, Geist } from "next/font/google";
 import "./globals.css";
-
-// Inter — primary typeface (ExtraBold headlines → Regular body).
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 // Work Sans — small caption/label text (e.g. folder labels).
 const workSans = Work_Sans({
@@ -16,10 +9,12 @@ const workSans = Work_Sans({
   display: "swap",
 });
 
-// Poppins — case-study section titles (Bold) and banner tag chips (Medium).
+// Poppins — primary typeface across the site (ExtraBold headlines → Regular
+// body), plus section titles and banner chips. Loaded from Google Fonts —
+// the same OFL family as the uploaded TTFs, subsetted to woff2 automatically.
 const poppins = Poppins({
   variable: "--font-poppins",
-  weight: ["500", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin"],
   display: "swap",
 });
@@ -53,7 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${workSans.variable} ${poppins.variable} ${outfit.variable} ${geist.variable} h-full antialiased`}
+      className={`${workSans.variable} ${poppins.variable} ${outfit.variable} ${geist.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

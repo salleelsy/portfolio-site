@@ -46,7 +46,7 @@ export function AboutMeSection() {
         </p>
 
         {/* Interests */}
-        <h3 className="mt-14 font-label text-[13px] uppercase tracking-wide text-muted">
+        <h3 className="mt-14 font-label text-[14px] uppercase tracking-wide text-muted">
           A few things I&rsquo;m into
         </h3>
         <ul className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -67,7 +67,7 @@ export function AboutMeSection() {
         </ul>
 
         {/* Gallery strip — drop favourite shots here */}
-        <h3 className="mt-14 font-label text-[13px] uppercase tracking-wide text-muted">
+        <h3 className="mt-14 font-label text-[14px] uppercase tracking-wide text-muted">
           Snapshots
         </h3>
         <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3">

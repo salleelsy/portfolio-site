@@ -56,7 +56,7 @@ export function ContactSection() {
           </a>
         </div>
 
-        <footer className="py-8 text-center text-[13px] text-muted">
+        <footer className="py-8 text-center text-[14px] text-muted">
           © 2026 Sallee Lee. All rights reserved.
         </footer>
       </div>

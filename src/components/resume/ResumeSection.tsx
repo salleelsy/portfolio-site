@@ -169,7 +169,7 @@ export function ResumeSection() {
           </div>
 
           {/* Contact row */}
-          <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 border-t border-hairline pt-6 text-[13px]">
+          <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 border-t border-hairline pt-6 text-[14px]">
             {CONTACT.map((c) => (
               <li key={c.label} className="flex items-center gap-2">
                 <span className="font-label uppercase tracking-wide text-muted">
@@ -190,7 +190,7 @@ export function ResumeSection() {
           <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-14">
             {/* Experience */}
             <div>
-              <h3 className="font-label text-[13px] uppercase tracking-wide text-muted">
+              <h3 className="font-label text-[14px] uppercase tracking-wide text-muted">
                 Experience
               </h3>
               <div className="mt-6 flex flex-col gap-8">
@@ -255,13 +255,13 @@ export function ResumeSection() {
             {/* Sidebar: skills / education / languages */}
             <aside className="flex flex-col gap-10 lg:border-l lg:border-hairline lg:pl-14">
               <div>
-                <h3 className="font-label text-[13px] uppercase tracking-wide text-muted">
+                <h3 className="font-label text-[14px] uppercase tracking-wide text-muted">
                   Skills
                 </h3>
                 <div className="mt-5 flex flex-col gap-5">
                   {SKILLS.map((group) => (
                     <div key={group.label} className="flex flex-col gap-3">
-                      <p className="text-[13px] font-bold text-ink">{group.label}</p>
+                      <p className="text-[14px] font-bold text-ink">{group.label}</p>
                       <ul className="flex flex-wrap gap-2">
                         {group.items.map((skill) => (
                           <li
@@ -278,13 +278,13 @@ export function ResumeSection() {
               </div>
 
               <div>
-                <h3 className="font-label text-[13px] uppercase tracking-wide text-muted">
+                <h3 className="font-label text-[14px] uppercase tracking-wide text-muted">
                   Education
                 </h3>
                 <div className="mt-5 flex flex-col gap-1">
                   <p className="text-[14px] font-bold text-ink">{EDUCATION.school}</p>
                   {EDUCATION.degrees.map((d) => (
-                    <p key={d} className="text-[13px] leading-[1.5] text-muted">
+                    <p key={d} className="text-[14px] leading-[1.5] text-muted">
                       {d}
                     </p>
                   ))}
@@ -292,10 +292,10 @@ export function ResumeSection() {
               </div>
 
               <div>
-                <h3 className="font-label text-[13px] uppercase tracking-wide text-muted">
+                <h3 className="font-label text-[14px] uppercase tracking-wide text-muted">
                   Languages
                 </h3>
-                <p className="mt-5 text-[13px] leading-[1.5] text-cod-gray">
+                <p className="mt-5 text-[14px] leading-[1.5] text-cod-gray">
                   Multilingual — fluent in English, Cantonese, and Mandarin.
                 </p>
               </div>

@@ -98,7 +98,7 @@ export function CaseStudyLayout({ study }: { study: CaseStudy }) {
                 <dt className="font-label text-[12px] uppercase tracking-wide text-muted">
                   {label}
                 </dt>
-                <dd className="text-[15px] font-semibold text-ink">{value}</dd>
+                <dd className="text-[16px] font-semibold text-ink">{value}</dd>
               </div>
             ))}
           </dl>
@@ -125,7 +125,7 @@ export function CaseStudyLayout({ study }: { study: CaseStudy }) {
           className="flex aspect-[21/9] w-full items-center justify-center border-y border-dashed border-line bg-body-bg"
         >
           {/* TODO(content): real cover banner */}
-          <span className="font-label text-[13px] uppercase tracking-wide text-muted/70">
+          <span className="font-label text-[14px] uppercase tracking-wide text-muted/70">
             {study.title} — cover
           </span>
         </div>

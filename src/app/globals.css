@@ -46,14 +46,14 @@
 
 @theme inline {
   /* Fonts wired to next/font CSS variables set on <html> in layout.tsx */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif; /* Inter — primary */
-  --font-label: var(--font-work-sans), var(--font-inter), sans-serif; /* Work Sans — small labels */
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif; /* Poppins — primary */
+  --font-label: var(--font-work-sans), var(--font-poppins), sans-serif; /* Work Sans — small labels */
   /* Skill-badge font. Design uses "Uber Move Text" which is PROPRIETARY (Uber-owned).
-     TODO(license): do not self-host without a license — falling back to Inter. */
-  --font-badge: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-section: var(--font-poppins), var(--font-inter), sans-serif; /* Poppins — case-study section titles */
-  --font-display: var(--font-outfit), var(--font-inter), sans-serif; /* Outfit — banner headline */
-  --font-geist-alt: var(--font-geist), var(--font-inter), sans-serif; /* Geist — banner subtitle/meta */
+     TODO(license): do not self-host without a license — falling back to Poppins. */
+  --font-badge: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-section: var(--font-poppins), sans-serif; /* Poppins — case-study section titles */
+  --font-display: var(--font-outfit), var(--font-poppins), sans-serif; /* Outfit — banner headline */
+  --font-geist-alt: var(--font-geist), var(--font-poppins), sans-serif; /* Geist — banner subtitle/meta */
 }
 
 /* Brand logo marquee — one full set width is 50% of the duplicated track. */

@@ -14,7 +14,7 @@ const HEADLINE = [
 
 /**
  * Hero — landing hero (Figma 280:17737).
- * White surface: wide 96px Inter ExtraBold headline (left, up to ~1239px so the
+ * White surface: wide 96px Poppins ExtraBold headline (left, up to ~1239px so the
  * phrases stay on one line) + Folder Nav (right, always a right-aligned column),
  * with the character illustration sitting on a #F5F5F5 rounded shape at the
  * top-right, and the dark About card below.
