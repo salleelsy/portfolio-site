@@ -5,10 +5,10 @@ import { Tab, TabList, type TabItem } from "@/components/Tab";
 
 // Real site IA (from the brief) — not placeholder copy.
 const NAV: TabItem[] = [
-  { value: "portfolio", label: "Portfolio", index: "01", panelId: "panel-portfolio" },
-  { value: "about", label: "About me", index: "02", panelId: "panel-about" },
-  { value: "vibing", label: "Just vibing", index: "03", panelId: "panel-vibing" },
-  { value: "resume", label: "Resume", index: "04", panelId: "panel-resume" },
+  { value: "portfolio", label: "Selected works", index: "001", panelId: "panel-portfolio" },
+  { value: "about", label: "About me", index: "002", panelId: "panel-about" },
+  { value: "hello", label: "Say hello", index: "003", panelId: "panel-hello" },
+  { value: "resume", label: "Resume", index: "004", panelId: "panel-resume" },
 ];
 
 export default function TabPreviewPage() {
@@ -64,7 +64,7 @@ export default function TabPreviewPage() {
           </h2>
           <div className="flex flex-wrap items-end gap-8 rounded-card bg-paper p-8">
             <figure className="flex flex-col items-center gap-2">
-              <Tab label="About me" index="02" active aria-hidden tabIndex={-1} />
+              <Tab label="About me" index="002" active aria-hidden tabIndex={-1} />
               <figcaption className="font-label text-[12px] text-muted">
                 Active (On) · 236×80
               </figcaption>

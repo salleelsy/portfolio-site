@@ -138,8 +138,14 @@ function DownloadIcon({ className }: { className?: string }) {
  */
 export function ResumeSection() {
   return (
-    <section aria-labelledby="resume-heading" className="bg-body-bg">
+    <section aria-labelledby="resume-tab-heading" className="bg-body-bg">
       <div className="mx-auto w-full px-6 py-14 sm:px-10 lg:px-[120px]">
+        <h2
+          id="resume-tab-heading"
+          className="mb-10 text-[40px] font-medium tracking-[-1.5px] text-ink sm:text-[56px] sm:leading-[70px]"
+        >
+          Resume
+        </h2>
         <div className="mx-auto max-w-[1040px] rounded-card border border-hairline bg-paper p-6 sm:p-10 lg:p-12">
           {/* Header */}
           <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">

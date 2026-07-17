@@ -5,7 +5,7 @@ import { TabList, type TabItem } from "./index";
 import { CaseStudySection } from "../casestudy/CaseStudySection";
 import { BrandsStrip } from "../brands/BrandsStrip";
 import { AboutMeSection } from "../about/AboutMeSection";
-import { VibingSection } from "../vibing/VibingSection";
+import { SayHelloSection } from "../hello/SayHelloSection";
 import { ResumeSection } from "../resume/ResumeSection";
 
 // Portfolio tab = case-study grid + the brands marquee (brands belong to this
@@ -20,23 +20,23 @@ function PortfolioPanel() {
 }
 
 const NAV: TabItem[] = [
-  { value: "portfolio", label: "Portfolio", index: "01", panelId: "panel-portfolio" },
-  { value: "about", label: "About me", index: "02", panelId: "panel-about" },
-  { value: "vibing", label: "Just vibing", index: "03", panelId: "panel-vibing" },
-  { value: "resume", label: "Resume", index: "04", panelId: "panel-resume" },
+  { value: "portfolio", label: "Selected works", index: "001", panelId: "panel-portfolio" },
+  { value: "about", label: "About me", index: "002", panelId: "panel-about" },
+  { value: "hello", label: "Say hello", index: "003", panelId: "panel-hello" },
+  { value: "resume", label: "Resume", index: "004", panelId: "panel-resume" },
 ];
 
 const PANELS: Record<string, ComponentType> = {
   portfolio: PortfolioPanel,
   about: AboutMeSection,
-  vibing: VibingSection,
+  hello: SayHelloSection,
   resume: ResumeSection,
 };
 
 /**
  * PortfolioTabs — the folder-tab strip wired to switch the content body below it.
  * The tab strip sits between the hero and the panels; the selected tab's section
- * (Portfolio / About me / Just vibing / Resume) is shown, the rest are hidden.
+ * (Selected works / About me / Say hello / Resume) is shown, the rest are hidden.
  */
 export function PortfolioTabs() {
   const [value, setValue] = useState("portfolio");

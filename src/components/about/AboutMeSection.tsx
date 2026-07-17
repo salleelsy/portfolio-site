@@ -33,8 +33,11 @@ export function AboutMeSection() {
   return (
     <section aria-labelledby="about-heading" className="bg-body-bg">
       <div className="mx-auto w-full px-6 py-14 sm:px-10 lg:px-[120px]">
-        <h2 id="about-heading" className="text-[40px] font-extrabold text-ink">
-          ABOUT ME
+        <h2
+          id="about-heading"
+          className="text-[40px] font-medium tracking-[-1.5px] text-ink sm:text-[56px] sm:leading-[70px]"
+        >
+          About me
         </h2>
 
         <p className="mt-6 max-w-[720px] text-[18px] leading-[1.6] text-cod-gray">

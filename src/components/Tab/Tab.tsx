@@ -2,9 +2,9 @@ import { forwardRef } from "react";
 import { FolderShape } from "./FolderShape";
 
 export type TabProps = {
-  /** Visible label, e.g. "Portfolio" (Inter Bold 14px). */
+  /** Visible label, e.g. "Selected works" (Poppins Medium 16px, Figma 662:21105). */
   label: string;
-  /** Index string, e.g. "01" (Inter SemiBold 12px). */
+  /** Index string, e.g. "001" (Poppins Regular 12px). */
   index: string;
   /** On = active (Figma `property1`). */
   active: boolean;
@@ -78,10 +78,10 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
             : "left-[3px] right-[21px] top-[20px] text-paper",
         ].join(" ")}
       >
-        <span className="font-sans text-[14px] font-bold">{label}</span>
+        <span className="font-sans text-[16px] font-medium">{label}</span>
         <span
           className={[
-            "font-sans text-[12px] font-semibold",
+            "font-sans text-[12px] font-normal",
             active ? "text-ink" : "text-body-bg",
           ].join(" ")}
         >
