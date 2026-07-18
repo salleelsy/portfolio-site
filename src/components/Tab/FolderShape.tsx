@@ -1,12 +1,13 @@
 /**
  * FolderShape — the file-folder silhouette behind a Tab.
  *
- * Vectors exported from Figma node 280:17872 (Illust-Tab) and inlined here as SVG
- * (per the brief: inline SVG, never raster PNG).
+ * Vectors exported from Figma node 280:17872 (Illust-Tab), restyled per the
+ * 673:24012 revision: no outline stroke; a soft drop shadow instead. The
+ * shadow is clipped at the shape's bottom edge (clip-path inset) so the
+ * active folder merges seamlessly into the same-colored panel below — the
+ * tab must read as part of the panel, never a separate floating component.
  *
- * - active: light #F3F4F6 folder with a #3C3C3C hairline outline. The bottom of
- *   the outline is covered by a fill strip so the tab reads as "open" into the
- *   content below (no bottom line).
+ * - active: light #F3F4F6 folder.
  * - leftBleed: reveals the folder's left foot (used by the first tab, which has
  *   nothing to its left to tuck under) by widening the viewBox to the left.
  *
@@ -18,12 +19,17 @@ type FolderShapeProps = {
   leftBleed?: boolean;
 };
 
+// Soft shadow on the folder art, clipped below the shape's own bottom edge so
+// nothing bleeds onto the panel the tab sits on.
+const SHADOW =
+  "[filter:drop-shadow(0_0_6px_rgba(0,0,0,0.22))] [clip-path:inset(-24px_-24px_0_-24px)]";
+
 export function FolderShape({ active, className, leftBleed = false }: FolderShapeProps) {
   if (active) {
-    // On variant (280:17880): 236×80, light #F3F4F6 fill, #3C3C3C hairline outline.
+    // On variant (280:17880): 236×80, light #F3F4F6 fill.
     return (
       <svg
-        className={className}
+        className={[SHADOW, className ?? ""].join(" ")}
         width={leftBleed ? 257 : 236}
         height={80}
         viewBox={leftBleed ? "-21 0 257 80" : "0 0 236 80"}
@@ -39,11 +45,7 @@ export function FolderShape({ active, className, leftBleed = false }: FolderShap
             d="M29.937 0.777399C24.187 1.71229 13.507 6.16424 9.5 32.4123C3.801 69.7344 -3.903 79.4559 -21 79.4559H241C223.903 79.4559 216.199 69.7355 210.5 32.4123C206.492 6.16424 195.813 1.71229 190.063 0.777399C189.385 0.621426 188.693 0.54319 188 0.543951H32C31.292 0.545412 30.6043 0.623228 29.937 0.777399Z"
             fill="var(--color-folder-active, #F3F4F6)"
           />
-          <path
-            d="M29.937 0.78137L30.01 1.32384L30.025 1.32055L30.039 1.31726L29.937 0.78137ZM190.063 0.78137L189.961 1.31836L189.975 1.32055L189.99 1.32384L190.063 0.78137ZM9.993 32.503C11.987 19.4488 15.628 11.8893 19.428 7.48164C23.221 3.08384 27.214 1.77863 30.01 1.32384L29.864 0.238904C26.91 0.718904 22.688 2.1063 18.702 6.72986C14.723 11.3436 11.022 19.131 9.007 32.3222L9.993 32.503ZM-21 80C-16.685 80 -12.926 79.3863 -9.628 77.8542C-6.323 76.32 -3.51 73.8729 -1.073 70.2532C3.779 63.0433 7.143 51.166 9.993 32.503L9.007 32.3222C6.157 50.9786 2.82 62.6214 -1.878 69.6022C-4.218 73.0762 -6.892 75.3929 -10.018 76.846C-13.152 78.3014 -16.766 78.9041 -21 78.9041V80ZM22 78.9041H-21V80H22V78.9041ZM22 80H32V78.9041H22V80ZM32 80H188V78.9041H32V80ZM188 80H198V78.9041H188V80ZM198 80H241V78.9041H198V80ZM241 78.9041C236.766 78.9041 233.152 78.3014 230.018 76.846C226.892 75.3929 224.217 73.0762 221.878 69.6022C217.18 62.6214 213.842 50.9786 210.993 32.3222L210.007 32.5041C212.857 51.1671 216.221 63.0433 221.073 70.2532C223.51 73.8729 226.323 76.3189 229.628 77.8542C232.926 79.3874 236.685 80 241 80V78.9041ZM210.993 32.3222C208.979 19.131 205.277 11.3436 201.298 6.72986C197.312 2.1063 193.09 0.72 190.137 0.238904L189.99 1.32384C192.786 1.77753 196.779 3.08384 200.572 7.48274C204.372 11.8893 208.014 19.4499 210.007 32.5041L210.993 32.3222ZM190.166 0.245479C189.465 0.0832876 188.743 0.00146119 188 0V1.09589C188.673 1.09589 189.328 1.1737 189.961 1.31836L190.166 0.245479ZM188 0H32V1.09589H188V0ZM32 0C31.258 0 30.533 0.0843835 29.834 0.245479L30.039 1.31726C30.6839 1.16914 31.3411 1.09495 32 1.09589V0Z"
-            fill="var(--color-folder-outline, #3C3C3C)"
-          />
-          {/* Cover the baseline stroke so the active tab has no bottom line. */}
+          {/* Fill strip keeps the folder flush with the panel below. */}
           <rect
             x="-21"
             y="78"
@@ -66,10 +68,10 @@ export function FolderShape({ active, className, leftBleed = false }: FolderShap
     );
   }
 
-  // Off variant (280:17873): 244×74, black fill, #3C3C3C outline.
+  // Off variant (280:17873): 244×74, black fill.
   return (
     <svg
-      className={className}
+      className={[SHADOW, className ?? ""].join(" ")}
       width={leftBleed ? 262 : 244}
       height={74}
       viewBox={leftBleed ? "-18 0 262 74" : "0 0 244 74"}
@@ -84,10 +86,6 @@ export function FolderShape({ active, className, leftBleed = false }: FolderShap
           clipRule="evenodd"
           d="M32.937 0.718874C27.187 1.58365 16.507 5.7017 12.5 29.9812C6.801 64.5041 -0.903 73.4965 -18 73.4965H244C226.903 73.4965 219.199 64.5051 213.5 29.9812C209.492 5.7017 198.813 1.58365 193.063 0.718874C192.385 0.5746 191.693 0.502231 191 0.502935H35C34.292 0.504287 33.6043 0.576266 32.937 0.718874Z"
           fill="var(--color-folder-inactive, #000000)"
-        />
-        <path
-          d="M32.937 0.722767L33.01 1.22455L33.025 1.22151L33.039 1.21847L32.937 0.722767ZM193.063 0.722767L192.961 1.21948L192.975 1.22151L192.99 1.22455L193.063 0.722767ZM12.993 30.0653C14.987 17.9901 18.628 10.9976 22.428 6.92052C26.221 2.85255 30.214 1.64523 33.01 1.22455L32.864 0.220986C29.91 0.664986 25.688 1.94833 21.702 6.22512C17.723 10.4928 14.022 17.6961 12.007 29.898L12.993 30.0653ZM-18 74C-13.685 74 -9.926 73.4323 -6.628 72.0152C-3.323 70.596 -0.51 68.3324 1.927 64.9842C6.779 58.315 10.143 47.3286 12.993 30.0653L12.007 29.898C9.157 47.1552 5.82 57.9248 1.122 64.382C-1.218 67.5955 -3.892 69.7384 -7.018 71.0826C-10.152 72.4288 -13.766 72.9863 -18 72.9863V74ZM25 72.9863H-18V74H25V72.9863ZM25 74H35V72.9863H25V74ZM35 74H191V72.9863H35V74ZM191 74H201V72.9863H191V74ZM201 74H244V72.9863H201V74ZM244 72.9863C239.766 72.9863 236.152 72.4288 233.018 71.0826C229.892 69.7384 227.217 67.5955 224.878 64.382C220.18 57.9248 216.842 47.1552 213.993 29.898L213.007 30.0663C215.857 47.3296 219.221 58.315 224.073 64.9842C226.51 68.3324 229.323 70.595 232.628 72.0152C235.926 73.4333 239.685 74 244 74V72.9863ZM213.993 29.898C211.979 17.6961 208.277 10.4928 204.298 6.22512C200.312 1.94833 196.09 0.666 193.137 0.220986L192.99 1.22455C195.786 1.64422 199.779 2.85255 203.572 6.92153C207.372 10.9976 211.014 17.9911 213.007 30.0663L213.993 29.898ZM193.166 0.227068C192.465 0.0770411 191.743 0.0013516 191 0V1.0137C191.673 1.0137 192.328 1.08567 192.961 1.21948L193.166 0.227068ZM191 0H35V1.0137H191V0ZM35 0C34.258 0 33.533 0.0780548 32.834 0.227068L33.039 1.21847C33.6839 1.08146 34.3411 1.01283 35 1.0137V0Z"
-          fill="var(--color-folder-outline, #3C3C3C)"
         />
       </g>
       <defs>

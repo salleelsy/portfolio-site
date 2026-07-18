@@ -46,9 +46,10 @@ export function BrandsStrip() {
     >
       <div className="mx-auto w-full px-6 py-12 sm:px-10 lg:px-[120px]">
         <div className="flex items-center justify-between gap-4">
+          {/* Figma 673:21458 — Poppins Medium 48px */}
           <h2
             id="brands-heading"
-            className="text-[32px] font-extrabold text-ink sm:text-[40px]"
+            className="text-[32px] font-medium text-ink sm:text-[48px]"
           >
             Some of the projects I worked for...
           </h2>
