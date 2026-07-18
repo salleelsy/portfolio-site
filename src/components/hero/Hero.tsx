@@ -1,7 +1,5 @@
-import Image from "next/image";
 import { FolderNav } from "./FolderNav";
 import { AboutCard } from "./AboutCard";
-import heroImage from "../../../public/hero/hero.png";
 
 // Headline copy is exact from Figma (637:23509) — sentence case, one phrase per line.
 const HEADLINE = [
@@ -22,24 +20,22 @@ const HEADLINE = [
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-paper">
-      {/* Grey shape + character (Figma Frame 43: 712×712 #F5F5F5 rounded rect —
-          square top-right corner, bleeds to the edge — with the character on
-          top). Decorative; lg+ only. */}
+      {/* Grey panel + character (Figma 637:23501): #F3F4F6 rounded-tl-40 panel
+          bleeding to the top-right edge, with the Humation illustration inset
+          100px left / 60px top / 240px right at the 1890 reference width
+          (11.7% / 60px / 28% here so it scales). The character's legs clip at
+          the section bottom, behind the About card. Decorative; lg+ only. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute right-0 top-0 hidden aspect-square w-[712px] max-w-[52vw] lg:block"
+        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[45.4%] lg:block"
       >
-        <div className="absolute inset-0 rounded-bl-[53px] rounded-tl-[53px] rounded-br-[53px] bg-[#f5f5f5]" />
-        <div className="absolute inset-x-[6%] bottom-0 top-[4%]">
-          <Image
-            src={heroImage}
-            alt=""
-            fill
-            priority
-            sizes="(min-width: 1024px) 52vw, 0px"
-            className="object-contain object-bottom"
-          />
-        </div>
+        <div className="absolute inset-0 rounded-tl-[40px] bg-body-bg" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/hero/humation-illustration.svg"
+          alt=""
+          className="absolute left-[11.7%] top-[60px] w-[60.3%] max-w-none"
+        />
       </div>
 
       <div className="relative z-10 mx-auto w-full px-6 pb-12 pt-12 sm:px-10 lg:px-[120px]">
