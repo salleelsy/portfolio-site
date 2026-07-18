@@ -14,12 +14,17 @@ export type ProjectCardProps = {
   thumbnailSrc?: string;
   /** Custom thumbnail node; overrides thumbnailSrc. */
   thumbnail?: ReactNode;
+  /**
+   * "row" (list view — thumbnail left, the default) or
+   * "column" (grid view — thumbnail on top).
+   */
+  layout?: "row" | "column";
 };
 
 /**
  * ProjectCard — a single case-study card (Figma 280:17794).
- * White, 1px #E5E7EB border, soft shadow, 16px radius; 360×220 thumbnail on the
- * left (stacks on top on mobile) + badge / title / description / CTA.
+ * White, 1px #E5E7EB border, soft shadow, 16px radius; badge / title /
+ * description / CTA beside (list) or below (grid) the thumbnail.
  */
 export function ProjectCard({
   badge,
@@ -29,11 +34,23 @@ export function ProjectCard({
   ctaLabel = "Read case study",
   thumbnailSrc,
   thumbnail,
+  layout = "row",
 }: ProjectCardProps) {
+  const row = layout === "row";
   return (
-    <article className="relative flex flex-col gap-6 rounded-card border border-hairline bg-paper p-6 drop-shadow-[0px_2px_5px_rgba(0,0,0,0.05)] transition-shadow hover:drop-shadow-[0px_4px_12px_rgba(0,0,0,0.08)] sm:flex-row sm:items-start">
+    <article
+      className={[
+        "relative flex flex-col gap-6 rounded-card border border-hairline bg-paper p-6 drop-shadow-[0px_2px_5px_rgba(0,0,0,0.05)] transition-shadow hover:drop-shadow-[0px_4px_12px_rgba(0,0,0,0.08)]",
+        row ? "sm:flex-row sm:items-start" : "",
+      ].join(" ")}
+    >
       {/* Thumbnail */}
-      <div className="relative aspect-[360/220] w-full shrink-0 overflow-hidden rounded-xl sm:aspect-auto sm:h-[220px] sm:w-[360px]">
+      <div
+        className={[
+          "relative aspect-[360/220] w-full shrink-0 overflow-hidden rounded-xl",
+          row ? "sm:aspect-auto sm:h-[220px] sm:w-[360px]" : "",
+        ].join(" ")}
+      >
         {thumbnail ??
           (thumbnailSrc ? (
             <Image

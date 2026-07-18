@@ -94,10 +94,20 @@ export function CaseStudySection() {
           })}
         </div>
 
-        {/* Cards */}
-        <div className="mt-8 flex flex-col gap-4">
+        {/* Cards — grid view: thumbnail-on-top tiles; list view: full-width rows */}
+        <div
+          className={
+            view === "grid"
+              ? "mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3"
+              : "mt-8 flex flex-col gap-4"
+          }
+        >
           {visible.map((project) => (
-            <ProjectCard key={project.href} {...project} />
+            <ProjectCard
+              key={project.href}
+              {...project}
+              layout={view === "grid" ? "column" : "row"}
+            />
           ))}
         </div>
 

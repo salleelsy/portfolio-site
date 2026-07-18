@@ -3,13 +3,13 @@ import { FolderNav } from "./FolderNav";
 import { AboutCard } from "./AboutCard";
 import heroImage from "../../../public/hero/hero.png";
 
-// Headline copy is exact from Figma (280:17747) — real, kept.
+// Headline copy is exact from Figma (637:23509) — sentence case, one phrase per line.
 const HEADLINE = [
-  "product designer,",
-  "vibe coder,",
-  "builder, maker,",
-  "volleyball player,",
-  "coffee addict...",
+  "Product designer,",
+  "Builder,",
+  "Vibe coder,",
+  "Volleyball player,",
+  "Coffee addict...",
 ];
 
 /**
@@ -45,7 +45,8 @@ export function Hero() {
       <div className="relative z-10 mx-auto w-full px-6 pb-12 pt-12 sm:px-10 lg:px-[120px]">
         {/* Top: headline + folder nav (folder nav stays right on every width) */}
         <div className="flex flex-row items-start justify-between gap-6">
-          <h1 className="text-[40px] font-extrabold leading-[1.03] tracking-[-0.02em] text-ink sm:text-[64px] lg:text-[96px]">
+          {/* Figma 637:23511 — Poppins Bold 96 / 98.88 line height / -1.92px tracking */}
+          <h1 className="text-[40px] font-bold leading-[1.03] tracking-[-1.92px] text-ink sm:text-[64px] lg:text-[96px] lg:leading-[98.88px]">
             {HEADLINE.map((line) => (
               <span key={line} className="block">
                 {line}
