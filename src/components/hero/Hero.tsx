@@ -30,7 +30,7 @@ export function Hero() {
           grey section. Decorative; lg+ only. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-[86px] right-0 top-0 hidden w-[45.4%] lg:block"
+        className="pointer-events-none absolute -bottom-[86px] right-0 top-0 z-[1] hidden w-[45.4%] lg:block"
       >
         <div className="absolute inset-0 rounded-tl-[40px] bg-body-bg" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
