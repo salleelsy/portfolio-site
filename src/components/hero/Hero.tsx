@@ -19,15 +19,18 @@ const HEADLINE = [
  */
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-paper">
+    <section className="relative bg-paper">
       {/* Grey panel + character (Figma 637:23501): #F3F4F6 rounded-tl-40 panel
           bleeding to the top-right edge, with the Humation illustration inset
           100px left / 60px top / 240px right at the 1890 reference width
-          (11.7% / 60px / 28% here so it scales). The character's legs clip at
-          the section bottom, behind the About card. Decorative; lg+ only. */}
+          (11.7% / 60px / 28% here so it scales). The panel runs 86px past the
+          hero — through the tab-strip band (transparent there) — so it merges
+          seamlessly into the grey tab panel below; the character is never
+          clipped, her legs continue behind the About card and down into the
+          grey section. Decorative; lg+ only. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[45.4%] lg:block"
+        className="pointer-events-none absolute -bottom-[86px] right-0 top-0 hidden w-[45.4%] lg:block"
       >
         <div className="absolute inset-0 rounded-tl-[40px] bg-body-bg" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
