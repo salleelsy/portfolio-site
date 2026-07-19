@@ -98,7 +98,7 @@ export function CaseStudySection() {
         <div
           className={
             view === "grid"
-              ? "mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3"
+              ? "mt-8 grid gap-4 md:grid-cols-2"
               : "mt-8 flex flex-col gap-4"
           }
         >

@@ -69,6 +69,11 @@ export function PortfolioTabs() {
             id={item.panelId}
             aria-labelledby={`tab-${item.value}`}
             hidden={value !== item.value}
+            /* z-2 lifts the content sheet above the hero character (z-1): the
+               illustration peeks out from underneath, never over the sheet.
+               Being a later sibling, the sheet also covers the tabs' underside
+               shadow at the seam. */
+            className="relative z-[2]"
           >
             <Panel />
           </div>

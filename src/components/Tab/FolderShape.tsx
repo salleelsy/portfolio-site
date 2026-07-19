@@ -19,10 +19,10 @@ type FolderShapeProps = {
   leftBleed?: boolean;
 };
 
-// Soft shadow on the folder art, clipped below the shape's own bottom edge so
-// nothing bleeds onto the panel the tab sits on.
-const SHADOW =
-  "[filter:drop-shadow(0_0_6px_rgba(0,0,0,0.22))] [clip-path:inset(-24px_-24px_0_-24px)]";
+// Soft shadow on the folder art. It renders untrimmed — the content sheet
+// below (a later sibling at the same z-level) paints over the underside, so
+// no shadow ever shows between the active tab and the panel it opens into.
+const SHADOW = "[filter:drop-shadow(0_0_6px_rgba(0,0,0,0.22))]";
 
 export function FolderShape({ active, className, leftBleed = false }: FolderShapeProps) {
   if (active) {
