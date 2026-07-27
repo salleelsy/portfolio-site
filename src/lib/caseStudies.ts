@@ -84,6 +84,147 @@ export type CaseStudy = {
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
+    slug: "tangerine-wealth-mvp",
+    badge: "Fintech · Wealth",
+    client: "Fintex Inc. · Tangerine",
+    category: "Product Design / 2025",
+    title: "Launching Wealth inside a Bank's App",
+    subtitle:
+      "Designing Tangerine's digital wealth MVP — projections, entry points, and the post-launch loop that kept making it better.",
+    cardSummary:
+      "End-to-end design of Tangerine's digital wealth MVP — from PRD to post-launch analytics — inside a regulated banking app, across iOS and Android.",
+    cover: "/work/wealth/cover.png",
+    meta: {
+      role: "Product Designer — end to end",
+      timeline: "2025 · MVP launch + post-launch iteration",
+      tools: "Figma, Jira, Google Analytics",
+      note: "Some details, numbers, and visuals are modified or omitted for confidentiality.",
+    },
+    blocks: [
+      {
+        kind: "prose",
+        eyebrow: "Project Overview",
+        heading: "A wealth space inside an app people already trust",
+        body: [
+          "Tangerine's digital wealth MVP brings investing and financial projections into the bank's existing app — a product that had to feel native to the banking experience while opening up an entirely new space.",
+          "That context is what made it hard: a regulated environment, two native platforms (iOS and Android), an established design language to respect, and a long list of teams with a say — compliance, legal, translation, marketing, and the banking-side design team.",
+          "I owned the feature design end to end: from the PRD handed over by the Product Owner, through build and QA, to what the analytics said after launch.",
+        ],
+      },
+      {
+        kind: "features",
+        eyebrow: "How I ran it",
+        heading: "Owning the loop, not just the screens",
+        items: [
+          { title: "1 · Define", body: "Took the PRD from the Product Owner and shaped user stories together with the PM, so design and scope were agreed before pixels." },
+          { title: "2 · Negotiate", body: "Walked designs with engineers early to surface what wasn't feasible — and redesigned around constraints instead of discovering them in QA." },
+          { title: "3 · Systematise", body: "Decided what belonged in the core design system vs. a wealth spoke library, and reconciled iOS and Android component differences." },
+          { title: "4 · Align", body: "Reviewed with compliance, legal, translation, marketing, and the banking design team — keeping the flow alive through every required change." },
+          { title: "5 · Ship", body: "Partnered with QA through launch: filing design bugs myself, retesting fixes, and holding the build to design intent." },
+          { title: "6 · Learn", body: "After launch, dug into Google Analytics — entry points, clicks, drop-offs — and turned findings into quick-win tickets on the board." },
+        ],
+      },
+      {
+        kind: "prose",
+        eyebrow: "Challenge 1",
+        heading: "The cul-de-sac: users were arriving at a dead end",
+        body: [
+          "Analytics showed most users weren't entering the wealth space directly. They were landing on their investment account details from the banking side — and stopping there. The product's front door wasn't where users actually were.",
+          "So instead of trying to redirect traffic, we met users where they already stood — with two answers, one for each audience.",
+        ],
+      },
+      {
+        kind: "highlights",
+        items: [
+          {
+            title: "An entry point where users already are",
+            body: [
+              "We added an entry point on the investment account details screen — the cul-de-sac itself — introducing existing investors into the wealth space from the account they were already checking.",
+            ],
+          },
+          {
+            title: "A prospect screen for everyone else",
+            body: [
+              "For users without an investment account, we designed a prospect screen: play with the numbers, see your own projection, and a CTA to start investing — turning curiosity into a first step.",
+            ],
+          },
+        ],
+      },
+      {
+        kind: "screens",
+        heading: "In the UI",
+        items: [
+          { label: "Entry point — investment account details", alt: "Entry point into the wealth space from investment account details" },
+          { label: "Prospect screen — playable projection", alt: "Prospect screen where users without an account can play with projection numbers" },
+        ],
+      },
+      {
+        kind: "prose",
+        eyebrow: "Challenge 2",
+        heading: "Where the funnel leaked: adding an external asset",
+        body: [
+          "The biggest drop-off in the whole flow was adding an external asset. The form asked for an “effective date” — when did you start owning this asset? — before the amount. That one field forced users to stop and think, and many never came back.",
+        ],
+      },
+      {
+        kind: "callout",
+        tone: "finding",
+        title: "Finding — one thoughtful field was costing us completions",
+        body: "Analytics pinned the drop-off to the effective-date input: users had to reconstruct when they acquired an asset before they could enter what it was worth.",
+      },
+      {
+        kind: "callout",
+        tone: "quickwin",
+        title: "Quick win — prepopulate the date, ask only for the amount",
+        body: "We prepopulated the effective date with today's date, so users could go straight to the amount. Less thinking up front — the date stays editable for anyone who cares to change it.",
+      },
+      {
+        kind: "prose",
+        eyebrow: "Challenge 3",
+        heading: "The projection graph that told mortgage holders bad news",
+        body: [
+          "The projection graph plots assets against liabilities. But for users whose only Tangerine product was a mortgage, the graph sat permanently negative — because they'd never told us they own the house behind that mortgage.",
+          "An accurate-looking graph built on incomplete data isn't neutral; it's discouraging. The fix wasn't to change the math — it was to help users complete the picture.",
+        ],
+      },
+      {
+        kind: "callout",
+        tone: "rec",
+        title: "Paired insight — a mortgage implies a home",
+        body: "When we detect a Tangerine mortgage, a paired insight banner encourages the user to add their real estate as an asset — turning a discouraging graph into an accurate projection, and teaching users how the tool works along the way.",
+      },
+      {
+        kind: "screens",
+        heading: "In the UI",
+        items: [
+          { label: "Add external asset — prepopulated date", alt: "Add external asset form with the effective date prepopulated to today" },
+          { label: "Projection graph + paired insight", alt: "Projection graph with a paired insight banner suggesting adding real estate as an asset" },
+        ],
+      },
+      {
+        kind: "prose",
+        eyebrow: "Design System",
+        heading: "Core, spoke, and two platforms",
+        body: [
+          "Wealth couldn't just consume the design system — it had to extend it. For each new pattern I decided: does this belong in the core library, or in a wealth-specific spoke? Spoke components stayed consistent with the banking app's language while giving wealth room to grow.",
+          "iOS and Android don't share components one-to-one, so every screen was reconciled across both platforms — same intent, native behaviour — and checked against the current Tangerine banking app so wealth felt like part of the family, not a bolt-on.",
+        ],
+      },
+      {
+        kind: "prose",
+        eyebrow: "After Launch",
+        heading: "Launch was the midpoint, not the finish line",
+        body: [
+          "Post-launch, I tracked the wealth space in Google Analytics: which entry points people used, what they clicked, and where they left off. That's how the cul-de-sac and the effective-date drop-off were found — each one became a quick-win ticket I created and carried to the board.",
+          "It's the part of the project I'd defend hardest: the design wasn't done when it shipped. The funnel data decided what we fixed next.",
+        ],
+      },
+      // TODO(content): add an { kind: "impact" } block here once Sallee confirms
+      // which GA numbers are shareable (entry-point lift, drop-off reduction).
+    ],
+  },
+
+  {
     slug: "ccg-loyalty-membership",
     badge: "Loyalty & Membership",
     client: "CCG · China Chem Group",
