@@ -93,7 +93,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Designing Tangerine's digital wealth MVP — projections, entry points, and the post-launch loop that kept making it better.",
     cardSummary:
       "End-to-end design of Tangerine's digital wealth MVP — from PRD to post-launch analytics — inside a regulated banking app, across iOS and Android.",
-    cover: "/work/wealth/cover.png",
+    // TODO(content): add cover at /work/wealth/cover.png (21:9) when ready.
     meta: {
       role: "Product Designer — end to end",
       timeline: "2025 · MVP launch + post-launch iteration",
