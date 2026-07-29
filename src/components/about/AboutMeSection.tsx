@@ -32,9 +32,12 @@ const INTERESTS = [
 export function AboutMeSection() {
   return (
     <section aria-labelledby="about-heading" className="bg-body-bg">
-      <div className="mx-auto w-full max-w-[1440px] px-6 py-14 sm:px-10 lg:px-16">
-        <h2 id="about-heading" className="text-[40px] font-extrabold text-ink">
-          ABOUT ME
+      <div className="mx-auto w-full px-6 py-14 sm:px-10 lg:px-[120px]">
+        <h2
+          id="about-heading"
+          className="text-[40px] font-medium tracking-[-1.5px] text-ink sm:text-[56px] sm:leading-[70px]"
+        >
+          About me
         </h2>
 
         <p className="mt-6 max-w-[720px] text-[18px] leading-[1.6] text-cod-gray">
@@ -46,7 +49,7 @@ export function AboutMeSection() {
         </p>
 
         {/* Interests */}
-        <h3 className="mt-14 font-label text-[13px] uppercase tracking-wide text-muted">
+        <h3 className="mt-14 font-label text-[14px] uppercase tracking-wide text-muted">
           A few things I&rsquo;m into
         </h3>
         <ul className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -67,7 +70,7 @@ export function AboutMeSection() {
         </ul>
 
         {/* Gallery strip — drop favourite shots here */}
-        <h3 className="mt-14 font-label text-[13px] uppercase tracking-wide text-muted">
+        <h3 className="mt-14 font-label text-[14px] uppercase tracking-wide text-muted">
           Snapshots
         </h3>
         <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3">

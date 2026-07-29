@@ -2,9 +2,9 @@ import { forwardRef } from "react";
 import { FolderShape } from "./FolderShape";
 
 export type TabProps = {
-  /** Visible label, e.g. "Portfolio" (Inter Bold 14px). */
+  /** Visible label, e.g. "Selected works" (Poppins Medium 16px, Figma 662:21105). */
   label: string;
-  /** Index string, e.g. "01" (Inter SemiBold 12px). */
+  /** Index string, e.g. "001" (Poppins Regular 12px). */
   index: string;
   /** On = active (Figma `property1`). */
   active: boolean;
@@ -69,19 +69,19 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
         />
       )}
 
-      {/* Label + index overlay */}
+      {/* Label + index overlay (Figma 673:24024 — 18px Medium / 12px Regular, 8px gap) */}
       <span
         className={[
-          "absolute flex flex-col items-center justify-center gap-[4px] whitespace-nowrap text-center leading-none",
+          "absolute flex flex-col items-center justify-center gap-[8px] whitespace-nowrap text-center",
           active
-            ? "left-0 right-[16px] top-[14px] text-ink"
-            : "left-[3px] right-[21px] top-[20px] text-paper",
+            ? "left-0 right-[16px] top-[17px] text-ink"
+            : "left-[3px] right-[21px] top-[23px] text-paper",
         ].join(" ")}
       >
-        <span className="font-sans text-[14px] font-bold">{label}</span>
+        <span className="font-sans text-[18px] font-medium leading-4">{label}</span>
         <span
           className={[
-            "font-sans text-[12px] font-semibold",
+            "font-sans text-[12px] font-normal leading-[12px]",
             active ? "text-ink" : "text-body-bg",
           ].join(" ")}
         >

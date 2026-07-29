@@ -1,17 +1,34 @@
 import type { Metadata } from "next";
-import { Inter, Work_Sans } from "next/font/google";
+import { Work_Sans, Poppins, Outfit, Geist } from "next/font/google";
 import "./globals.css";
-
-// Inter — primary typeface (ExtraBold headlines → Regular body).
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 // Work Sans — small caption/label text (e.g. folder labels).
 const workSans = Work_Sans({
   variable: "--font-work-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Poppins — primary typeface across the site (ExtraBold headlines → Regular
+// body), plus section titles and banner chips. Loaded from Google Fonts —
+// the same OFL family as the uploaded TTFs, subsetted to woff2 automatically.
+const poppins = Poppins({
+  variable: "--font-poppins",
+  weight: ["400", "500", "600", "700", "800"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Outfit ExtraBold — case-study banner headline (Figma 576:25865).
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Geist — case-study banner subtitle and meta (Figma 576:25865).
+const geist = Geist({
+  variable: "--font-geist",
   subsets: ["latin"],
   display: "swap",
 });
@@ -31,7 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${workSans.variable} h-full antialiased`}
+      className={`${workSans.variable} ${poppins.variable} ${outfit.variable} ${geist.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
