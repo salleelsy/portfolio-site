@@ -153,12 +153,32 @@ export const CASE_STUDIES: CaseStudy[] = [
     cardSummary:
       "Leading design on Tangerine's digital wealth MVP — a 1.3x lift in mobile engagement and +49% YoY account applications.",
     // TODO(content): add cover at /work/wealth/cover.png (21:9) when ready.
+    tags: ["Design system", "UX", "UI"],
+    banner: {
+      title: "Launching wealth inside a bank's app",
+      subtitle:
+        "Tangerine's digital wealth MVP — scoped under hard data constraints, improved by reading the post-launch numbers.",
+      platform: "iOS & Android",
+      timeline: "Jul 2025 → ongoing",
+      // TODO(content): add artwork at /work/wealth/banner-screens.png when ready.
+    },
     meta: {
       role: "Lead Product Designer — 2 designers, vendor engagement",
       timeline: "Jul 2025 → ongoing · iOS + Android",
       tools: "Figma, Storybook, Jira, Perfecto",
       note: "Some numbers, details, and visuals are modified or omitted for confidentiality; business context is drawn from Tangerine's public announcements.",
     },
+    sections: [
+      { title: "In Short", inStepper: false },
+      { title: "Why This Existed" },
+      { title: "Scope" },
+      { title: "The Scoping Decision" },
+      { title: "Regulatory Constraint", inStepper: false },
+      { title: "Design System" },
+      { title: "After Launch" },
+      { title: "Impact" },
+      { title: "Where It Stands", inStepper: false },
+    ],
     blocks: [
       {
         kind: "list",
