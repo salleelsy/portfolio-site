@@ -8,9 +8,9 @@ import { CaseStudyStepper, type StepperItem } from "./CaseStudyStepper";
 import { CaseStudyBanner } from "./CaseStudyBanner";
 import { ArrowRightIcon } from "../icons";
 
-// Site-wide content margins: 120px left/right on desktop (Figma 576:21185),
-// stepping down responsively on smaller screens. Banners stay full-bleed.
-const CONTAINER = "mx-auto w-full px-6 sm:px-10 lg:px-[120px]";
+// Site-wide content column: fluid up to 1200px, centered, with responsive
+// gutters. Banners stay full-bleed.
+const CONTAINER = "mx-auto w-full max-w-[1200px] px-6 sm:px-10";
 
 const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 

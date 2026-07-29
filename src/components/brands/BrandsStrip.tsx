@@ -44,7 +44,7 @@ export function BrandsStrip() {
       aria-labelledby="brands-heading"
       className="bg-paper"
     >
-      <div className="mx-auto w-full px-6 py-12 sm:px-10 lg:px-[120px]">
+      <div className="mx-auto w-full max-w-[1200px] px-6 py-12 sm:px-10">
         <div className="flex items-center justify-between gap-4">
           {/* Figma 673:21458 — Poppins Medium 48px */}
           <h2

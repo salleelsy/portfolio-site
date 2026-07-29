@@ -28,7 +28,7 @@ export function SayHelloSection() {
 
   return (
     <section aria-labelledby="hello-heading" className="bg-body-bg">
-      <div className="mx-auto flex w-full flex-col gap-[50px] px-6 py-14 sm:px-10 lg:px-[120px]">
+      <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-[50px] px-6 py-14 sm:px-10">
         <h2
           id="hello-heading"
           className="max-w-[700px] text-[40px] font-medium leading-[1.25] tracking-[-1.5px] text-ink sm:text-[56px] sm:leading-[70px]"

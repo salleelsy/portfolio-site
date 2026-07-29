@@ -36,7 +36,7 @@ export function CaseStudySection() {
       aria-labelledby="case-study-heading"
       className="bg-body-bg"
     >
-      <div className="mx-auto w-full px-6 py-12 sm:px-10 lg:px-[120px]">
+      <div className="mx-auto w-full max-w-[1200px] px-6 py-12 sm:px-10">
         {/* Header */}
         <div className="flex items-center justify-between gap-4">
           <h2

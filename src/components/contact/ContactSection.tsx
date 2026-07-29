@@ -15,7 +15,7 @@ const INSTAGRAM_HREF = "https://instagram.com/sallee.studio";
 export function ContactSection() {
   return (
     <section aria-labelledby="contact-heading" className="bg-paper">
-      <div className="mx-auto w-full px-6 pt-12 sm:px-10 lg:px-[120px]">
+      <div className="mx-auto w-full max-w-[1200px] px-6 pt-12 sm:px-10">
         <div className="flex items-center gap-6 rounded-card border border-hairline bg-body-bg p-8">
           <div className="flex min-w-0 flex-1 flex-col gap-4">
             <div className="flex flex-col gap-2">
