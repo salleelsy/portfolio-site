@@ -84,6 +84,257 @@ export type CaseStudy = {
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
+    slug: "tangerine-wealth-mvp",
+    badge: "Fintech · Wealth",
+    client: "Fintex Inc. · Tangerine",
+    category: "Product Design / 2025–26",
+    title: "Launching Wealth inside a Bank's App",
+    subtitle:
+      "Tangerine's digital wealth MVP — scoped under hard data constraints, shipped inside a regulated app, improved by reading the post-launch numbers.",
+    cardSummary:
+      "Leading design on Tangerine's digital wealth MVP — a 1.3x lift in mobile engagement and +49% YoY account applications.",
+    // TODO(content): add cover at /work/wealth/cover.png (21:9) when ready.
+    meta: {
+      role: "Lead Product Designer — 2 designers, vendor engagement",
+      timeline: "Jul 2025 → ongoing · iOS + Android",
+      tools: "Figma, Storybook, Jira, Perfecto",
+      note: "Some numbers, details, and visuals are modified or omitted for confidentiality; business context is drawn from Tangerine's public announcements.",
+    },
+    blocks: [
+      {
+        kind: "list",
+        eyebrow: "In Short",
+        items: [
+          "Tangerine gave investing its own space in an app 2M+ clients already use. I led design on the MVP.",
+          "Launch: 1.3x jump in mobile engagement; mobile account applications up 49% YoY while web stayed flat.",
+          "Hardest pre-launch call: cutting the feature the data couldn't support — it gave the product a single focus.",
+          "Post-launch: half the clients who reached account details never found the wealth tab. The first fix underperformed; the second pass fixed both its problems.",
+        ],
+      },
+      {
+        kind: "features",
+        eyebrow: "Timeline",
+        heading: "From framing to a loop that keeps shipping",
+        items: [
+          { title: "Jul 2025", body: "Research and problem framing." },
+          { title: "Aug – Oct 2025", body: "Design, design-system extension, cross-team alignment." },
+          { title: "Oct – Dec 2025", body: "Sprint delivery, QA partnership, bug triage and retest." },
+          { title: "Dec 2025", body: "Soft launch on iOS." },
+          { title: "Feb 2026", body: "Public launch on iOS and Android — the first meaningful analytics read." },
+          { title: "Mar 2026 →", body: "Iteration sprints and new capability, ongoing." },
+        ],
+      },
+      {
+        kind: "prose",
+        eyebrow: "Why This Existed",
+        heading: "A bank with two million clients wanted them to invest",
+        body: [
+          "Tangerine — a digital bank with 2M+ clients, a Scotiabank subsidiary — was known for everyday banking. The goal: give wealth its own space in the app, so investing reads as a distinct thing a client does with Tangerine.",
+          "The MVP's job was not to be a trading tool. It was to show clients their whole financial position clearly enough that investing more felt like an informed decision, not a leap.",
+        ],
+      },
+      {
+        kind: "image",
+        label: "Launch video — public marketing walkthrough of the wealth space",
+        alt: "Tangerine wealth space launch walkthrough",
+      },
+      {
+        kind: "features",
+        eyebrow: "Scope",
+        heading: "What shipped, and my part in it",
+        items: [
+          { title: "My role", body: "Lead designer on a two-designer vendor team — owned the feature design end to end and set the direction." },
+          { title: "Surface", body: "A dedicated wealth space inside the existing Tangerine app, iOS and Android." },
+          { title: "Feature areas at MVP", body: "Seven — projection graph, external assets & liabilities, portfolio allocation, learning hub, transactions & documents, gain/loss, smart banners." },
+          { title: "Teams to align", body: "Compliance, legal, translation, marketing, banking-side design, engineering, QA." },
+        ],
+      },
+      {
+        kind: "prose",
+        eyebrow: "The Scoping Decision",
+        heading: "Cutting the history graph",
+        body: [
+          "The concept had two graphs: one showing how a client's money grew over the past ten years, one projecting forward. The history graph didn't survive scoping — the backend couldn't supply the data, and reconciling history with the effective dates clients enter on external assets wasn't an MVP-sized problem. Getting it wrong meant publishing a historical record that contradicted itself.",
+          "I pushed, then cut it rather than ship a degraded version. The cut sharpened the product: one graph, one focal point, and one question for every decision after it — does this help a client understand where they're headed?",
+        ],
+      },
+      {
+        kind: "callout",
+        tone: "rec",
+        title: "The call — cut what the data can't support",
+        body: "Two graphs where one is quietly unreliable is worse than one graph that holds. Post-launch feedback asked for exactly what it would have shown — moving it from a cut to a queued feature with demand attached.",
+      },
+      {
+        kind: "image",
+        label: "MVP scoping — early concepts including the history graph, and the final single-graph direction",
+        alt: "Scoping artefacts showing the history graph concept and the final single-graph direction",
+      },
+      {
+        kind: "prose",
+        eyebrow: "Regulatory Constraint",
+        heading: "Compliance decided what a projection is allowed to say",
+        body: [
+          "I designed the projection as a range — conservative to optimistic — because that's how projections honestly work. Compliance disagreed, and the reasoning held: in a regulated product, a visible upper bound reads as a promise a client can point to later.",
+          "We shipped a single static figure, and I documented the conditions for the range to return after MVP — parked, not lost.",
+        ],
+      },
+      {
+        kind: "prose",
+        eyebrow: "Design System",
+        heading: "Extending a system that wasn't built for this",
+        body: [
+          "Wealth needed patterns the banking app never required. For each gap, the same question: core, or wealth-specific spoke?",
+        ],
+      },
+      {
+        kind: "highlights",
+        items: [
+          {
+            title: "The projection graph → spoke",
+            body: [
+              "No charted component existed in core, and other teams' charts had drifted off-language. I built and spec'd it as a wealth spoke — data density, axis limits, extreme negatives, screen-reader readout — because core shouldn't maintain a component with one consumer.",
+            ],
+          },
+          {
+            title: "The accordion list → core",
+            body: [
+              "Built locally to unblock the MVP — then I found three other surfaces with the same need, so I branched the core Figma library, spec'd it, and submitted it. It went to core.",
+            ],
+          },
+          {
+            title: "The pulsing dot → rejected",
+            body: [
+              "My pulsing nav indicator broke precedent and wasn't worth the capital. I switched to a sanctioned pattern — a launch modal. Same job, no new pattern, shipped on time.",
+            ],
+          },
+        ],
+      },
+      {
+        kind: "prose",
+        eyebrow: "After Launch",
+        heading: "The analytics decided what we built next",
+        body: [
+          "The product team publishes a monthly impact report. My job was to read it as a designer — find which numbers described a design problem, not a market condition — and turn those into tickets. Three problems surfaced that only appear at real traffic volumes.",
+        ],
+      },
+      {
+        kind: "prose",
+        eyebrow: "Problem 1",
+        heading: "The cul-de-sac",
+        body: [
+          "Most clients landed on their investment account details from the banking side, read the balance, and left — the wealth space one tap away, untaken. Instead of redirecting traffic, we met them where they were.",
+        ],
+      },
+      {
+        kind: "highlights",
+        items: [
+          {
+            title: "Existing investors",
+            body: [
+              "An entry point on the account details screen itself — into the wealth space from the account they were already checking.",
+            ],
+          },
+          {
+            title: "Everyone else",
+            body: [
+              "A prospect screen, no account required: adjust the inputs, watch the projection respond, act from there.",
+            ],
+          },
+        ],
+      },
+      {
+        kind: "callout",
+        tone: "finding",
+        title: "What the data said",
+        body: "Half of iOS clients who reached account details never saw the wealth tab. Adoption sat at 22.3% while 46.6% engaged with investments elsewhere in the app — that gap is the cul-de-sac.",
+      },
+      {
+        kind: "prose",
+        heading: "The first fix underperformed",
+        body: [
+          "The first banner competed with accident — clients still found the tab on their own more often than through it. It sat in a screen dense with actions, and its copy asked for effort with no stated reward.",
+          "The second pass fixed both: a one-time spotlight modal (interruption is expensive — we spent it once), and banner copy rewritten from instruction to reward — you've unlocked more, not go explore.",
+        ],
+      },
+      {
+        kind: "screens",
+        heading: "In the UI",
+        items: [
+          { label: "Spotlight modal", alt: "Spotlight modal introducing the wealth space on first open of an investing account" },
+          { label: "Revised account-details banner", alt: "Rewritten banner on the investment account details screen" },
+          { label: "Prospect screen — playable projection", alt: "Prospect screen where clients without an account adjust inputs and watch the projection respond" },
+        ],
+      },
+      {
+        kind: "prose",
+        eyebrow: "Problem 2",
+        heading: "The field that cost us completions",
+        body: [
+          "The largest drop-off in the product: adding an external asset. The form asked for an effective date before the amount — recall, not a number the client has to hand. People stopped to think, and a meaningful share never came back.",
+          "We prepopulated it with today's date, fully editable. Precision stays possible; everyone else goes straight to the amount. The data-quality cost is small and bounded. The completion gain was not.",
+        ],
+      },
+      {
+        kind: "callout",
+        tone: "finding",
+        title: "What the data said",
+        body: "Under 6% of clients who reached the net worth view ever reached the add-asset screen, and only ~40% of those who started finished — two problems, stacked.",
+      },
+      {
+        kind: "image",
+        label: "Add external asset — prepopulated effective date",
+        alt: "Add external asset form with the effective date prepopulated to today",
+      },
+      {
+        kind: "prose",
+        eyebrow: "Problem 3",
+        heading: "The projection that told mortgage holders bad news",
+        body: [
+          "For clients whose only Tangerine product was a mortgage, the projection sat permanently negative — the house behind it was never added. The graph wasn't wrong; it was accurate about incomplete data, which still misinforms.",
+        ],
+      },
+      {
+        kind: "callout",
+        tone: "rec",
+        title: "Paired insight — a mortgage implies a home",
+        body: "Detect a Tangerine mortgage → prompt the client to add their real estate as an asset. It corrects the projection and teaches how the tool works.",
+      },
+      {
+        kind: "image",
+        label: "Projection graph with the paired insight banner for mortgage holders",
+        alt: "Projection graph with a paired insight banner prompting the client to add their real estate as an asset",
+      },
+      {
+        kind: "prose",
+        eyebrow: "Impact",
+        heading: "What it did for the business",
+        body: [
+          "iOS launched a month before Android — a natural experiment. In that month, investing account applications rose 60% YoY on iOS vs 12% on Android and 3% on web. When Android caught up, it jumped 52% while web stayed flat. Seasonality hit all three platforms equally; only two had the wealth space.",
+        ],
+      },
+      {
+        kind: "impact",
+        heading: "Measured",
+        stats: [
+          { value: "1.3x", label: "lift in mobile engagement", note: "from a flat ~30% to 46.6%" },
+          { value: "+49%", label: "mobile applications, year over year", note: "while web stayed flat" },
+          { value: "+11.2 pts", label: "application completion, year over year", note: "to 53%" },
+          { value: "60% vs 3%", label: "iOS vs web application growth", note: "in the month only iOS had wealth" },
+        ],
+      },
+      {
+        kind: "prose",
+        eyebrow: "Where It Stands",
+        heading: "A strong foundation, still shipping",
+        body: [
+          "Satisfaction scored 7.8 over the first 90 days. Clients didn't struggle — they asked for more: how the projection is calculated (the cost of the static figure), and the compounding view the history graph would have shown. That became the brief for the next phase.",
+          "The part I'd defend hardest is the loop. The MVP was a hypothesis, scoped to what the data could support — what it got right and wrong were decided afterwards, by watching what clients did.",
+        ],
+      },
+    ],
+  },
+
+  {
     slug: "ccg-loyalty-membership",
     badge: "Loyalty & Membership",
     client: "CCG · China Chem Group",
