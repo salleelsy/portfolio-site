@@ -15,11 +15,11 @@ const INSTAGRAM_HREF = "https://instagram.com/sallee.studio";
 export function ContactSection() {
   return (
     <section aria-labelledby="contact-heading" className="bg-paper">
-      <div className="mx-auto w-full max-w-[1200px] px-6 pt-12 sm:px-10">
+      <div className="mx-auto w-full max-w-[1280px] px-6 pt-12 sm:px-10">
         <div className="flex items-center gap-6 rounded-card border border-hairline bg-body-bg p-8">
           <div className="flex min-w-0 flex-1 flex-col gap-4">
             <div className="flex flex-col gap-2">
-              <p className="text-[12px] font-semibold uppercase tracking-[0.24px] text-muted">
+              <p className="text-[14px] font-semibold uppercase tracking-[0.24px] text-muted">
                 Let&rsquo;s connect!
               </p>
               <h2
@@ -29,7 +29,7 @@ export function ContactSection() {
                 CONTACT
               </h2>
             </div>
-            <address className="flex flex-col gap-[10px] text-[14px] not-italic text-ink">
+            <address className="flex flex-col gap-[10px] text-[16px] not-italic text-ink">
               <a href={PHONE_HREF} className="w-fit hover:underline">
                 {PHONE_DISPLAY}
               </a>
@@ -56,7 +56,7 @@ export function ContactSection() {
           </a>
         </div>
 
-        <footer className="py-8 text-center text-[14px] text-muted">
+        <footer className="py-8 text-center text-[16px] text-muted">
           © 2026 Sallee Lee. All rights reserved.
         </footer>
       </div>

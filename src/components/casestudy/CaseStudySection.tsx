@@ -36,7 +36,7 @@ export function CaseStudySection() {
       aria-labelledby="case-study-heading"
       className="bg-body-bg"
     >
-      <div className="mx-auto w-full max-w-[1200px] px-6 py-12 sm:px-10">
+      <div className="mx-auto w-full max-w-[1280px] px-6 py-12 sm:px-10">
         {/* Header */}
         <div className="flex items-center justify-between gap-4">
           <h2
@@ -82,7 +82,7 @@ export function CaseStudySection() {
                 aria-pressed={active}
                 onClick={() => setActiveFilter(filter)}
                 className={[
-                  "rounded-full px-4 py-[10px] text-[14px] transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2",
+                  "rounded-full px-4 py-[10px] text-[16px] transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2",
                   active
                     ? "bg-ink font-bold text-paper"
                     : "border border-hairline bg-paper font-semibold text-muted",
@@ -115,7 +115,7 @@ export function CaseStudySection() {
         <div className="mt-8 flex justify-center">
           <button
             type="button"
-            className="inline-flex items-center gap-2 rounded-[10px] border border-hairline bg-paper px-[14px] py-[10px] text-[14px] font-bold text-ink outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-body-bg"
+            className="inline-flex items-center gap-2 rounded-[10px] border border-hairline bg-paper px-[14px] py-[10px] text-[16px] font-bold text-ink outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-body-bg"
           >
             Load more
             <ArrowRightIcon className="size-6" />

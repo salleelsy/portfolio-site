@@ -19,7 +19,7 @@ export default function TabPreviewPage() {
     <main className="min-h-screen bg-body-bg px-8 py-16 font-sans text-cod-gray">
       <div className="mx-auto flex max-w-4xl flex-col gap-16">
         <header className="flex flex-col gap-2">
-          <p className="font-label text-[14px] uppercase tracking-wide text-muted">
+          <p className="font-label text-[16px] uppercase tracking-wide text-muted">
             Component preview
           </p>
           <h1 className="text-3xl font-extrabold text-ink">Tab</h1>
@@ -31,7 +31,7 @@ export default function TabPreviewPage() {
 
         {/* Interactive strip */}
         <section className="flex flex-col gap-4">
-          <h2 className="font-label text-[14px] uppercase tracking-wide text-muted">
+          <h2 className="font-label text-[16px] uppercase tracking-wide text-muted">
             Interactive tablist
           </h2>
           <TabList
@@ -59,19 +59,19 @@ export default function TabPreviewPage() {
 
         {/* Both states side by side, on both surfaces, for inspection */}
         <section className="flex flex-col gap-4">
-          <h2 className="font-label text-[14px] uppercase tracking-wide text-muted">
+          <h2 className="font-label text-[16px] uppercase tracking-wide text-muted">
             States
           </h2>
           <div className="flex flex-wrap items-end gap-8 rounded-card bg-paper p-8">
             <figure className="flex flex-col items-center gap-2">
               <Tab label="About me" index="002" active aria-hidden tabIndex={-1} />
-              <figcaption className="font-label text-[12px] text-muted">
+              <figcaption className="font-label text-[14px] text-muted">
                 Active (On) · 236×80
               </figcaption>
             </figure>
             <figure className="flex flex-col items-center gap-2">
               <Tab label="Portfolio" index="01" active={false} aria-hidden tabIndex={-1} />
-              <figcaption className="font-label text-[12px] text-muted">
+              <figcaption className="font-label text-[14px] text-muted">
                 Inactive (Off) · 244×80
               </figcaption>
             </figure>

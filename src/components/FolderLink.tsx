@@ -27,7 +27,7 @@ export function FolderLink({ label, href = "#", onClick, icon }: FolderLinkProps
       <span className="block w-full transition-transform duration-150 group-hover:-translate-y-0.5">
         {icon ?? <FolderIcon className="h-[72.727px] w-[72.727px]" />}
       </span>
-      <span className="w-full text-center font-label text-[14px] leading-normal tracking-[-0.26px] text-cod-gray">
+      <span className="w-full text-center font-label text-[16px] leading-normal tracking-[-0.26px] text-cod-gray">
         {label}
       </span>
     </a>

@@ -81,7 +81,7 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
         <span className="font-sans text-[18px] font-medium leading-4">{label}</span>
         <span
           className={[
-            "font-sans text-[12px] font-normal leading-[12px]",
+            "font-sans text-[14px] font-normal leading-[12px]",
             active ? "text-ink" : "text-body-bg",
           ].join(" ")}
         >

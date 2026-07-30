@@ -27,7 +27,7 @@ export function AboutCard() {
         />
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-3">
-            <p className="text-[14px] leading-[1.5] text-white">Hello, I&rsquo;m</p>
+            <p className="text-[16px] leading-[1.5] text-white">Hello, I&rsquo;m</p>
             <p className="text-[40px] font-semibold leading-none text-white lg:text-[48px]">
               Sallee Lee
             </p>
@@ -35,8 +35,8 @@ export function AboutCard() {
           <dl className="flex gap-12">
             {STATS.map((stat) => (
               <div key={stat.label} className="flex flex-col gap-1">
-                <dt className="text-[14px] leading-[1.5] text-white">{stat.label}</dt>
-                <dd className="text-[16px] font-bold leading-6 text-white">{stat.value}</dd>
+                <dt className="text-[16px] leading-[1.5] text-white">{stat.label}</dt>
+                <dd className="text-[18px] font-bold leading-6 text-white">{stat.value}</dd>
               </div>
             ))}
           </dl>

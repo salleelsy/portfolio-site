@@ -28,19 +28,19 @@ function PersonaCard({ persona: p }: { persona: Persona }) {
           )}
         </div>
         <figcaption className="flex flex-col gap-[2px]">
-          <span className="font-label text-[12px] font-semibold uppercase tracking-wide text-base-blue">
+          <span className="font-label text-[14px] font-semibold uppercase tracking-wide text-base-blue">
             {p.personaLabel}
           </span>
           <span className="text-[20px] font-semibold leading-tight text-ink">
             {p.name}
           </span>
-          <span className="text-[14px] text-muted">
+          <span className="text-[16px] text-muted">
             {p.role} · {p.tier}
           </span>
         </figcaption>
       </div>
       {p.quote && (
-        <blockquote className="text-[16px] leading-[1.6] text-cod-gray">
+        <blockquote className="text-[18px] leading-[1.6] text-cod-gray">
           <span aria-hidden>“</span>
           {p.quote}
           <span aria-hidden>”</span>
@@ -64,11 +64,11 @@ function ComparePanel({ data, highlight }: { data: Compare; highlight?: boolean 
       ].join(" ")}
     >
       <div className="flex flex-col gap-3">
-        <p className="font-label text-[14px] uppercase tracking-wide text-muted">
+        <p className="font-label text-[16px] uppercase tracking-wide text-muted">
           {data.title}
         </p>
         {data.note && (
-          <p className="max-w-[70ch] text-[16px] leading-[1.6] text-cod-gray">
+          <p className="max-w-[70ch] text-[18px] leading-[1.6] text-cod-gray">
             {data.note}
           </p>
         )}
@@ -86,7 +86,7 @@ function ComparePanel({ data, highlight }: { data: Compare; highlight?: boolean 
             {data.pros && (
               <ul className="flex flex-col gap-2">
                 {data.pros.map((p, i) => (
-                  <li key={i} className="flex gap-2 text-[14px] leading-[1.5] text-cod-gray">
+                  <li key={i} className="flex gap-2 text-[16px] leading-[1.5] text-cod-gray">
                     <span aria-hidden className="font-bold text-ink">+</span>
                     {p}
                   </li>
@@ -96,7 +96,7 @@ function ComparePanel({ data, highlight }: { data: Compare; highlight?: boolean 
             {data.cons && (
               <ul className="flex flex-col gap-2">
                 {data.cons.map((c, i) => (
-                  <li key={i} className="flex gap-2 text-[14px] leading-[1.5] text-muted">
+                  <li key={i} className="flex gap-2 text-[16px] leading-[1.5] text-muted">
                     <span aria-hidden className="font-bold">–</span>
                     {c}
                   </li>
@@ -112,7 +112,7 @@ function ComparePanel({ data, highlight }: { data: Compare; highlight?: boolean 
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-label text-[14px] uppercase tracking-wide text-muted">
+    <p className="font-label text-[16px] uppercase tracking-wide text-muted">
       {children}
     </p>
   );
@@ -154,7 +154,7 @@ function PhoneShot({ src, alt, label }: { src?: string; alt?: string; label: str
           aria-hidden
           className="flex aspect-[9/19] w-full items-center justify-center rounded-2xl border border-dashed border-line bg-body-bg px-3 text-center"
         >
-          <span className="font-label text-[14px] uppercase tracking-wide text-muted/70">
+          <span className="font-label text-[16px] uppercase tracking-wide text-muted/70">
             {label}
           </span>
         </div>
@@ -172,7 +172,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
           {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
           {block.heading && <Heading>{block.heading}</Heading>}
           {block.body.map((p, i) => (
-            <p key={i} className="max-w-[70ch] text-[16px] leading-[1.7] text-cod-gray">
+            <p key={i} className="max-w-[70ch] text-[18px] leading-[1.7] text-cod-gray">
               {p}
             </p>
           ))}
@@ -185,15 +185,15 @@ export function CaseStudyBlock({ block }: { block: Block }) {
           {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
           {block.heading && <Heading>{block.heading}</Heading>}
           {block.intro && (
-            <p className="text-[16px] leading-[1.7] text-cod-gray">{block.intro}</p>
+            <p className="text-[18px] leading-[1.7] text-cod-gray">{block.intro}</p>
           )}
           <ol className="flex flex-col gap-3">
             {block.items.map((item, i) => (
               <li key={i} className="flex items-start gap-3">
-                <span className="mt-[2px] flex size-6 shrink-0 items-center justify-center rounded-full bg-ink text-[12px] font-bold text-paper">
+                <span className="mt-[2px] flex size-6 shrink-0 items-center justify-center rounded-full bg-ink text-[14px] font-bold text-paper">
                   {i + 1}
                 </span>
-                <span className="text-[16px] leading-[1.6] text-cod-gray">{item}</span>
+                <span className="text-[18px] leading-[1.6] text-cod-gray">{item}</span>
               </li>
             ))}
           </ol>
@@ -210,7 +210,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
             label={block.label}
           />
           {block.caption && (
-            <figcaption className="text-[14px] text-muted">{block.caption}</figcaption>
+            <figcaption className="text-[16px] text-muted">{block.caption}</figcaption>
           )}
         </figure>
       );
@@ -232,7 +232,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
             />
           </div>
           {block.caption && (
-            <figcaption className="text-[14px] text-muted">{block.caption}</figcaption>
+            <figcaption className="text-[16px] text-muted">{block.caption}</figcaption>
           )}
         </figure>
       );
@@ -249,7 +249,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                 label={item.label}
               />
               {item.caption && (
-                <figcaption className="text-[14px] text-muted">{item.caption}</figcaption>
+                <figcaption className="text-[16px] text-muted">{item.caption}</figcaption>
               )}
             </figure>
           ))}
@@ -275,7 +275,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
           {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
           {block.heading && <Heading>{block.heading}</Heading>}
           {block.intro && (
-            <p className="max-w-[70ch] text-[16px] leading-[1.7] text-cod-gray">
+            <p className="max-w-[70ch] text-[18px] leading-[1.7] text-cod-gray">
               {block.intro}
             </p>
           )}
@@ -293,7 +293,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                     primary ? "border-ink bg-paper" : "border-hairline bg-body-bg",
                   ].join(" ")}
                 >
-                  <p className="font-label text-[14px] uppercase tracking-wide text-muted">
+                  <p className="font-label text-[16px] uppercase tracking-wide text-muted">
                     {group.label}
                   </p>
                   <ol className="flex flex-col gap-3">
@@ -301,7 +301,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                       <li key={item} className="flex items-start gap-3">
                         <span
                           className={[
-                            "mt-[1px] flex size-6 shrink-0 items-center justify-center rounded-full text-[12px] font-bold",
+                            "mt-[1px] flex size-6 shrink-0 items-center justify-center rounded-full text-[14px] font-bold",
                             primary
                               ? "bg-ink text-paper"
                               : "border border-line text-muted",
@@ -311,7 +311,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                         </span>
                         <span
                           className={[
-                            "text-[16px] leading-[1.5]",
+                            "text-[18px] leading-[1.5]",
                             primary ? "font-medium text-ink" : "text-muted",
                           ].join(" ")}
                         >
@@ -342,7 +342,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
           <div className="flex items-stretch gap-2">
             <div className="hidden w-6 flex-col items-center justify-center gap-2 text-base-blue sm:flex">
               <span aria-hidden>↑</span>
-              <span className="rotate-180 font-label text-[12px] uppercase tracking-wide [writing-mode:vertical-rl]">
+              <span className="rotate-180 font-label text-[14px] uppercase tracking-wide [writing-mode:vertical-rl]">
                 Upgrade
               </span>
             </div>
@@ -353,7 +353,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                     {block.columns.map((col) => (
                       <th
                         key={col}
-                        className="rounded-lg bg-ink px-4 py-3 text-[14px] font-semibold text-white"
+                        className="rounded-lg bg-ink px-4 py-3 text-[16px] font-semibold text-white"
                       >
                         {col}
                       </th>
@@ -365,14 +365,14 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                     <tr key={tier.level}>
                       <th
                         scope="row"
-                        className={`rounded-lg px-4 py-3 text-[14px] font-bold text-ink ${toneBg[tier.tone]}`}
+                        className={`rounded-lg px-4 py-3 text-[16px] font-bold text-ink ${toneBg[tier.tone]}`}
                       >
                         {tier.level}
                       </th>
                       {"span" in tier ? (
                         <td
                           colSpan={block.columns.length - 1}
-                          className="rounded-lg border border-hairline bg-paper px-4 py-3 text-[14px] text-cod-gray"
+                          className="rounded-lg border border-hairline bg-paper px-4 py-3 text-[16px] text-cod-gray"
                         >
                           {tier.span}
                         </td>
@@ -380,7 +380,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                         tier.cells.map((cell, ci) => (
                           <td
                             key={ci}
-                            className="rounded-lg border border-hairline bg-paper px-4 py-3 text-[14px] leading-[1.4] text-cod-gray"
+                            className="rounded-lg border border-hairline bg-paper px-4 py-3 text-[16px] leading-[1.4] text-cod-gray"
                           >
                             {cell === "–" ? <span className="text-line">–</span> : cell}
                           </td>
@@ -392,14 +392,14 @@ export function CaseStudyBlock({ block }: { block: Block }) {
               </table>
             </div>
             <div className="hidden w-6 flex-col items-center justify-center gap-2 text-base-blue sm:flex">
-              <span className="font-label text-[12px] uppercase tracking-wide [writing-mode:vertical-rl]">
+              <span className="font-label text-[14px] uppercase tracking-wide [writing-mode:vertical-rl]">
                 Downgrade
               </span>
               <span aria-hidden>↓</span>
             </div>
           </div>
           {block.note && (
-            <figcaption className="text-[14px] text-muted">{block.note}</figcaption>
+            <figcaption className="text-[16px] text-muted">{block.note}</figcaption>
           )}
         </figure>
       );
@@ -433,7 +433,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                   {c.persona && <PersonaCard persona={c.persona} />}
                   <div className="flex flex-col gap-3">
                     {c.caseLabel && (
-                      <p className="font-label text-[12px] font-semibold uppercase tracking-wide text-base-blue">
+                      <p className="font-label text-[14px] font-semibold uppercase tracking-wide text-base-blue">
                         {c.caseLabel}
                       </p>
                     )}
@@ -441,18 +441,18 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                       {c.title}
                     </p>
                     {c.kicker && (
-                      <p className="font-label text-[12px] font-semibold uppercase tracking-wide text-base-blue">
+                      <p className="font-label text-[14px] font-semibold uppercase tracking-wide text-base-blue">
                         {c.kicker}
                       </p>
                     )}
                     {c.label && (
-                      <p className="font-label text-[12px] uppercase tracking-wide text-muted">
+                      <p className="font-label text-[14px] uppercase tracking-wide text-muted">
                         {c.label}
                       </p>
                     )}
                     <div className="flex flex-col gap-2">
                       {c.body.map((b, i) => (
-                        <p key={i} className="text-[14px] leading-[1.6] text-cod-gray">
+                        <p key={i} className="text-[16px] leading-[1.6] text-cod-gray">
                           {b}
                         </p>
                       ))}
@@ -490,7 +490,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
               {block.items.map((item) => (
                 <div
                   key={item.label}
-                  className={`rounded-xl px-5 py-4 text-center text-[16px] font-bold ${tone[item.level]}`}
+                  className={`rounded-xl px-5 py-4 text-center text-[18px] font-bold ${tone[item.level]}`}
                 >
                   {item.label}
                 </div>
@@ -499,16 +499,16 @@ export function CaseStudyBlock({ block }: { block: Block }) {
             {/* Importance indicators (Figma 576:37691): centered indigo column */}
             {(block.topLabel || block.bottomLabel) && (
               <div className="flex w-24 shrink-0 flex-col items-center justify-center gap-1 py-1 text-base-blue">
-                <span className="font-label text-[12px] uppercase tracking-wide">
+                <span className="font-label text-[14px] uppercase tracking-wide">
                   {block.topLabel}
                 </span>
-                <span aria-hidden className="flex flex-col items-center py-1 text-[16px] leading-6">
+                <span aria-hidden className="flex flex-col items-center py-1 text-[18px] leading-6">
                   <span>↓</span>
                   <span>↓</span>
                   <span>↓</span>
                   <span>↓</span>
                 </span>
-                <span className="text-center font-label text-[12px] uppercase tracking-wide">
+                <span className="text-center font-label text-[14px] uppercase tracking-wide">
                   {block.bottomLabel}
                 </span>
               </div>
@@ -533,7 +533,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                   {item.title}
                 </p>
                 {item.body.map((b, i) => (
-                  <p key={i} className="text-[16px] leading-[1.6] text-cod-gray">
+                  <p key={i} className="text-[18px] leading-[1.6] text-cod-gray">
                     {b}
                   </p>
                 ))}
@@ -566,8 +566,8 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                 key={i}
                 className="flex flex-col gap-2 rounded-card border border-hairline bg-paper p-5"
               >
-                <p className="text-[16px] font-semibold text-ink">{item.title}</p>
-                <p className="text-[14px] leading-[1.6] text-muted">{item.body}</p>
+                <p className="text-[18px] font-semibold text-ink">{item.title}</p>
+                <p className="text-[16px] leading-[1.6] text-muted">{item.body}</p>
               </div>
             ))}
           </div>
@@ -579,7 +579,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
         <div className="flex flex-col gap-6 rounded-card bg-card-dark p-8 lg:p-10">
           <div className="flex flex-col gap-2">
             {block.eyebrow && (
-              <p className="font-label text-[14px] uppercase tracking-wide text-muted">
+              <p className="font-label text-[16px] uppercase tracking-wide text-muted">
                 {block.eyebrow}
               </p>
             )}
@@ -595,8 +595,8 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                 <dt className="text-[48px] font-semibold leading-none text-white sm:text-[56px]">
                   {s.value}
                 </dt>
-                <dd className="text-[14px] leading-[1.4] text-line">{s.label}</dd>
-                {s.note && <dd className="text-[12px] text-muted">{s.note}</dd>}
+                <dd className="text-[16px] leading-[1.4] text-line">{s.label}</dd>
+                {s.note && <dd className="text-[14px] text-muted">{s.note}</dd>}
               </div>
             ))}
           </dl>
@@ -611,12 +611,12 @@ export function CaseStudyBlock({ block }: { block: Block }) {
           <div className="flex flex-col divide-y divide-hairline rounded-card border border-hairline bg-paper">
             {block.items.map((item, i) => (
               <div key={i} className="flex items-center justify-between gap-4 px-6 py-4">
-                <p className="text-[16px] font-semibold text-cod-gray">{item.task}</p>
+                <p className="text-[18px] font-semibold text-cod-gray">{item.task}</p>
                 <p className="text-[24px] font-semibold text-ink">{item.value}</p>
               </div>
             ))}
           </div>
-          {block.note && <p className="text-[14px] text-muted">{block.note}</p>}
+          {block.note && <p className="text-[16px] text-muted">{block.note}</p>}
         </div>
       );
 
@@ -624,11 +624,11 @@ export function CaseStudyBlock({ block }: { block: Block }) {
       const c = CALLOUT[block.tone];
       return (
         <div className={`flex flex-col gap-2 rounded-card border border-hairline border-l-4 ${c.bar} bg-paper p-6`}>
-          <p className="font-label text-[12px] uppercase tracking-wide text-muted">
+          <p className="font-label text-[14px] uppercase tracking-wide text-muted">
             {c.label}
           </p>
           <p className="text-[18px] font-semibold text-ink">{block.title}</p>
-          <p className="text-[16px] leading-[1.6] text-muted">{block.body}</p>
+          <p className="text-[18px] leading-[1.6] text-muted">{block.body}</p>
         </div>
       );
     }

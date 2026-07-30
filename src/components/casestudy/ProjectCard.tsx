@@ -66,7 +66,7 @@ export function ProjectCard({
               className="flex h-full w-full items-center justify-center rounded-xl border border-dashed border-line bg-body-bg"
             >
               {/* TODO(content): real project thumbnail */}
-              <span className="font-label text-[14px] uppercase tracking-wide text-muted/70">
+              <span className="font-label text-[16px] uppercase tracking-wide text-muted/70">
                 TODO: thumbnail
               </span>
             </div>
@@ -75,17 +75,17 @@ export function ProjectCard({
 
       {/* Content */}
       <div className="flex min-w-0 flex-1 flex-col items-start gap-3">
-        <span className="rounded-full border border-hairline bg-body-bg px-[10px] py-[6px] text-[12px] font-semibold text-muted">
+        <span className="rounded-full border border-hairline bg-body-bg px-[10px] py-[6px] text-[14px] font-semibold text-muted">
           {badge}
         </span>
         <h3 className="text-[24px] font-semibold text-ink">{title}</h3>
-        <p className="text-[14px] font-normal leading-[1.5] text-muted">
+        <p className="text-[16px] font-normal leading-[1.5] text-muted">
           {description}
         </p>
         {/* Stretched link makes the whole card clickable. */}
         <Link
           href={href}
-          className="mt-1 inline-flex items-center gap-2 rounded-[10px] bg-ink px-[14px] py-[10px] text-[14px] font-bold text-paper outline-none after:absolute after:inset-0 after:rounded-card focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-body-bg"
+          className="mt-1 inline-flex items-center gap-2 rounded-[10px] bg-ink px-[14px] py-[10px] text-[16px] font-bold text-paper outline-none after:absolute after:inset-0 after:rounded-card focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-body-bg"
         >
           {ctaLabel}
           <ArrowRightIcon className="size-6" />

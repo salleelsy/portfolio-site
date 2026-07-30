@@ -32,7 +32,7 @@ const INTERESTS = [
 export function AboutMeSection() {
   return (
     <section aria-labelledby="about-heading" className="bg-body-bg">
-      <div className="mx-auto w-full max-w-[1200px] px-6 py-14 sm:px-10">
+      <div className="mx-auto w-full max-w-[1280px] px-6 py-14 sm:px-10">
         <h2
           id="about-heading"
           className="text-[40px] font-semibold tracking-[-1.5px] text-ink sm:text-[56px] sm:leading-[70px]"
@@ -49,7 +49,7 @@ export function AboutMeSection() {
         </p>
 
         {/* Interests */}
-        <h3 className="mt-14 font-label text-[14px] uppercase tracking-wide text-muted">
+        <h3 className="mt-14 font-label text-[16px] uppercase tracking-wide text-muted">
           A few things I&rsquo;m into
         </h3>
         <ul className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -61,7 +61,7 @@ export function AboutMeSection() {
               <PhotoFrame className="aspect-[4/3] w-full" label={`${item.title} — photo`} />
               <div className="flex flex-col gap-2 px-2 pb-2">
                 <p className="text-[18px] font-semibold text-ink">{item.title}</p>
-                <p className="text-[14px] leading-[1.5] text-muted">
+                <p className="text-[16px] leading-[1.5] text-muted">
                   {item.caption}
                 </p>
               </div>
@@ -70,7 +70,7 @@ export function AboutMeSection() {
         </ul>
 
         {/* Gallery strip — drop favourite shots here */}
-        <h3 className="mt-14 font-label text-[14px] uppercase tracking-wide text-muted">
+        <h3 className="mt-14 font-label text-[16px] uppercase tracking-wide text-muted">
           Snapshots
         </h3>
         <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3">

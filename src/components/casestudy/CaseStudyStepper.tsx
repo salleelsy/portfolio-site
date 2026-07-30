@@ -57,7 +57,7 @@ export function CaseStudyStepper({ items }: { items: StepperItem[] }) {
                 href={`#${item.id}`}
                 aria-current={active ? "true" : undefined}
                 className={[
-                  "flex items-center pl-6 pr-4 text-[16px] leading-6 transition-colors",
+                  "flex items-center pl-6 pr-4 text-[18px] leading-6 transition-colors",
                   active
                     ? "font-semibold text-ink"
                     : "font-normal text-content-secondary hover:text-ink",

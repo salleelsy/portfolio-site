@@ -10,7 +10,7 @@ import { ArrowRightIcon } from "../icons";
 
 // Site-wide content column: fluid up to 1200px, centered, with responsive
 // gutters. Banners stay full-bleed.
-const CONTAINER = "mx-auto w-full max-w-[1200px] px-6 sm:px-10";
+const CONTAINER = "mx-auto w-full max-w-[1280px] px-6 sm:px-10";
 
 const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
@@ -71,11 +71,11 @@ export function CaseStudyLayout({ study }: { study: CaseStudy }) {
       {!sectioned && (
         <header className={`${CONTAINER} flex flex-col gap-5 pb-12`}>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="w-fit rounded-full border border-hairline bg-body-bg px-[10px] py-[5px] font-label text-[12px] uppercase tracking-wide text-muted">
+            <span className="w-fit rounded-full border border-hairline bg-body-bg px-[10px] py-[5px] font-label text-[14px] uppercase tracking-wide text-muted">
               {study.badge}
             </span>
             {study.client && (
-              <span className="w-fit rounded-full bg-ink px-[10px] py-[5px] font-label text-[12px] uppercase tracking-wide text-paper">
+              <span className="w-fit rounded-full bg-ink px-[10px] py-[5px] font-label text-[14px] uppercase tracking-wide text-paper">
                 {study.client}
               </span>
             )}
@@ -95,10 +95,10 @@ export function CaseStudyLayout({ study }: { study: CaseStudy }) {
               ["Tools & Systems", study.meta.tools],
             ].map(([label, value]) => (
               <div key={label} className="flex flex-col gap-1">
-                <dt className="font-label text-[12px] uppercase tracking-wide text-muted">
+                <dt className="font-label text-[14px] uppercase tracking-wide text-muted">
                   {label}
                 </dt>
-                <dd className="text-[16px] font-semibold text-ink">{value}</dd>
+                <dd className="text-[18px] font-semibold text-ink">{value}</dd>
               </div>
             ))}
           </dl>
@@ -125,7 +125,7 @@ export function CaseStudyLayout({ study }: { study: CaseStudy }) {
           className="flex aspect-[21/9] w-full items-center justify-center border-y border-dashed border-line bg-body-bg"
         >
           {/* TODO(content): real cover banner */}
-          <span className="font-label text-[14px] uppercase tracking-wide text-muted/70">
+          <span className="font-label text-[16px] uppercase tracking-wide text-muted/70">
             {study.title} — cover
           </span>
         </div>
@@ -178,7 +178,7 @@ export function CaseStudyLayout({ study }: { study: CaseStudy }) {
       {/* Next case study */}
       <div className="border-t border-hairline bg-body-bg">
         <div className={`${CONTAINER} py-12`}>
-          <p className="font-label text-[12px] uppercase tracking-wide text-muted">
+          <p className="font-label text-[14px] uppercase tracking-wide text-muted">
             Next case study
           </p>
           <Link

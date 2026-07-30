@@ -6,7 +6,7 @@ const EMAIL = "sallee.lsy@gmail.com";
 
 // Shared field styling (Figma 662:21207): 8px radius, #f6f6f6 fill, #e2e2e2 border.
 const FIELD =
-  "w-full rounded-[8px] border border-[#e2e2e2] bg-[#f6f6f6] px-4 py-3 text-[14px] text-cod-gray outline-none transition-colors placeholder:text-[#afafaf] focus:border-ink";
+  "w-full rounded-[8px] border border-[#e2e2e2] bg-[#f6f6f6] px-4 py-3 text-[16px] text-cod-gray outline-none transition-colors placeholder:text-[#afafaf] focus:border-ink";
 
 /**
  * SayHelloSection — the "Say hello" tab panel (Figma 662:21221).
@@ -28,7 +28,7 @@ export function SayHelloSection() {
 
   return (
     <section aria-labelledby="hello-heading" className="bg-body-bg">
-      <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-[50px] px-6 py-14 sm:px-10">
+      <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-[50px] px-6 py-14 sm:px-10">
         <h2
           id="hello-heading"
           className="max-w-[700px] text-[40px] font-semibold leading-[1.25] tracking-[-1.5px] text-ink sm:text-[56px] sm:leading-[70px]"
@@ -81,7 +81,7 @@ export function SayHelloSection() {
           </label>
           <button
             type="submit"
-            className="w-full rounded-[8px] bg-ink px-4 py-[14px] text-center text-[16px] font-medium leading-5 text-paper outline-none transition-opacity hover:opacity-85 focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2"
+            className="w-full rounded-[8px] bg-ink px-4 py-[14px] text-center text-[18px] font-medium leading-5 text-paper outline-none transition-opacity hover:opacity-85 focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2"
           >
             Get in Touch
           </button>

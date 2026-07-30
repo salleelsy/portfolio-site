@@ -139,7 +139,7 @@ function DownloadIcon({ className }: { className?: string }) {
 export function ResumeSection() {
   return (
     <section aria-labelledby="resume-tab-heading" className="bg-body-bg">
-      <div className="mx-auto w-full max-w-[1200px] px-6 py-14 sm:px-10">
+      <div className="mx-auto w-full max-w-[1280px] px-6 py-14 sm:px-10">
         <h2
           id="resume-tab-heading"
           className="mb-10 text-[40px] font-semibold tracking-[-1.5px] text-ink sm:text-[56px] sm:leading-[70px]"
@@ -153,10 +153,10 @@ export function ResumeSection() {
               <h2 id="resume-heading" className="text-[40px] font-semibold leading-none text-ink">
                 Sallee Lee
               </h2>
-              <p className="text-[16px] font-semibold text-muted">
+              <p className="text-[18px] font-semibold text-muted">
                 Product Designer · UX/UI
               </p>
-              <p className="max-w-[640px] text-[14px] leading-[1.6] text-cod-gray">
+              <p className="max-w-[640px] text-[16px] leading-[1.6] text-cod-gray">
                 6 years in the design field, specializing in UX/UI and prioritizing
                 empathy, problem-solving, and logical thinking. My focus on human
                 experience delivers solutions that resonate, while a detail-oriented
@@ -167,7 +167,7 @@ export function ResumeSection() {
             <button
               type="button"
               title="PDF download coming soon"
-              className="inline-flex shrink-0 items-center gap-2 rounded-[10px] bg-ink px-[14px] py-[10px] text-[14px] font-bold text-paper outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+              className="inline-flex shrink-0 items-center gap-2 rounded-[10px] bg-ink px-[14px] py-[10px] text-[16px] font-bold text-paper outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
             >
               <DownloadIcon className="size-5" />
               Download PDF
@@ -175,7 +175,7 @@ export function ResumeSection() {
           </div>
 
           {/* Contact row */}
-          <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 border-t border-hairline pt-6 text-[14px]">
+          <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 border-t border-hairline pt-6 text-[16px]">
             {CONTACT.map((c) => (
               <li key={c.label} className="flex items-center gap-2">
                 <span className="font-label uppercase tracking-wide text-muted">
@@ -196,7 +196,7 @@ export function ResumeSection() {
           <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-14">
             {/* Experience */}
             <div>
-              <h3 className="font-label text-[14px] uppercase tracking-wide text-muted">
+              <h3 className="font-label text-[16px] uppercase tracking-wide text-muted">
                 Experience
               </h3>
               <div className="mt-6 flex flex-col gap-8">
@@ -211,10 +211,10 @@ export function ResumeSection() {
                           key={role.title + role.dates}
                           className="flex flex-wrap items-baseline justify-between gap-x-4"
                         >
-                          <p className="text-[14px] font-semibold text-cod-gray">
+                          <p className="text-[16px] font-semibold text-cod-gray">
                             {role.title}
                           </p>
-                          <p className="font-label text-[12px] uppercase tracking-wide text-muted">
+                          <p className="font-label text-[14px] uppercase tracking-wide text-muted">
                             {role.dates}
                           </p>
                         </div>
@@ -222,7 +222,7 @@ export function ResumeSection() {
                     </div>
 
                     {job.summary && (
-                      <p className="text-[14px] leading-[1.6] text-muted">
+                      <p className="text-[16px] leading-[1.6] text-muted">
                         {job.summary}
                       </p>
                     )}
@@ -232,7 +232,7 @@ export function ResumeSection() {
                         {job.bullets.map((b, i) => (
                           <li
                             key={i}
-                            className="relative pl-4 text-[14px] leading-[1.6] text-cod-gray before:absolute before:left-0 before:top-[9px] before:size-[5px] before:rounded-full before:bg-line"
+                            className="relative pl-4 text-[16px] leading-[1.6] text-cod-gray before:absolute before:left-0 before:top-[9px] before:size-[5px] before:rounded-full before:bg-line"
                           >
                             {b}
                           </li>
@@ -242,11 +242,11 @@ export function ResumeSection() {
 
                     {job.projects && (
                       <div className="mt-1 flex flex-col gap-2">
-                        <p className="font-label text-[12px] uppercase tracking-wide text-muted">
+                        <p className="font-label text-[14px] uppercase tracking-wide text-muted">
                           Selected projects
                         </p>
                         {job.projects.map((p) => (
-                          <p key={p.name} className="text-[14px] leading-[1.6] text-cod-gray">
+                          <p key={p.name} className="text-[16px] leading-[1.6] text-cod-gray">
                             <span className="font-bold text-ink">{p.name}:</span>{" "}
                             {p.detail}
                           </p>
@@ -261,18 +261,18 @@ export function ResumeSection() {
             {/* Sidebar: skills / education / languages */}
             <aside className="flex flex-col gap-10 lg:border-l lg:border-hairline lg:pl-14">
               <div>
-                <h3 className="font-label text-[14px] uppercase tracking-wide text-muted">
+                <h3 className="font-label text-[16px] uppercase tracking-wide text-muted">
                   Skills
                 </h3>
                 <div className="mt-5 flex flex-col gap-5">
                   {SKILLS.map((group) => (
                     <div key={group.label} className="flex flex-col gap-3">
-                      <p className="text-[14px] font-bold text-ink">{group.label}</p>
+                      <p className="text-[16px] font-bold text-ink">{group.label}</p>
                       <ul className="flex flex-wrap gap-2">
                         {group.items.map((skill) => (
                           <li
                             key={skill}
-                            className="rounded-chip border border-hairline bg-body-bg px-[10px] py-[5px] text-[12px] font-medium text-cod-gray"
+                            className="rounded-chip border border-hairline bg-body-bg px-[10px] py-[5px] text-[14px] font-medium text-cod-gray"
                           >
                             {skill}
                           </li>
@@ -284,13 +284,13 @@ export function ResumeSection() {
               </div>
 
               <div>
-                <h3 className="font-label text-[14px] uppercase tracking-wide text-muted">
+                <h3 className="font-label text-[16px] uppercase tracking-wide text-muted">
                   Education
                 </h3>
                 <div className="mt-5 flex flex-col gap-1">
-                  <p className="text-[14px] font-bold text-ink">{EDUCATION.school}</p>
+                  <p className="text-[16px] font-bold text-ink">{EDUCATION.school}</p>
                   {EDUCATION.degrees.map((d) => (
-                    <p key={d} className="text-[14px] leading-[1.5] text-muted">
+                    <p key={d} className="text-[16px] leading-[1.5] text-muted">
                       {d}
                     </p>
                   ))}
@@ -298,10 +298,10 @@ export function ResumeSection() {
               </div>
 
               <div>
-                <h3 className="font-label text-[14px] uppercase tracking-wide text-muted">
+                <h3 className="font-label text-[16px] uppercase tracking-wide text-muted">
                   Languages
                 </h3>
-                <p className="mt-5 text-[14px] leading-[1.5] text-cod-gray">
+                <p className="mt-5 text-[16px] leading-[1.5] text-cod-gray">
                   Multilingual — fluent in English, Cantonese, and Mandarin.
                 </p>
               </div>
