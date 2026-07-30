@@ -41,7 +41,7 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-6 pb-12 pt-12 sm:px-10">
+      <div className="relative z-10 mx-auto w-full max-w-[1360px] px-6 pb-12 pt-12 sm:px-10">
         {/* Top: headline + folder nav (folder nav stays right on every width) */}
         <div className="flex flex-row items-start justify-between gap-6">
           {/* Figma 637:23511 — Poppins Bold 96 / 98.88 line height / -1.92px tracking */}
