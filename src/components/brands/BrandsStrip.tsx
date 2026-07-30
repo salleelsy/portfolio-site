@@ -49,7 +49,7 @@ export function BrandsStrip() {
           {/* Figma 673:21458 — Poppins Medium 48px */}
           <h2
             id="brands-heading"
-            className="text-[32px] font-medium text-ink sm:text-[48px]"
+            className="text-[32px] font-semibold text-ink sm:text-[48px]"
           >
             Some of the projects I worked for...
           </h2>

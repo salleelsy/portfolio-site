@@ -35,7 +35,7 @@ export function CaseStudyBanner({ study }: { study: CaseStudy }) {
             </ul>
           )}
           <div className="flex flex-col gap-4 text-base-blue">
-            <h1 className="font-display text-[40px] font-extrabold leading-[0.95] sm:text-[56px] xl:text-[72px]">
+            <h1 className="font-display text-[40px] font-semibold leading-[0.95] sm:text-[56px] xl:text-[72px]">
               {banner.title}
             </h1>
             <p className="font-geist-alt text-[18px] leading-[1.3] opacity-90 sm:text-[22px]">

@@ -41,7 +41,7 @@ export function CaseStudySection() {
         <div className="flex items-center justify-between gap-4">
           <h2
             id="case-study-heading"
-            className="text-[40px] font-medium tracking-[-1.5px] text-ink sm:text-[56px] sm:leading-[70px]"
+            className="text-[40px] font-semibold tracking-[-1.5px] text-ink sm:text-[56px] sm:leading-[70px]"
           >
             Selected works
           </h2>

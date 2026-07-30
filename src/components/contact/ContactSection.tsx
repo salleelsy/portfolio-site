@@ -24,7 +24,7 @@ export function ContactSection() {
               </p>
               <h2
                 id="contact-heading"
-                className="text-[40px] font-extrabold text-ink"
+                className="text-[40px] font-semibold text-ink"
               >
                 CONTACT
               </h2>

@@ -78,7 +78,7 @@ export function ProjectCard({
         <span className="rounded-full border border-hairline bg-body-bg px-[10px] py-[6px] text-[12px] font-semibold text-muted">
           {badge}
         </span>
-        <h3 className="text-[24px] font-extrabold text-ink">{title}</h3>
+        <h3 className="text-[24px] font-semibold text-ink">{title}</h3>
         <p className="text-[14px] font-normal leading-[1.5] text-muted">
           {description}
         </p>

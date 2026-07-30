@@ -50,7 +50,7 @@ export function PortfolioTabs() {
         {/* TabList carries its own 24px lead (bleed room for the first tab's
             foot); the outer padding tops it up to the site margins: 40px @sm,
             120px @lg — matching the other sections' px-6/sm:px-10/lg:px-[120px]. */}
-        <div className="mx-auto w-full overflow-x-auto pt-[6px] sm:px-4 lg:px-24">
+        <div className="mx-auto w-full max-w-[1200px] overflow-x-auto pt-[6px] sm:px-4">
           <TabList
             items={NAV}
             value={value}

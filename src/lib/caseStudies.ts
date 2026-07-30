@@ -63,6 +63,7 @@ export type Block =
       groups: { label: string; items: string[] }[];
     }
   | { kind: "image"; src?: string; label: string; alt?: string; caption?: string; ratio?: string }
+  | { kind: "video"; src: string; title: string; caption?: string; vertical?: boolean }
   | { kind: "gallery"; cols?: 2 | 3; items: CaseImage[] }
   | { kind: "screens"; eyebrow?: string; heading?: string; items: CaseImage[] }
   | { kind: "tierTable"; eyebrow?: string; heading?: string; columns: string[]; tiers: Tier[]; note?: string }
@@ -213,9 +214,11 @@ export const CASE_STUDIES: CaseStudy[] = [
         ],
       },
       {
-        kind: "image",
-        label: "Launch video — public marketing walkthrough of the wealth space",
-        alt: "Tangerine wealth space launch walkthrough",
+        kind: "video",
+        src: "https://www.youtube.com/embed/iQojngOnmto",
+        title: "Tangerine wealth launch — promotion video",
+        caption: "The public promotion video for the wealth MVP launch.",
+        vertical: true,
       },
       {
         kind: "features",
@@ -278,12 +281,6 @@ export const CASE_STUDIES: CaseStudy[] = [
             title: "The accordion list → core",
             body: [
               "Built locally to unblock the MVP — then I found three other surfaces with the same need, so I branched the core Figma library, spec'd it, and submitted it. It went to core.",
-            ],
-          },
-          {
-            title: "The pulsing dot → rejected",
-            body: [
-              "My pulsing nav indicator broke precedent and wasn't worth the capital. I switched to a sanctioned pattern — a launch modal. Same job, no new pattern, shipped on time.",
             ],
           },
         ],

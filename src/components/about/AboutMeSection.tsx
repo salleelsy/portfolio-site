@@ -35,7 +35,7 @@ export function AboutMeSection() {
       <div className="mx-auto w-full max-w-[1200px] px-6 py-14 sm:px-10">
         <h2
           id="about-heading"
-          className="text-[40px] font-medium tracking-[-1.5px] text-ink sm:text-[56px] sm:leading-[70px]"
+          className="text-[40px] font-semibold tracking-[-1.5px] text-ink sm:text-[56px] sm:leading-[70px]"
         >
           About me
         </h2>
@@ -60,7 +60,7 @@ export function AboutMeSection() {
             >
               <PhotoFrame className="aspect-[4/3] w-full" label={`${item.title} — photo`} />
               <div className="flex flex-col gap-2 px-2 pb-2">
-                <p className="text-[18px] font-bold text-ink">{item.title}</p>
+                <p className="text-[18px] font-semibold text-ink">{item.title}</p>
                 <p className="text-[14px] leading-[1.5] text-muted">
                   {item.caption}
                 </p>

@@ -142,7 +142,7 @@ export function ResumeSection() {
       <div className="mx-auto w-full max-w-[1200px] px-6 py-14 sm:px-10">
         <h2
           id="resume-tab-heading"
-          className="mb-10 text-[40px] font-medium tracking-[-1.5px] text-ink sm:text-[56px] sm:leading-[70px]"
+          className="mb-10 text-[40px] font-semibold tracking-[-1.5px] text-ink sm:text-[56px] sm:leading-[70px]"
         >
           Resume
         </h2>
@@ -150,7 +150,7 @@ export function ResumeSection() {
           {/* Header */}
           <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
             <div className="flex flex-col gap-3">
-              <h2 id="resume-heading" className="text-[40px] font-extrabold leading-none text-ink">
+              <h2 id="resume-heading" className="text-[40px] font-semibold leading-none text-ink">
                 Sallee Lee
               </h2>
               <p className="text-[16px] font-semibold text-muted">
@@ -203,7 +203,7 @@ export function ResumeSection() {
                 {EXPERIENCE.map((job) => (
                   <article key={job.company} className="flex flex-col gap-3">
                     <div className="flex flex-col gap-1">
-                      <p className="text-[18px] font-extrabold text-ink">
+                      <p className="text-[18px] font-semibold text-ink">
                         {job.company}
                       </p>
                       {job.roles.map((role) => (

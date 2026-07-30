@@ -80,7 +80,7 @@ export function CaseStudyLayout({ study }: { study: CaseStudy }) {
               </span>
             )}
           </div>
-          <h1 className="max-w-[18ch] text-[40px] font-extrabold leading-[1.05] tracking-[-0.01em] text-ink sm:text-[56px]">
+          <h1 className="max-w-[18ch] text-[40px] font-semibold leading-[1.05] tracking-[-0.01em] text-ink sm:text-[56px]">
             {study.title}
           </h1>
           <p className="max-w-[60ch] text-[18px] leading-[1.5] text-muted sm:text-[20px]">
@@ -185,7 +185,7 @@ export function CaseStudyLayout({ study }: { study: CaseStudy }) {
             href={`/work/${next.slug}`}
             className="group mt-3 flex items-center justify-between gap-6"
           >
-            <span className="text-[24px] font-extrabold text-ink sm:text-[32px]">
+            <span className="text-[24px] font-semibold text-ink sm:text-[32px]">
               {next.title}
             </span>
             <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-ink text-paper transition-transform group-hover:translate-x-1">

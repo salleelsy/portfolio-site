@@ -28,7 +28,7 @@ export function AboutCard() {
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-3">
             <p className="text-[14px] leading-[1.5] text-white">Hello, I&rsquo;m</p>
-            <p className="text-[40px] font-bold leading-none text-white lg:text-[48px]">
+            <p className="text-[40px] font-semibold leading-none text-white lg:text-[48px]">
               Sallee Lee
             </p>
           </div>

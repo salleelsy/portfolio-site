@@ -45,7 +45,7 @@ export function Hero() {
         {/* Top: headline + folder nav (folder nav stays right on every width) */}
         <div className="flex flex-row items-start justify-between gap-6">
           {/* Figma 637:23511 — Poppins Bold 96 / 98.88 line height / -1.92px tracking */}
-          <h1 className="text-[40px] font-bold leading-[1.03] tracking-[-1.92px] text-ink sm:text-[64px] lg:text-[96px] lg:leading-[98.88px]">
+          <h1 className="text-[40px] font-semibold leading-[1.03] tracking-[-1.92px] text-ink sm:text-[64px] lg:text-[96px] lg:leading-[98.88px]">
             {HEADLINE.map((line) => (
               <span key={line} className="block">
                 {line}
