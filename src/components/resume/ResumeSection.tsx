@@ -139,7 +139,7 @@ function DownloadIcon({ className }: { className?: string }) {
 export function ResumeSection() {
   return (
     <section aria-labelledby="resume-tab-heading" className="bg-body-bg">
-      <div className="mx-auto w-full max-w-[1360px] px-6 py-14 sm:px-10">
+      <div className="mx-auto w-full max-w-[1280px] px-6 py-14 sm:px-10">
         <h2
           id="resume-tab-heading"
           className="mb-10 text-[40px] font-semibold tracking-[-1.5px] text-ink sm:text-[56px] sm:leading-[70px]"

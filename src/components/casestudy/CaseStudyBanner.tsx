@@ -21,7 +21,7 @@ export function CaseStudyBanner({ study }: { study: CaseStudy }) {
         {/* Content left — sits on the site margin */}
         {/* Full-bleed banner, but the copy aligns with the centered 1200px
             content column: pl = the column's left gutter on wide screens. */}
-        <div className="flex max-w-[760px] flex-col items-start gap-8 px-6 pt-14 sm:px-10 lg:box-content lg:min-h-[448px] lg:max-w-[640px] lg:justify-center lg:py-24 lg:pl-[max(calc((100%-1360px)/2+40px),40px)] lg:pr-0 xl:gap-10">
+        <div className="flex max-w-[760px] flex-col items-start gap-8 px-6 pt-14 sm:px-10 lg:box-content lg:min-h-[448px] lg:max-w-[640px] lg:justify-center lg:py-24 lg:pl-[max(calc((100%-1280px)/2+40px),40px)] lg:pr-0 xl:gap-10">
           {study.tags && study.tags.length > 0 && (
             <ul className="flex flex-wrap gap-2">
               {study.tags.map((tag) => (
