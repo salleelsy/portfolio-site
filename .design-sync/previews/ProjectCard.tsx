@@ -5,7 +5,6 @@ import { ProjectCard } from "portfolio-site";
 export const Default = () => (
   <div style={{ background: "var(--color-body-bg)", padding: 24, maxWidth: 960 }}>
     <ProjectCard
-      badge="Product Design / 2023"
       title="Loyalty Membership for a Commercial Real Estate Group"
       description="A five-tier loyalty membership for a commercial real-estate group (CCG) — making tiers, points, and upgrade paths legible at a glance."
       href="#"
@@ -17,7 +16,6 @@ export const Default = () => (
 export const CustomThumbnail = () => (
   <div style={{ background: "var(--color-body-bg)", padding: 24, maxWidth: 960 }}>
     <ProjectCard
-      badge="UX Research / 2024"
       title="Electric Utility App"
       description="A customer-side usability study on an electric utility app — 11 heuristics, scored tasks, and prioritized, shippable fixes."
       href="#"

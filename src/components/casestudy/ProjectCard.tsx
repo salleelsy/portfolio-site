@@ -4,8 +4,6 @@ import Image from "next/image";
 import { ArrowRightIcon } from "../icons";
 
 export type ProjectCardProps = {
-  /** Small pill above the title, e.g. "UX thinking / 2026". */
-  badge: string;
   title: string;
   description: string;
   href?: string;
@@ -23,11 +21,10 @@ export type ProjectCardProps = {
 
 /**
  * ProjectCard — a single case-study card (Figma 280:17794).
- * White, 1px #E5E7EB border, soft shadow, 16px radius; badge / title /
- * description / CTA beside (list) or below (grid) the thumbnail.
+ * White, 1px #E5E7EB border, soft shadow, 16px radius; title / description /
+ * CTA beside (list) or below (grid) the thumbnail.
  */
 export function ProjectCard({
-  badge,
   title,
   description,
   href = "#",
@@ -83,9 +80,6 @@ export function ProjectCard({
 
       {/* Content */}
       <div className="flex min-w-0 flex-1 flex-col items-start gap-3">
-        <span className="rounded-full border border-hairline bg-body-bg px-[10px] py-[6px] text-[14px] font-semibold text-muted">
-          {badge}
-        </span>
         <h3 className="text-[24px] font-semibold text-ink">{title}</h3>
         {/* Grid tiles stay scannable — the description shows in list view only. */}
         {row && (

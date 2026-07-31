@@ -10,7 +10,6 @@ const FILTERS = ["All", "Design system", "UX", "UI"] as const;
 // Real case studies, linked to their detail pages. Tags share the FILTERS
 // vocabulary, so the pills below actually filter the grid.
 const PROJECTS: (ProjectCardProps & { tags: string[] })[] = CASE_STUDIES.map((c) => ({
-  badge: c.category,
   title: c.title,
   description: c.cardSummary,
   href: `/work/${c.slug}`,

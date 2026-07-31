@@ -10,7 +10,7 @@ export function SectionTitle({ children }: { children: React.ReactNode }) {
         aria-hidden
         className="h-[26px] w-[56px] shrink-0 rounded-full border-[8px] border-base-blue"
       />
-      <h2 className="font-section text-[28px] font-semibold leading-[1.3] text-base-blue sm:text-[32px]">
+      <h2 className="font-section text-[24px] font-semibold leading-[1.3] text-base-blue">
         {children}
       </h2>
     </div>
