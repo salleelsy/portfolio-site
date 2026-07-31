@@ -79,9 +79,23 @@ export function ProjectCard({
           ))}
       </div>
 
-      {/* Content — leave room on the right so the arrow never sits on the text. */}
-      <div className="flex min-w-0 flex-1 flex-col items-start gap-3 pr-16">
-        <h3 className="text-[24px] font-semibold text-ink">{title}</h3>
+      {/* Content */}
+      <div className="flex min-w-0 flex-1 flex-col gap-3">
+        {/* Title row — the hover arrow sits to the right, aligned with the
+            title's first line (items-start keeps it on the top row when the
+            title wraps). */}
+        <div className="flex items-start justify-between gap-4">
+          <h3 className="min-w-0 flex-1 text-[24px] font-semibold leading-[1.25] text-ink">
+            {title}
+          </h3>
+          {/* Hover affordance — decorative; the stretched link takes the click. */}
+          <span
+            aria-hidden
+            className="pointer-events-none flex size-12 shrink-0 items-center justify-center rounded-full bg-body-bg text-cod-gray opacity-0 transition-[opacity,transform] duration-200 group-hover:opacity-100 group-focus-within:opacity-100 motion-safe:-translate-y-1 motion-safe:group-hover:translate-y-0 motion-safe:group-focus-within:translate-y-0"
+          >
+            <ArrowUpRightIcon className="size-5" />
+          </span>
+        </div>
         {/* Grid tiles stay scannable — the description shows in list view only. */}
         {row && (
           <p className="text-[16px] font-normal leading-[1.5] text-muted">
@@ -89,14 +103,6 @@ export function ProjectCard({
           </p>
         )}
       </div>
-
-      {/* Hover affordance — decorative; the stretched link below takes the click. */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute bottom-6 right-6 flex size-12 items-center justify-center rounded-full bg-body-bg text-cod-gray opacity-0 transition-[opacity,transform] duration-200 group-hover:opacity-100 group-focus-within:opacity-100 motion-safe:translate-y-1 motion-safe:group-hover:translate-y-0 motion-safe:group-focus-within:translate-y-0"
-      >
-        <ArrowUpRightIcon className="size-5" />
-      </span>
 
       {/* One stretched link covers the card, so the whole tile is clickable. */}
       <Link

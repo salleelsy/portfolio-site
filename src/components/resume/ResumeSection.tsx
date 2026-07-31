@@ -1,4 +1,9 @@
-// Resume content — filled from Resume_2026_Sallee.docx (real).
+// Resume content — from Resume_2026_Sallee.pdf (real). The same PDF is served
+// from /public/resume for the Download button.
+const RESUME_PDF = "/resume/Sallee-Lee-Resume-2026.pdf";
+
+const SUMMARY =
+  "5 years in product design, specializing in fintech and digital banking. I lead research-driven design, mentor designers, and partner cross-functionally to translate user insights into measurable impact. A detail-oriented strategist who balances empathy, business goals, and technical constraints.";
 
 const CONTACT = [
   { label: "Portfolio", value: "www.salleeee.com", href: "https://www.salleeee.com" },
@@ -26,21 +31,46 @@ const EXPERIENCE: Job[] = [
     bullets: [
       "Led end-to-end product design for a wealth management and investing platform, spanning desktop and mobile experiences, from discovery through delivery.",
       "Partnered closely with Product Managers, Engineers, QA, and Business stakeholders to translate complex financial requirements into clear, user-friendly solutions.",
-      "Conducted user research, usability testing, and design validation to identify pain points and inform decisions across onboarding, dashboards, and planning tools.",
+      "Conducted user research and design validation to identify pain points and inform design decisions across onboarding, dashboards, and planning tools.",
+      "Contributed to the internal design system and workflow optimization using Claude Code, shipping design-to-code implementations as production PRs.",
       "Designed high-fidelity prototypes and production-ready designs in Figma, ensuring consistency with established design systems and accessibility standards.",
       "Collaborated cross-functionally to support feature delivery, design QA, and iterative improvements, keeping design intent and development output aligned.",
       "Presented design rationale and trade-offs to internal stakeholders, balancing user needs, technical constraints, and business goals.",
+      "Mentored junior designers on problem-solving methodology and cross-functional advocacy.",
     ],
     projects: [
       {
         name: "Tangerine Digital Wealth Platform (MVP)",
         detail:
-          "Contributed to the launch of a core investing and planning experience — onboarding, portfolio views, and financial projections to help users understand and manage their wealth.",
+          "Led launch of the core investing and planning experience, driving 22.3% adoption (+12.3 pts MoM) and 46.6% mobile engagement with 67.2k active clients. Diagnosed and solved three critical friction points through research and iteration — entry-point discovery, external-asset completion, and projection accuracy via insight-driven prompts — owning the end-to-end research-to-analytics feedback cycle.",
       },
       {
-        name: "RBC Financial Dashboard & Planning Tools",
+        name: "Enterprise Supervision & Compliance Platform (RBC Wealth Management)",
         detail:
-          "Designed data-dense dashboards and visualizations to improve clarity of net worth, goals, and performance, boosting user confidence and decision-making.",
+          "Designed enterprise compliance tools for supervisors to monitor advisor activity, review regulatory exceptions, and manage investment rules. Simplified complex workflows through intuitive dashboards, data tables, and rule-management interfaces, delivering scalable UX, high-fidelity prototypes, and developer-ready specs.",
+      },
+    ],
+  },
+  {
+    company: "EY Mtel Solutions Ltd.",
+    roles: [{ title: "UX & UI Designer", dates: "Mar 2022 — Apr 2023" }],
+    bullets: [
+      "Led end-to-end design — from scratch and revamps — of web/mobile (iOS & Android) products for corporate clients.",
+      "Collaborated on in-depth research, conducted user interviews, and ran usability testing to identify pain points and deliver effective design solutions.",
+      "Communicated with cross-functional teams and developers, and presented to clients, ensuring successful project execution and launches.",
+      "Facilitated design-thinking workshops for major corporations, promoting innovation and user-centric design.",
+      "Created and maintained UI design guidelines for the entire product for consistency.",
+    ],
+    projects: [
+      {
+        name: "Loyalty Membership App",
+        detail:
+          "Led a successful launch with 46K+ downloads in the inaugural season — orchestrating user engagement, membership integration, and a seamless in-app points conversion for improved experience and retention.",
+      },
+      {
+        name: "Electric Utility Website",
+        detail:
+          "Achieved a 50% reduction in bounce rate and a 95% positive feedback rate, creating a user-friendly platform for global investors to easily understand the business.",
       },
     ],
   },
@@ -53,63 +83,32 @@ const EXPERIENCE: Job[] = [
       {
         name: "Heima 1996 Ltd. (Select Store)",
         detail:
-          "Evaluated from scratch, repositioned the brand, and redesigned the website — a 35% increase in traffic and a 25% sales boost, with improved project efficiency and budgeting.",
+          "Ran a comprehensive evaluation from scratch, repositioned the brand, and redesigned the website — a 35% increase in traffic and a 25% sales boost, with improved project efficiency and budget evaluation.",
       },
       {
         name: "Health Coach Howard Ltd. (Health Service)",
         detail:
-          "Implemented a streamlined booking system, cutting steps from 5 to 2 and improving scheduling efficiency with engagement strategies.",
+          "Implemented a streamlined booking system, cutting steps from 5 to 2 and improving booking actions and scheduling efficiency with engagement strategies.",
       },
-    ],
-  },
-  {
-    company: "EY Mtel Solutions Ltd.",
-    roles: [{ title: "UX & UI Designer", dates: "Mar 2022 — Apr 2023" }],
-    bullets: [
-      "Led end-to-end design — from scratch and revamps — of web/mobile (iOS & Android) products for utility companies, real estate firms, logistics companies, and restaurants.",
-      "Ran in-depth research, user interviews, and usability testing to identify pain points and deliver effective design solutions.",
-      "Communicated with cross-functional teams and developers, and presented to clients, ensuring successful launches.",
-      "Facilitated design-thinking workshops for major corporations, promoting innovation and user-centric design.",
-      "Created and maintained UI design guidelines for the entire product for consistency.",
-    ],
-    projects: [
-      {
-        name: "Loyalty Membership App",
-        detail:
-          "Led a successful launch with 46K+ downloads in the inaugural season — user engagement, membership integration, and in-app points conversion for retention.",
-      },
-      {
-        name: "Electric Utility Website",
-        detail:
-          "Achieved a 50% reduction in bounce rate and a 95% positive feedback rate, making the business easy for global investors to understand.",
-      },
-    ],
-  },
-  {
-    company: "Parc Antique & Lifestyle Ltd.",
-    roles: [{ title: "Creative Designer & Producer", dates: "Aug 2020 — Jan 2022" }],
-    bullets: [
-      "Revamped the website and regularly shared new event projects for engagement.",
-      "Led the design and construction of wedding stages and installations, acting as a consultant to keep client communication smooth for memorable events.",
     ],
   },
 ];
 
 const SKILLS = [
   {
-    label: "Tools & Platforms",
+    label: "Core",
     items: [
-      "Figma", "GitHub", "Storybook", "Jira", "Claude Code", "Adobe Illustrator",
-      "Photoshop", "After Effects", "PowerPoint", "Excel", "MS Teams", "InVision",
-      "Sketch", "Notion", "Slack",
+      "Figma (flows, design systems)", "User research", "Usability testing",
+      "Analytics & measurement", "Accessibility (WCAG 2.1 AA)",
     ],
   },
   {
-    label: "Brainstorms & Structures",
-    items: [
-      "AI tools (Claude, ChatGPT…)", "Miro", "Mural", "FigJam", "User flows",
-      "Prototypes", "Storyboards",
-    ],
+    label: "Technical",
+    items: ["Design-to-code (Claude Code)", "GitHub", "Storybook", "Jira"],
+  },
+  {
+    label: "Domain expertise",
+    items: ["Fintech", "Digital banking", "Wealth management"],
   },
 ];
 
@@ -154,24 +153,20 @@ export function ResumeSection() {
                 Sallee Lee
               </h2>
               <p className="text-[18px] font-semibold text-muted">
-                Product Designer · UX/UI
+                Product Designer · Fintech &amp; Digital Banking
               </p>
               <p className="max-w-[640px] text-[16px] leading-[1.6] text-cod-gray">
-                6 years in the design field, specializing in UX/UI and prioritizing
-                empathy, problem-solving, and logical thinking. My focus on human
-                experience delivers solutions that resonate, while a detail-oriented
-                approach tackles complex problems effectively.
+                {SUMMARY}
               </p>
             </div>
-            {/* TODO(resume): wire real PDF export/download. */}
-            <button
-              type="button"
-              title="PDF download coming soon"
-              className="inline-flex shrink-0 items-center gap-2 rounded-[10px] bg-ink px-[14px] py-[10px] text-[16px] font-bold text-paper outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+            <a
+              href={RESUME_PDF}
+              download="Sallee-Lee-Resume-2026.pdf"
+              className="inline-flex shrink-0 items-center gap-2 rounded-[10px] bg-ink px-[14px] py-[10px] text-[16px] font-bold text-paper outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
             >
               <DownloadIcon className="size-5" />
               Download PDF
-            </button>
+            </a>
           </div>
 
           {/* Contact row */}
