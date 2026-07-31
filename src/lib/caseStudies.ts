@@ -187,7 +187,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       { title: "Brief" },
       { title: "My role" },
       { title: "Timeline" },
-      { title: "Some datas" },
+      { title: "Some data" },
       { title: "The Scoping Decision" },
       { title: "Regulatory Constraint", inStepper: false },
       { title: "Design System" },
@@ -238,7 +238,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
       {
         kind: "list",
-        eyebrow: "Some datas",
+        eyebrow: "Some data",
         items: [
           "Tangerine gave investing its own space in an app 2M+ clients already use. I led design on the MVP.",
           "Launch: 1.3x jump in mobile engagement; mobile account applications up 49% YoY while web stayed flat.",
