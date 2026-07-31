@@ -48,6 +48,15 @@ export function ArrowRightIcon({ className }: IconProps) {
   );
 }
 
+export function ArrowUpRightIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <line x1="7" y1="17" x2="17" y2="7" />
+      <polyline points="8 7 17 7 17 16" />
+    </svg>
+  );
+}
+
 export function ChevronLeftIcon({ className }: IconProps) {
   return (
     <svg {...base} className={className}>

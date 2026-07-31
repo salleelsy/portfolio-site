@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRightIcon } from "../icons";
+import { ArrowUpRightIcon } from "../icons";
 
 export type ProjectCardProps = {
   title: string;
@@ -21,8 +21,9 @@ export type ProjectCardProps = {
 
 /**
  * ProjectCard — a single case-study card (Figma 280:17794).
- * White, 1px #E5E7EB border, soft shadow, 16px radius; title / description /
- * CTA beside (list) or below (grid) the thumbnail.
+ * White, 1px #E5E7EB border, soft shadow, 16px radius; title / description
+ * beside (list) or below (grid) the thumbnail. The whole card is one link;
+ * a round arrow affordance fades in on hover and on keyboard focus.
  */
 export function ProjectCard({
   title,
@@ -37,7 +38,7 @@ export function ProjectCard({
   return (
     <article
       className={[
-        "relative flex flex-col gap-6 rounded-card border border-hairline bg-paper p-6 drop-shadow-[0px_2px_5px_rgba(0,0,0,0.05)] transition-shadow hover:drop-shadow-[0px_4px_12px_rgba(0,0,0,0.08)]",
+        "group relative flex flex-col gap-6 rounded-card border border-hairline bg-paper p-6 drop-shadow-[0px_2px_5px_rgba(0,0,0,0.05)] transition-shadow hover:drop-shadow-[0px_4px_12px_rgba(0,0,0,0.08)]",
         row ? "sm:flex-row sm:items-start" : "",
       ].join(" ")}
     >
@@ -78,8 +79,8 @@ export function ProjectCard({
           ))}
       </div>
 
-      {/* Content */}
-      <div className="flex min-w-0 flex-1 flex-col items-start gap-3">
+      {/* Content — leave room on the right so the arrow never sits on the text. */}
+      <div className="flex min-w-0 flex-1 flex-col items-start gap-3 pr-16">
         <h3 className="text-[24px] font-semibold text-ink">{title}</h3>
         {/* Grid tiles stay scannable — the description shows in list view only. */}
         {row && (
@@ -87,15 +88,23 @@ export function ProjectCard({
             {description}
           </p>
         )}
-        {/* Stretched link makes the whole card clickable. */}
-        <Link
-          href={href}
-          className="mt-1 inline-flex items-center gap-2 rounded-[10px] bg-ink px-[14px] py-[10px] text-[16px] font-bold text-paper outline-none after:absolute after:inset-0 after:rounded-card focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-body-bg"
-        >
-          {ctaLabel}
-          <ArrowRightIcon className="size-6" />
-        </Link>
       </div>
+
+      {/* Hover affordance — decorative; the stretched link below takes the click. */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute bottom-6 right-6 flex size-12 items-center justify-center rounded-full bg-body-bg text-cod-gray opacity-0 transition-[opacity,transform] duration-200 group-hover:opacity-100 group-focus-within:opacity-100 motion-safe:translate-y-1 motion-safe:group-hover:translate-y-0 motion-safe:group-focus-within:translate-y-0"
+      >
+        <ArrowUpRightIcon className="size-5" />
+      </span>
+
+      {/* One stretched link covers the card, so the whole tile is clickable. */}
+      <Link
+        href={href}
+        className="absolute inset-0 rounded-card outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-body-bg"
+      >
+        <span className="sr-only">{`${ctaLabel}: ${title}`}</span>
+      </Link>
     </article>
   );
 }
