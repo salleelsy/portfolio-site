@@ -79,9 +79,12 @@ export function ProjectCard({
           {badge}
         </span>
         <h3 className="text-[24px] font-semibold text-ink">{title}</h3>
-        <p className="text-[16px] font-normal leading-[1.5] text-muted">
-          {description}
-        </p>
+        {/* Grid tiles stay scannable — the description shows in list view only. */}
+        {row && (
+          <p className="text-[16px] font-normal leading-[1.5] text-muted">
+            {description}
+          </p>
+        )}
         {/* Stretched link makes the whole card clickable. */}
         <Link
           href={href}

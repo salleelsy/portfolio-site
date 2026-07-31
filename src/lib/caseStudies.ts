@@ -64,6 +64,12 @@ export type Block =
     }
   | { kind: "image"; src?: string; label: string; alt?: string; caption?: string; ratio?: string }
   | { kind: "video"; src: string; title: string; caption?: string; vertical?: boolean }
+  | {
+      kind: "timeline";
+      eyebrow?: string;
+      heading?: string;
+      items: { date: string; title: string; body?: string; status: "done" | "current" | "upcoming" }[];
+    }
   | { kind: "gallery"; cols?: 2 | 3; items: CaseImage[] }
   | { kind: "screens"; eyebrow?: string; heading?: string; items: CaseImage[] }
   | { kind: "tierTable"; eyebrow?: string; heading?: string; columns: string[]; tiers: Tier[]; note?: string }
@@ -109,8 +115,12 @@ export type CaseStudy = {
     subtitle: string;
     platform: string;
     timeline: string;
-    /** Right-side artwork (phone collage). */
+    /** Right-side artwork (phone collage), or the full-width image on "light". */
     artwork?: string;
+    /** "light": in-column header (title/subtitle/tags/meta) + full-width artwork. */
+    variant?: "light";
+    client?: string;
+    tools?: string;
   };
   meta: { role: string; timeline: string; tools: string; note?: string };
   /**
@@ -153,15 +163,19 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Tangerine's digital wealth MVP — scoped under hard data constraints, shipped inside a regulated app, improved by reading the post-launch numbers.",
     cardSummary:
       "Leading design on Tangerine's digital wealth MVP — a 1.3x lift in mobile engagement and +49% YoY account applications.",
-    // TODO(content): add cover at /work/wealth/cover.png (21:9) when ready.
+    // NOTE: drop the dark phone-collage image at /public/work/wealth/banner-screens.png
+    cover: "/work/wealth/banner-screens.png",
     tags: ["Design system", "UX", "UI"],
     banner: {
+      variant: "light",
       title: "Launching wealth inside a bank's app",
       subtitle:
         "Tangerine's digital wealth MVP — scoped under hard data constraints, improved by reading the post-launch numbers.",
       platform: "iOS & Android",
       timeline: "Jul 2025 → ongoing",
-      // TODO(content): add artwork at /work/wealth/banner-screens.png when ready.
+      client: "Tangerine represented by Fintex",
+      tools: "Figma, Jira, Perfecto",
+      artwork: "/work/wealth/banner-screens.png",
     },
     meta: {
       role: "Lead Product Designer — 2 designers, vendor engagement",
@@ -170,9 +184,10 @@ export const CASE_STUDIES: CaseStudy[] = [
       note: "Some numbers, details, and visuals are modified or omitted for confidentiality; business context is drawn from Tangerine's public announcements.",
     },
     sections: [
-      { title: "In Short", inStepper: false },
-      { title: "Why This Existed" },
-      { title: "Scope" },
+      { title: "Brief" },
+      { title: "My role" },
+      { title: "Timeline" },
+      { title: "Some datas" },
       { title: "The Scoping Decision" },
       { title: "Regulatory Constraint", inStepper: false },
       { title: "Design System" },
@@ -182,35 +197,23 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     blocks: [
       {
-        kind: "list",
-        eyebrow: "In Short",
-        items: [
-          "Tangerine gave investing its own space in an app 2M+ clients already use. I led design on the MVP.",
-          "Launch: 1.3x jump in mobile engagement; mobile account applications up 49% YoY while web stayed flat.",
-          "Hardest pre-launch call: cutting the feature the data couldn't support — it gave the product a single focus.",
-          "Post-launch: half the clients who reached account details never found the wealth tab. The first fix underperformed; the second pass fixed both its problems.",
-        ],
-      },
-      {
-        kind: "features",
-        eyebrow: "Timeline",
-        heading: "From framing to a loop that keeps shipping",
-        items: [
-          { title: "Jul 2025", body: "Research and problem framing." },
-          { title: "Aug – Oct 2025", body: "Design, design-system extension, cross-team alignment." },
-          { title: "Oct – Dec 2025", body: "Sprint delivery, QA partnership, bug triage and retest." },
-          { title: "Dec 2025", body: "Soft launch on iOS." },
-          { title: "Feb 2026", body: "Public launch on iOS and Android — the first meaningful analytics read." },
-          { title: "Mar 2026 →", body: "Iteration sprints and new capability, ongoing." },
-        ],
-      },
-      {
         kind: "prose",
-        eyebrow: "Why This Existed",
+        eyebrow: "Brief",
         heading: "A bank with two million clients wanted them to invest",
         body: [
           "Tangerine — a digital bank with 2M+ clients, a Scotiabank subsidiary — was known for everyday banking. The goal: give wealth its own space in the app, so investing reads as a distinct thing a client does with Tangerine.",
           "The MVP's job was not to be a trading tool. It was to show clients their whole financial position clearly enough that investing more felt like an informed decision, not a leap.",
+        ],
+      },
+      {
+        kind: "features",
+        eyebrow: "My role",
+        heading: "What shipped, and my part in it",
+        items: [
+          { title: "My role", body: "Lead designer on a two-designer vendor team — owned the feature design end to end and set the direction." },
+          { title: "Surface", body: "A dedicated wealth space inside the existing Tangerine app, iOS and Android." },
+          { title: "Feature areas at MVP", body: "Seven — projection graph, external assets & liabilities, portfolio allocation, learning hub, transactions & documents, gain/loss, smart banners." },
+          { title: "Teams to align", body: "Compliance, legal, translation, marketing, banking-side design, engineering, QA." },
         ],
       },
       {
@@ -221,14 +224,26 @@ export const CASE_STUDIES: CaseStudy[] = [
         vertical: true,
       },
       {
-        kind: "features",
-        eyebrow: "Scope",
-        heading: "What shipped, and my part in it",
+        kind: "timeline",
+        eyebrow: "Timeline",
+        heading: "From framing to a loop that keeps shipping",
         items: [
-          { title: "My role", body: "Lead designer on a two-designer vendor team — owned the feature design end to end and set the direction." },
-          { title: "Surface", body: "A dedicated wealth space inside the existing Tangerine app, iOS and Android." },
-          { title: "Feature areas at MVP", body: "Seven — projection graph, external assets & liabilities, portfolio allocation, learning hub, transactions & documents, gain/loss, smart banners." },
-          { title: "Teams to align", body: "Compliance, legal, translation, marketing, banking-side design, engineering, QA." },
+          { date: "Jul 2025", title: "Research & Framing", body: "Research and problem framing.", status: "done" },
+          { date: "Aug – Oct 2025", title: "Design & Alignment", body: "Design, design-system extension, cross-team alignment.", status: "done" },
+          { date: "Oct – Dec 2025", title: "Sprint Delivery", body: "Sprint delivery, QA partnership, bug triage and retest.", status: "done" },
+          { date: "Dec 2025", title: "Soft Launch", body: "Soft launch on iOS.", status: "done" },
+          { date: "Feb 2026", title: "Public Launch", body: "Public launch on iOS and Android — the first meaningful analytics read.", status: "done" },
+          { date: "Mar 2026 →", title: "Continuous Iteration", body: "Iteration sprints and new capability, ongoing.", status: "current" },
+        ],
+      },
+      {
+        kind: "list",
+        eyebrow: "Some datas",
+        items: [
+          "Tangerine gave investing its own space in an app 2M+ clients already use. I led design on the MVP.",
+          "Launch: 1.3x jump in mobile engagement; mobile account applications up 49% YoY while web stayed flat.",
+          "Hardest pre-launch call: cutting the feature the data couldn't support — it gave the product a single focus.",
+          "Post-launch: half the clients who reached account details never found the wealth tab. The first fix underperformed; the second pass fixed both its problems.",
         ],
       },
       {

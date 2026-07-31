@@ -237,6 +237,72 @@ export function CaseStudyBlock({ block }: { block: Block }) {
         </figure>
       );
 
+    case "timeline": {
+      const CHIP = {
+        done: "bg-[#e6f4ea] text-[#1e7d3e]",
+        current: "bg-[#e8ebfd] text-base-blue",
+        upcoming: "bg-body-bg text-muted",
+      } as const;
+      const Marker = ({ status }: { status: "done" | "current" | "upcoming" }) => {
+        if (status === "done") {
+          return (
+            <span className="flex size-8 items-center justify-center rounded-full bg-[#2e9e4f] text-paper">
+              <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" aria-hidden focusable="false">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </span>
+          );
+        }
+        return (
+          <span
+            className={`size-8 rounded-full border-[7px] bg-paper ${
+              status === "current" ? "border-base-blue" : "border-line"
+            }`}
+          />
+        );
+      };
+      return (
+        <div className="flex flex-col gap-6">
+          {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
+          {block.heading && <Heading>{block.heading}</Heading>}
+          <div className="overflow-x-auto rounded-card border border-hairline bg-paper p-6 sm:p-8">
+            <div className="min-w-[900px]">
+              {/* Date chips */}
+              <div className="flex">
+                {block.items.map((item) => (
+                  <div key={item.date} className="flex flex-1 justify-center px-2">
+                    <span className={`whitespace-nowrap rounded-full px-4 py-2 text-[14px] font-semibold ${CHIP[item.status]}`}>
+                      {item.date}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              {/* Markers on the rail */}
+              <div className="relative mt-4 flex items-center">
+                <div aria-hidden className="absolute inset-x-0 top-1/2 h-[2px] -translate-y-1/2 bg-line" />
+                {block.items.map((item) => (
+                  <div key={item.date} className="relative flex flex-1 justify-center">
+                    <Marker status={item.status} />
+                  </div>
+                ))}
+              </div>
+              {/* Titles + notes */}
+              <div className="mt-5 flex items-start">
+                {block.items.map((item) => (
+                  <div key={item.date} className="flex flex-1 flex-col items-center gap-2 px-3 text-center">
+                    <p className="text-[18px] font-semibold leading-tight text-ink">{item.title}</p>
+                    {item.body && (
+                      <p className="text-[14px] leading-[1.5] text-muted">{item.body}</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     case "gallery":
       return (
         <div className={`grid gap-4 ${block.cols === 3 ? "sm:grid-cols-3" : "sm:grid-cols-2"}`}>

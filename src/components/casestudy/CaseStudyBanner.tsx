@@ -9,6 +9,65 @@ import type { CaseStudy } from "@/lib/caseStudies";
  */
 export function CaseStudyBanner({ study }: { study: CaseStudy }) {
   const banner = study.banner!;
+
+  // "light" variant — in-column header (title, subtitle, tags, meta row) with
+  // the artwork as a full-width image below, per the wealth layout spec.
+  if (banner.variant === "light") {
+    const meta: [string, string | undefined][] = [
+      ["Platform", banner.platform],
+      ["Timeline", banner.timeline],
+      ["Client", banner.client],
+      ["Tools", banner.tools],
+    ];
+    return (
+      <div className="mx-auto w-full max-w-[1280px] px-6 pb-4 sm:px-10">
+        <div className="flex flex-col items-start gap-6">
+          <h1 className="font-display max-w-[16ch] text-[40px] font-semibold leading-[1.1] text-ink sm:text-[56px]">
+            {banner.title}
+          </h1>
+          <p className="max-w-[640px] text-[18px] leading-[1.5] text-cod-gray sm:text-[20px]">
+            {banner.subtitle}
+          </p>
+          {study.tags && study.tags.length > 0 && (
+            <ul className="flex flex-wrap gap-2">
+              {study.tags.map((tag) => (
+                <li
+                  key={tag}
+                  className="rounded-full bg-body-bg px-4 py-[10px] font-section text-[16px] font-medium leading-4 text-ink"
+                >
+                  {tag}
+                </li>
+              ))}
+            </ul>
+          )}
+          <dl className="flex flex-wrap items-stretch gap-x-6 gap-y-4">
+            {meta
+              .filter(([, v]) => v)
+              .map(([label, value], i) => (
+                <div key={label} className="flex items-stretch gap-6">
+                  {i > 0 && <div aria-hidden className="w-px bg-hairline" />}
+                  <div className="flex flex-col gap-1">
+                    <dt className="font-label text-[14px] uppercase tracking-wide text-muted">
+                      {label}
+                    </dt>
+                    <dd className="text-[18px] font-semibold text-ink">{value}</dd>
+                  </div>
+                </div>
+              ))}
+          </dl>
+          {banner.artwork && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={banner.artwork}
+              alt={`${banner.title} — app screens`}
+              className="mt-4 w-full rounded-[24px]"
+            />
+          )}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       className="relative w-full overflow-hidden rounded-t-[40px]"
