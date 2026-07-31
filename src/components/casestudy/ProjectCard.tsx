@@ -57,7 +57,15 @@ export function ProjectCard({
               src={thumbnailSrc}
               alt=""
               fill
-              sizes="(max-width: 640px) 100vw, 360px"
+              /* Grid tiles span the whole card (~545px at full width), list
+                 rows are a fixed 360px thumbnail — hinting the wrong one makes
+                 Next serve an undersized file that renders soft on HiDPI. */
+              sizes={
+                row
+                  ? "(max-width: 640px) 100vw, 360px"
+                  : "(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 560px"
+              }
+              quality={90}
               className="object-cover object-[72%_50%]"
             />
           ) : (
