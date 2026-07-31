@@ -1,25 +1,24 @@
 import { PhotoFrame } from "../PhotoFrame";
 
-// Real interests (from Sallee). Photos are placeholders until she provides them.
+// Real interests (from Sallee). Drop the three portrait photos into
+// /public/about with these filenames and they render in place.
 const INTERESTS = [
   {
     title: "Config 2026",
     caption:
       "I love learning something new about the industry — I made it to Config 2026!",
-  },
-  {
-    title: "Vibe coding",
-    caption:
-      "I vibe-code little things to celebrate my friends' birthdays. 🎂",
+    src: "/about/config-2026.jpg",
   },
   {
     title: "Volleyball",
     caption: "On the court, I play setter — I like being the one who sets people up.",
+    src: "/about/volleyball.jpg",
   },
   {
     title: "Photography",
     caption:
       "Lately I've been shooting maternity and couple photos for people I love.",
+    src: "/about/photography.jpg",
   },
 ];
 
@@ -48,17 +47,22 @@ export function AboutMeSection() {
           screen, on the court, or behind a camera.
         </p>
 
-        {/* Interests */}
+        {/* Interests — three portrait cards in one row */}
         <h3 className="mt-14 font-label text-[16px] uppercase tracking-wide text-muted">
           A few things I&rsquo;m into
         </h3>
-        <ul className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <ul className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
           {INTERESTS.map((item) => (
             <li
               key={item.title}
               className="flex flex-col gap-4 rounded-card border border-hairline bg-paper p-4"
             >
-              <PhotoFrame className="aspect-[4/3] w-full" label={`${item.title} — photo`} />
+              <PhotoFrame
+                src={item.src}
+                alt={item.title}
+                className="aspect-[3/4] w-full"
+                label={`${item.title} — photo`}
+              />
               <div className="flex flex-col gap-2 px-2 pb-2">
                 <p className="text-[18px] font-semibold text-ink">{item.title}</p>
                 <p className="text-[16px] leading-[1.5] text-muted">
@@ -68,20 +72,6 @@ export function AboutMeSection() {
             </li>
           ))}
         </ul>
-
-        {/* Gallery strip — drop favourite shots here */}
-        <h3 className="mt-14 font-label text-[16px] uppercase tracking-wide text-muted">
-          Snapshots
-        </h3>
-        <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3">
-          {[0, 1, 2].map((i) => (
-            <PhotoFrame
-              key={i}
-              className="aspect-square w-full border border-hairline"
-              label="Snapshot"
-            />
-          ))}
-        </div>
       </div>
     </section>
   );
