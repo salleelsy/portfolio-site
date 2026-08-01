@@ -42,7 +42,7 @@ export function BrandsStrip() {
   return (
     <section
       aria-labelledby="brands-heading"
-      className="bg-paper"
+      className="bg-panel"
     >
       <div className="mx-auto w-full max-w-[1280px] px-6 py-12 sm:px-10">
         <div className="flex items-center justify-between gap-4">

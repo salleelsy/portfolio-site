@@ -33,7 +33,7 @@ export function CaseStudySection() {
   return (
     <section
       aria-labelledby="case-study-heading"
-      className="bg-body-bg"
+      className="bg-panel"
     >
       <div className="mx-auto w-full max-w-[1280px] px-6 py-12 sm:px-10">
         {/* Header */}

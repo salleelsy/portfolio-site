@@ -69,22 +69,25 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
         />
       )}
 
-      {/* Label + index overlay (Figma 673:24024 — 18px Medium / 12px Regular, 8px gap) */}
+      {/* Label + index overlay (Figma 782:24596 — 16px / 12px, 4px gap;
+          active: SemiBold black, inactive: Regular #e4e4e4) */}
       <span
         className={[
-          "absolute flex flex-col items-center justify-center gap-[8px] whitespace-nowrap text-center",
+          "absolute flex flex-col items-center justify-center gap-[4px] whitespace-nowrap text-center",
           active
             ? "left-0 right-[16px] top-[17px] text-ink"
-            : "left-[3px] right-[21px] top-[23px] text-paper",
+            : "left-[3px] right-[21px] top-[21px] text-[#e4e4e4]",
         ].join(" ")}
       >
-        <span className="font-sans text-[18px] font-medium leading-4">{label}</span>
         <span
           className={[
-            "font-sans text-[14px] font-normal leading-[12px]",
-            active ? "text-ink" : "text-body-bg",
+            "font-sans text-[16px] leading-4",
+            active ? "font-semibold" : "font-normal",
           ].join(" ")}
         >
+          {label}
+        </span>
+        <span className="font-sans text-[12px] font-normal leading-[12px]">
           {index}
         </span>
       </span>

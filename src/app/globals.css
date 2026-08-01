@@ -17,6 +17,7 @@
   --color-card-dark: #0b0f14; /* About card bg (CLAUDE.md) */
   --color-card-border: #2a2f36; /* About card border (CLAUDE.md) */
   --color-body-bg: #f3f4f6; /* content body bg */
+  --color-panel: #ece9e1; /* warm cream tab-panel surface (Figma 782:24584) */
 
   /* Grays */
   --color-hairline: #e5e7eb;
@@ -24,9 +25,11 @@
   --color-line: #d1d5db;
   --color-brand-chip: #f2f2f2;
 
-  /* Tab / folder art (from Figma node 280:17872) */
-  --color-folder-active: #f3f4f6;
-  --color-folder-inactive: #000000;
+  /* Tab / folder art (Figma 782:24584 — cream active / charcoal inactive).
+     folder-active MUST equal --color-panel so the active tab merges into the
+     panel it opens into. */
+  --color-folder-active: #ece9e1;
+  --color-folder-inactive: #333333;
   --color-folder-outline: #3c3c3c;
 
   /* Accent — macOS folder blue gradient (CLAUDE.md) */
