@@ -1,64 +1,122 @@
 import { FolderNav } from "./FolderNav";
-import { AboutCard } from "./AboutCard";
 
-// Headline copy is exact from Figma (637:23509) — sentence case, one phrase per line.
+// Headline is exact from Figma (782:24554) — Poppins Medium 56 / -1.12px.
 const HEADLINE = [
-  "Product designer,",
-  "Builder,",
-  "Vibe coder,",
-  "Volleyball player,",
-  "Coffee addict...",
+  "Hello, I’m Sallee Lee.",
+  "I’m a product designer who designs clarity in complex systems.",
 ];
 
+// Skeleton "browser window" cards scattered behind the headline (Figma
+// 782:24365 — the "wall of modals" collage). Positions/sizes are the Figma
+// coordinates inside a 1512×739 canvas; the canvas is centered and clipped by
+// the section, so on wider/narrower viewports the wall bleeds off the edges.
+type Win = { l: number; t: number; w: number; h: number; lines: number };
+const WINDOWS: Win[] = [
+  { l: 333, t: 23, w: 260, h: 160, lines: 3 },
+  { l: 890, t: 74, w: 300, h: 180, lines: 3 },
+  { l: 1346, t: 533, w: 300, h: 180, lines: 3 },
+  { l: 647, t: -55, w: 220, h: 130, lines: 2 },
+  { l: -59, t: 198, w: 280, h: 200, lines: 3 },
+  { l: 1060, t: 144, w: 240, h: 150, lines: 4 },
+  { l: -139, t: 363, w: 300, h: 170, lines: 3 },
+  { l: 907, t: 406, w: 260, h: 160, lines: 3 },
+  { l: 301, t: 617, w: 320, h: 190, lines: 3 },
+  { l: 745, t: 602, w: 280, h: 170, lines: 3 },
+  { l: 491, t: 540, w: 180, h: 110, lines: 2 },
+  { l: 1248, t: 620, w: 180, h: 110, lines: 2 },
+  { l: 86, t: -60, w: 200, h: 120, lines: 2 },
+  { l: 50, t: 527, w: 200, h: 130, lines: 2 },
+  { l: 912, t: 532, w: 220, h: 140, lines: 3 },
+  { l: 1198, t: 271, w: 180, h: 120, lines: 3 },
+];
+
+const LINE_WIDTHS = [0.92, 0.68, 0.82, 0.6];
+
+/** One skeleton window card: macOS traffic-lights + address pill, then body lines. */
+function MockWindow({ w, h, lines }: Omit<Win, "l" | "t">) {
+  return (
+    <div
+      style={{ width: w, height: h }}
+      className="flex flex-col overflow-hidden rounded-[10px] border border-[rgba(0,0,0,0.09)] bg-paper p-px shadow-[0px_4px_20px_0px_rgba(0,0,0,0.07),0px_1px_4px_0px_rgba(0,0,0,0.04)]"
+    >
+      {/* Title bar */}
+      <div className="flex w-full items-center gap-[5px] border-b border-[rgba(0,0,0,0.06)] bg-[#fafafa] px-[10px] pb-[9px] pt-[8px]">
+        <span className="size-[8px] shrink-0 rounded-[4px] bg-[#c8c8c8]" />
+        <span className="size-[8px] shrink-0 rounded-[4px] bg-[#c8c8c8]" />
+        <span className="size-[8px] shrink-0 rounded-[4px] bg-[#c8c8c8]" />
+        <span className="ml-[8px] h-[8px] w-[80px] max-w-[80px] rounded-[4px] bg-[rgba(0,0,0,0.06)]" />
+      </div>
+      {/* Body */}
+      <div className="flex flex-1 flex-col gap-[7px] p-[10px]">
+        {Array.from({ length: lines }).map((_, i) => (
+          <span
+            key={i}
+            style={{ width: `${Math.round(LINE_WIDTHS[i % LINE_WIDTHS.length] * 100)}%` }}
+            className="h-[8px] rounded-[4px] bg-[#f4f4f4]"
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /**
- * Hero — landing hero (Figma 280:17737).
- * White surface: wide 96px Poppins ExtraBold headline (left, up to ~1239px so the
- * phrases stay on one line) + Folder Nav (right, always a right-aligned column),
- * with the character illustration sitting on a #F5F5F5 rounded shape at the
- * top-right, and the dark About card below.
+ * Hero — landing hero (Figma 782:24363). A hatched light-gray field with a
+ * scattered "wall" of skeleton browser windows behind a two-line headline, and
+ * the folder nav pinned top-right. The window wall + cursor are decorative.
  */
 export function Hero() {
   return (
-    <section className="relative bg-paper">
-      {/* Grey panel + character (Figma 637:23501): #F3F4F6 rounded-tl-40 panel
-          bleeding to the top-right edge, with the Humation illustration inset
-          100px left / 60px top / 240px right at the 1890 reference width
-          (11.7% / 60px / 28% here so it scales). The panel runs 86px past the
-          hero — through the tab-strip band (transparent there) — so it merges
-          seamlessly into the grey tab panel below; the character is never
-          clipped, her legs continue behind the About card and down into the
-          grey section. Decorative; lg+ only. */}
+    <section
+      aria-label="Intro"
+      className="relative w-full overflow-hidden"
+      style={{
+        backgroundColor: "#f6f6f4",
+        backgroundImage:
+          "repeating-linear-gradient(45deg, rgba(0,0,0,0.035) 0, rgba(0,0,0,0.035) 1px, transparent 1px, transparent 8px)",
+      }}
+    >
+      {/* Decorative window wall — a fixed 1512-wide canvas, centered and clipped. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-[86px] right-0 top-0 z-[1] hidden w-[45.4%] lg:block"
+        className="pointer-events-none absolute left-1/2 top-0 h-[739px] w-[1512px] -translate-x-1/2"
       >
-        <div className="absolute inset-0 rounded-tl-[40px] bg-body-bg" />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/hero/humation-illustration.svg"
-          alt=""
-          className="absolute left-[11.7%] top-[60px] w-[60.3%] max-w-none"
-        />
+        {WINDOWS.map((win, i) => (
+          <div key={i} className="absolute" style={{ left: win.l, top: win.t }}>
+            <MockWindow w={win.w} h={win.h} lines={win.lines} />
+          </div>
+        ))}
+        {/* Cursor (Figma 782:24465) */}
+        <svg
+          className="absolute drop-shadow-[0px_1px_1px_rgba(0,0,0,0.25)]"
+          style={{ left: 1041, top: 505 }}
+          width="20"
+          height="24"
+          viewBox="0 0 20 24"
+          fill="none"
+        >
+          <path
+            d="M1 1L1 18.5L5.6 14.4L8.4 21.2L11.3 20L8.6 13.3L14.7 13.1L1 1Z"
+            fill="black"
+            stroke="white"
+            strokeWidth="1.2"
+            strokeLinejoin="round"
+          />
+        </svg>
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-6 pb-12 pt-12 sm:px-10">
-        {/* Top: headline + folder nav (folder nav stays right on every width) */}
-        <div className="flex flex-row items-start justify-between gap-6">
-          {/* Figma 637:23511 — Poppins Bold 96 / 98.88 line height / -1.92px tracking */}
-          <h1 className="text-[40px] font-semibold leading-[1.03] tracking-[-1.92px] text-ink sm:text-[64px] lg:text-[96px] lg:leading-[98.88px]">
-            {HEADLINE.map((line) => (
-              <span key={line} className="block">
-                {line}
-              </span>
-            ))}
-          </h1>
-          <FolderNav className="shrink-0" />
-        </div>
+      {/* Content — centered 1280px column, above the wall. */}
+      <div className="relative z-10 mx-auto flex h-[560px] w-full max-w-[1280px] items-center px-6 sm:h-[660px] sm:px-10 lg:h-[739px]">
+        <h1 className="max-w-[720px] font-sans text-[32px] font-medium leading-[1.2] tracking-[-0.03em] text-ink sm:text-[44px] lg:max-w-[956px] lg:text-[56px] lg:tracking-[-1.12px]">
+          {HEADLINE.map((line) => (
+            <span key={line} className="block">
+              {line}
+            </span>
+          ))}
+        </h1>
 
-        {/* About card */}
-        <div className="mt-14 lg:mt-16">
-          <AboutCard />
-        </div>
+        {/* Folder nav — pinned top-right within the column (Figma 782:24555) */}
+        <FolderNav className="absolute right-6 top-10 sm:right-10 lg:top-[104px]" />
       </div>
     </section>
   );

@@ -4,7 +4,6 @@ import { FolderLink } from "../FolderLink";
 // (lucky / inspirations / archived) don't exist yet.
 const FOLDERS = [
   { label: "click for lucky.", href: "#" },
-  { label: "inspirations.", href: "#" },
   { label: "archived.", href: "#" },
 ];
 
