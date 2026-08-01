@@ -46,7 +46,7 @@ export function PortfolioTabs() {
       {/* Transparent band pulled up so the tabs overlap the hero collage
           (Figma layout). z-2 keeps the folder tabs above the hero and the
           panel below. */}
-      <div className="relative z-20 -mt-[70px] sm:-mt-[80px]">
+      <div className="relative z-20 -mt-[120px] sm:-mt-[150px] lg:-mt-[170px]">
         {/* TabList carries its own 24px lead (bleed room for the first tab's
             foot); the outer padding tops it up to the site margins: 40px @sm,
             120px @lg — matching the other sections' px-6/sm:px-10/lg:px-[120px]. */}

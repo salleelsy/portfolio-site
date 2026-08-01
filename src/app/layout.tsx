@@ -50,7 +50,11 @@ export default function RootLayout({
       lang="en"
       className={`${workSans.variable} ${poppins.variable} ${outfit.variable} ${geist.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      {/* overflow-x-clip guards against decorative full-bleed elements (the hero
+          window-wall, the brand marquee) ever creating horizontal page scroll.
+          `clip` (not `hidden`) keeps sticky descendants like the case-study
+          stepper working. */}
+      <body className="flex min-h-full flex-col overflow-x-clip">{children}</body>
     </html>
   );
 }
