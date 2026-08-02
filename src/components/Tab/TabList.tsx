@@ -28,11 +28,9 @@ type TabListProps = {
  * Implements the WAI-ARIA Tabs pattern with automatic activation:
  *   ← / →      move between tabs (wraps), selection follows focus
  *   Home / End jump to first / last
- * Roving tabindex keeps a single tab stop. Tabs overlap by 15px, matching the
- * folder-strip look; the active tab is raised above its neighbors.
- *
- * The 15px overlap is exact — from the Figma Tabs-Row (280:17916), whose tabs
- * sit at x = 0, 229, 450, 679 (widths 244/236/244/244).
+ * Roving tabindex keeps a single tab stop. Tabs are a uniform 224px wide and
+ * abut edge-to-edge (Figma 782:26065 pitch = 224); the 262px shapes overlap
+ * their neighbours intrinsically, and the active tab is raised in front.
  */
 export function TabList({
   items,
@@ -94,11 +92,9 @@ export function TabList({
           index={item.index}
           active={item.value === value}
           panelId={item.panelId}
-          leftBleed={i === 0}
           id={`tab-${item.value}`}
           onClick={() => onChange(item.value)}
           onKeyDown={(e) => handleKeyDown(e, i)}
-          className={i > 0 ? "-ml-[15px]" : ""}
         />
       ))}
     </div>

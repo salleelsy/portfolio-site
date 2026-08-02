@@ -2,30 +2,29 @@ import { forwardRef } from "react";
 import { FolderShape } from "./FolderShape";
 
 export type TabProps = {
-  /** Visible label, e.g. "Selected works" (Poppins Medium 16px, Figma 662:21105). */
+  /** Visible label, e.g. "Selected works" (Poppins 16px). */
   label: string;
-  /** Index string, e.g. "001" (Poppins Regular 12px). */
+  /** Index string, e.g. "001" (Poppins 12px). */
   index: string;
   /** On = active (Figma `property1`). */
   active: boolean;
   /** id of the tabpanel this tab controls. */
   panelId?: string;
-  /** First tab in the strip — reveal the folder's left foot (nothing to tuck under). */
-  leftBleed?: boolean;
 } & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "children">;
 
 /**
- * Tab — the file-folder-shaped nav tab (Figma component 280:17872).
+ * Tab — the rounded-shoulder nav tab (Figma 782:26064).
  *
- * Active (On):   236×80, light folder, black label + index, raised.
- * Inactive (Off): 244×80 box with a 74-tall folder sitting 6px lower, dark
- *                 folder, white label + #F3F4F6 index.
+ * A 224×80 slot with the FolderShape silhouette centered in it (the shape is
+ * 262 wide, so its shoulders tuck under the neighbours). Both states share the
+ * shape; only the fill and text weight/colour change. The active tab is raised
+ * above its neighbours (z-20) so it always reads in front.
  *
- * Renders as a real <button role="tab">. Decorative folder art is aria-hidden;
- * the accessible name comes from the text. Meant to live inside <TabList>.
+ * Renders as a real <button role="tab">; the folder art is aria-hidden and the
+ * accessible name comes from the text. Meant to live inside <TabList>.
  */
 export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
-  { label, index, active, panelId, leftBleed = false, className, ...buttonProps },
+  { label, index, active, panelId, className, ...buttonProps },
   ref,
 ) {
   return (
@@ -37,46 +36,26 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
       aria-controls={panelId}
       tabIndex={active ? 0 : -1}
       className={[
-        "group relative block h-[80px] shrink-0 cursor-pointer bg-transparent p-0",
-        // First tab bleeds its left foot out; others clip to their box.
-        leftBleed ? "overflow-visible" : "overflow-hidden",
-        "outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-body-bg",
-        active ? "z-10 w-[236px]" : "z-0 w-[244px]",
+        // overflow-visible so the shape's feet + top shadow are never clipped.
+        "group relative block h-[80px] w-[224px] shrink-0 cursor-pointer overflow-visible bg-transparent p-0",
+        "outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-panel",
+        active ? "z-20" : "z-0",
         className ?? "",
       ].join(" ")}
       {...buttonProps}
     >
-      {/* Decorative folder silhouette */}
-      {active ? (
-        <FolderShape
-          active
-          leftBleed={leftBleed}
-          className={
-            leftBleed
-              ? "absolute right-0 top-0 h-[80px] w-[257px]"
-              : "absolute inset-0 h-[80px] w-[236px]"
-          }
-        />
-      ) : (
-        <FolderShape
-          active={false}
-          leftBleed={leftBleed}
-          className={
-            leftBleed
-              ? "absolute bottom-0 right-0 h-[74px] w-[262px]"
-              : "absolute bottom-0 left-0 h-[74px] w-[244px]"
-          }
-        />
-      )}
+      {/* Decorative silhouette — 262 wide, centered on the 224 slot. */}
+      <FolderShape
+        fill={active ? "var(--color-folder-active)" : "var(--color-folder-inactive)"}
+        className="absolute left-1/2 top-0 -translate-x-1/2"
+      />
 
-      {/* Label + index overlay (Figma 782:24596 — 16px / 12px, 4px gap;
-          active: SemiBold black, inactive: Regular #e4e4e4) */}
+      {/* Label + index (Figma 782:24596 — centered, top 17, 4px gap;
+          active: SemiBold black · inactive: Regular #e4e4e4). */}
       <span
         className={[
-          "absolute flex flex-col items-center justify-center gap-[4px] whitespace-nowrap text-center",
-          active
-            ? "left-0 right-[16px] top-[17px] text-ink"
-            : "left-[3px] right-[21px] top-[21px] text-[#e4e4e4]",
+          "absolute left-0 right-0 top-[17px] flex flex-col items-center gap-[4px] whitespace-nowrap text-center",
+          active ? "text-ink" : "text-[#e4e4e4]",
         ].join(" ")}
       >
         <span
