@@ -14,6 +14,18 @@ const CONTAINER = "mx-auto w-full max-w-[1360px] px-6 sm:px-10";
 
 const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
+// Text blocks read at a 700px measure; visual blocks span the column.
+const FULL_WIDTH_BLOCKS = new Set(["image", "gallery", "screens", "timeline", "impact"]);
+
+/** Caps a block at 700px unless it's a full-width visual block. */
+function BlockRow({ block }: { block: Block }) {
+  return (
+    <div className={FULL_WIDTH_BLOCKS.has(block.kind) ? "" : "max-w-[700px]"}>
+      <CaseStudyBlock block={block} />
+    </div>
+  );
+}
+
 type Section = { title: string; inStepper: boolean; blocks: Block[] };
 
 // A section-opening block's eyebrow is promoted to the SectionTitle pill —
@@ -144,7 +156,7 @@ export function CaseStudyLayout({ study }: { study: CaseStudy }) {
               {lead.length > 0 && (
                 <div className="flex flex-col gap-16">
                   {lead.map((block, i) => (
-                    <CaseStudyBlock key={`lead-${i}`} block={block} />
+                    <BlockRow key={`lead-${i}`} block={block} />
                   ))}
                 </div>
               )}
@@ -158,7 +170,7 @@ export function CaseStudyLayout({ study }: { study: CaseStudy }) {
                   <SectionTitle>{section.title}</SectionTitle>
                   <div className="flex flex-col gap-16">
                     {section.blocks.map((block, i) => (
-                      <CaseStudyBlock key={i} block={block} />
+                      <BlockRow key={i} block={block} />
                     ))}
                   </div>
                 </section>
@@ -170,7 +182,7 @@ export function CaseStudyLayout({ study }: { study: CaseStudy }) {
         /* Classic flat block list */
         <div className={`${CONTAINER} flex flex-col gap-16 py-16`}>
           {study.blocks.map((block, i) => (
-            <CaseStudyBlock key={i} block={block} />
+            <BlockRow key={i} block={block} />
           ))}
         </div>
       )}

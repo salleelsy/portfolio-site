@@ -5,10 +5,10 @@
  * inactive). The path spans x −21…241 (262 wide) so its feet bleed past the
  * 224-wide tab slot and tuck under the neighbours; the caller must NOT clip.
  *
- * - The fill is extended 3px below the 80px baseline so the tab overlaps the
+ * - The fill is extended below the 80px baseline so the tab overlaps the
  *   content panel it sits on — no 1px seam for either state.
- * - The drop-shadow is biased upward so it haloes the top/shoulders but doesn't
- *   cast a line onto the panel below.
+ * - No drop-shadow: the tab must merge into the panel with no line/stroke at
+ *   the bottom, so the shape is defined by colour contrast alone.
  *
  * Purely decorative (aria-hidden); the label lives in <Tab> as text.
  */
@@ -18,12 +18,10 @@ type FolderShapeProps = {
   className?: string;
 };
 
-const SHADOW = "[filter:drop-shadow(0_-2px_6px_rgba(0,0,0,0.13))]";
-
 export function FolderShape({ fill, className }: FolderShapeProps) {
   return (
     <svg
-      className={[SHADOW, className ?? ""].join(" ")}
+      className={className}
       width={262}
       height={83}
       viewBox="-21 0 262 83"
