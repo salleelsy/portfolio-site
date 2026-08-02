@@ -68,7 +68,7 @@ function ComparePanel({ data, highlight }: { data: Compare; highlight?: boolean 
           {data.title}
         </p>
         {data.note && (
-          <p className="max-w-[70ch] text-[18px] leading-[1.6] text-cod-gray">
+          <p className="max-w-[700px] text-[18px] leading-[1.6] text-cod-gray">
             {data.note}
           </p>
         )}
@@ -172,7 +172,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
           {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
           {block.heading && <Heading>{block.heading}</Heading>}
           {block.body.map((p, i) => (
-            <p key={i} className="max-w-[70ch] text-[18px] leading-[1.7] text-cod-gray">
+            <p key={i} className="max-w-[700px] text-[18px] leading-[1.7] text-cod-gray">
               {p}
             </p>
           ))}
@@ -265,38 +265,37 @@ export function CaseStudyBlock({ block }: { block: Block }) {
         <div className="flex flex-col gap-6">
           {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
           {block.heading && <Heading>{block.heading}</Heading>}
-          <div className="overflow-x-auto rounded-card border border-hairline bg-paper p-6 sm:p-8">
-            <div className="min-w-[900px]">
-              {/* Date chips */}
-              <div className="flex">
-                {block.items.map((item) => (
-                  <div key={item.date} className="flex flex-1 justify-center px-2">
-                    <span className={`whitespace-nowrap rounded-full px-4 py-2 text-[14px] font-semibold ${CHIP[item.status]}`}>
-                      {item.date}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              {/* Markers on the rail */}
-              <div className="relative mt-4 flex items-center">
-                <div aria-hidden className="absolute inset-x-0 top-1/2 h-[2px] -translate-y-1/2 bg-line" />
-                {block.items.map((item) => (
-                  <div key={item.date} className="relative flex flex-1 justify-center">
-                    <Marker status={item.status} />
-                  </div>
-                ))}
-              </div>
-              {/* Titles + notes */}
-              <div className="mt-5 flex items-start">
-                {block.items.map((item) => (
-                  <div key={item.date} className="flex flex-1 flex-col items-center gap-2 px-3 text-center">
-                    <p className="text-[18px] font-semibold leading-tight text-ink">{item.title}</p>
-                    {item.body && (
-                      <p className="text-[14px] leading-[1.5] text-muted">{item.body}</p>
-                    )}
-                  </div>
-                ))}
-              </div>
+          {/* No box, no scroll — the phases lay out across the full width. */}
+          <div>
+            {/* Date chips */}
+            <div className="flex">
+              {block.items.map((item) => (
+                <div key={item.date} className="flex flex-1 justify-center px-1">
+                  <span className={`whitespace-nowrap rounded-full px-3 py-[6px] text-[13px] font-semibold ${CHIP[item.status]}`}>
+                    {item.date}
+                  </span>
+                </div>
+              ))}
+            </div>
+            {/* Markers on the rail */}
+            <div className="relative mt-4 flex items-center">
+              <div aria-hidden className="absolute inset-x-0 top-1/2 h-[2px] -translate-y-1/2 bg-line" />
+              {block.items.map((item) => (
+                <div key={item.date} className="relative flex flex-1 justify-center">
+                  <Marker status={item.status} />
+                </div>
+              ))}
+            </div>
+            {/* Titles + notes */}
+            <div className="mt-5 flex items-start">
+              {block.items.map((item) => (
+                <div key={item.date} className="flex flex-1 flex-col items-center gap-2 px-2 text-center">
+                  <p className="text-[16px] font-semibold leading-tight text-ink">{item.title}</p>
+                  {item.body && (
+                    <p className="text-[13px] leading-[1.5] text-muted">{item.body}</p>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -341,7 +340,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
           {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
           {block.heading && <Heading>{block.heading}</Heading>}
           {block.intro && (
-            <p className="max-w-[70ch] text-[18px] leading-[1.7] text-cod-gray">
+            <p className="max-w-[700px] text-[18px] leading-[1.7] text-cod-gray">
               {block.intro}
             </p>
           )}

@@ -10,7 +10,7 @@ import { ArrowRightIcon } from "../icons";
 
 // Site-wide content column: fluid up to 1200px, centered, with responsive
 // gutters. Banners stay full-bleed.
-const CONTAINER = "mx-auto w-full max-w-[1280px] px-6 sm:px-10";
+const CONTAINER = "mx-auto w-full max-w-[1360px] px-6 sm:px-10";
 
 const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 

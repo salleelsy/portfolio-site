@@ -50,7 +50,7 @@ export function PortfolioTabs() {
         {/* No overflow clip here: the tab shapes' feet bleed sideways and the
             soft top shadow rises above the strip — both must stay visible.
             pt gives the shadow headroom; sm:px-4 keeps the strip in-column. */}
-        <div className="mx-auto w-full max-w-[1280px] pt-3 sm:px-4">
+        <div className="mx-auto w-full max-w-[1360px] pt-3 sm:px-4">
           <TabList
             items={NAV}
             value={value}
