@@ -69,11 +69,10 @@ export function PortfolioTabs() {
             id={item.panelId}
             aria-labelledby={`tab-${item.value}`}
             hidden={value !== item.value}
-            /* z-2 lifts the content sheet above the hero character (z-1): the
-               illustration peeks out from underneath, never over the sheet.
-               Being a later sibling, the sheet also covers the tabs' underside
-               shadow at the seam. */
-            className="relative z-[2]"
+            /* Pull the panel up 2px so the tabs' bottom fill (which sits above
+               at z-20) overlaps it — the tab merges into the panel with no
+               hairline, active or not. */
+            className="relative z-[2] -mt-[2px]"
           >
             <Panel />
           </div>

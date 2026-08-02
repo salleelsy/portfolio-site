@@ -36,8 +36,10 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
       aria-controls={panelId}
       tabIndex={active ? 0 : -1}
       className={[
-        // overflow-visible so the shape's feet + top shadow are never clipped.
-        "group relative block h-[80px] w-[224px] shrink-0 cursor-pointer overflow-visible bg-transparent p-0",
+        // clip-path leaves the top + sides open (feet bleed, top shadow shows)
+        // but cuts everything at the bottom edge, so the shadow never casts a
+        // line onto the panel — the tab bottom reads as one flush edge.
+        "group relative block h-[80px] w-[224px] shrink-0 cursor-pointer bg-transparent p-0 [clip-path:inset(-24px_-28px_0_-28px)]",
         "outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-panel",
         active ? "z-20" : "z-0",
         className ?? "",
