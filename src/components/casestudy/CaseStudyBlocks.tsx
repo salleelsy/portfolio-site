@@ -639,29 +639,24 @@ export function CaseStudyBlock({ block }: { block: Block }) {
         </div>
       );
 
+    // Impact — Uber Base "Card / Artwork trailing" (Figma 795:27923): white
+    // card, 2px #e2e2e2 border, big number + label, blue award badge trailing.
     case "impact":
       return (
-        <div className="flex flex-col gap-6 rounded-card bg-card-dark p-8 lg:p-10">
-          <div className="flex flex-col gap-2">
-            {block.eyebrow && (
-              <p className="font-label text-[16px] uppercase tracking-wide text-muted">
-                {block.eyebrow}
-              </p>
-            )}
-            {block.heading && (
-              <h2 className="text-[26px] font-semibold text-white sm:text-[32px]">
-                {block.heading}
-              </h2>
-            )}
-          </div>
-          <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="flex flex-col gap-6">
+          {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
+          {block.heading && <Heading>{block.heading}</Heading>}
+          <dl className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {block.stats.map((s, i) => (
-              <div key={i} className="flex flex-col gap-1">
-                <dt className="text-[48px] font-semibold leading-none text-white sm:text-[56px]">
-                  {s.value}
-                </dt>
-                <dd className="text-[16px] leading-[1.4] text-line">{s.label}</dd>
-                {s.note && <dd className="text-[14px] text-muted">{s.note}</dd>}
+              <div
+                key={i}
+                className="relative flex flex-col rounded-[12px] border-2 border-[#e2e2e2] bg-white p-4"
+              >
+                <AwardBadge className="absolute right-4 top-4 size-14" />
+                <dt className="text-[56px] font-bold leading-[59px] text-black">{s.value}</dt>
+                <dd className="mt-3 max-w-[16ch] pr-14 text-[16px] leading-6 text-black">
+                  {s.label}
+                </dd>
               </div>
             ))}
           </dl>
@@ -697,5 +692,53 @@ export function CaseStudyBlock({ block }: { block: Block }) {
         </div>
       );
     }
+
+    // Findings — Uber Base "Banner" (Figma 795:25698): light-blue box, blue
+    // info icon, a bold title and a bulleted list of data findings.
+    case "findings":
+      return (
+        <div className="flex items-start gap-3 rounded-[12px] bg-[#eff4fe] p-4">
+          <InfoIcon className="mt-1 size-10 shrink-0" />
+          <div className="flex flex-col gap-1 py-2">
+            <p className="text-[16px] font-medium leading-5 text-black">
+              {block.title ?? "Findings"}
+            </p>
+            <ul className="list-disc pl-5">
+              {block.items.map((it, i) => (
+                <li key={i} className="text-[16px] leading-6 text-black">
+                  {it}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      );
   }
+}
+
+/** Uber-style blue "info" badge for the Findings banner. */
+function InfoIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 40 40" className={className} aria-hidden focusable="false">
+      <circle cx="20" cy="20" r="18" fill="#276EF1" stroke="#0b0f14" strokeWidth="2" />
+      <circle cx="20" cy="13" r="2.2" fill="#fff" />
+      <rect x="17.9" y="17" width="4.2" height="12" rx="2.1" fill="#fff" />
+    </svg>
+  );
+}
+
+/** Uber-style blue award rosette for the Impact cards. */
+function AwardBadge({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 56 56" className={className} aria-hidden focusable="false">
+      {/* ribbon tails */}
+      <path d="M20 34l-5 20 9-6 4 4 4-4 9 6-5-20z" fill="#0b0f14" />
+      {/* scalloped rosette */}
+      <g fill="#276EF1">
+        <circle cx="28" cy="22" r="20" />
+      </g>
+      <circle cx="28" cy="22" r="13" fill="#fff" />
+      <circle cx="28" cy="22" r="8.5" fill="#276EF1" />
+    </svg>
+  );
 }

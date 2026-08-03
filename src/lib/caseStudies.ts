@@ -88,7 +88,8 @@ export type Block =
   | { kind: "features"; eyebrow?: string; heading?: string; items: { title: string; body: string }[] }
   | { kind: "impact"; eyebrow?: string; heading?: string; stats: { value: string; label: string; note?: string }[] }
   | { kind: "ratings"; eyebrow?: string; heading?: string; note?: string; items: { task: string; value: string }[] }
-  | { kind: "callout"; tone: "finding" | "quickwin" | "rec"; title: string; body: string };
+  | { kind: "callout"; tone: "finding" | "quickwin" | "rec"; title: string; body: string }
+  | { kind: "findings"; title?: string; items: string[] };
 
 export type CaseStudy = {
   slug: string;
@@ -334,10 +335,11 @@ export const CASE_STUDIES: CaseStudy[] = [
         ],
       },
       {
-        kind: "callout",
-        tone: "finding",
-        title: "What the data said",
-        body: "Half of iOS clients who reached account details never saw the wealth tab. Adoption sat at 22.3% while 46.6% engaged with investments elsewhere in the app — that gap is the cul-de-sac.",
+        kind: "findings",
+        items: [
+          "Half of iOS clients who reached their investment account details never saw the wealth tab",
+          "46.6% engaged with investments elsewhere in the app",
+        ],
       },
       {
         kind: "prose",
@@ -366,10 +368,11 @@ export const CASE_STUDIES: CaseStudy[] = [
         ],
       },
       {
-        kind: "callout",
-        tone: "finding",
-        title: "What the data said",
-        body: "Under 6% of clients who reached the net worth view ever reached the add-asset screen, and only ~40% of those who started finished — two problems, stacked.",
+        kind: "findings",
+        items: [
+          "Under 6% of clients who reached the net worth view ever reached the add-asset screen",
+          "Of those who did start the flow, only ~40% finished — two problems, stacked",
+        ],
       },
       {
         kind: "image",
@@ -405,12 +408,10 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
       {
         kind: "impact",
-        heading: "Measured",
         stats: [
-          { value: "1.3x", label: "lift in mobile engagement", note: "from a flat ~30% to 46.6%" },
-          { value: "+49%", label: "mobile applications, year over year", note: "while web stayed flat" },
-          { value: "+11.2 pts", label: "application completion, year over year", note: "to 53%" },
-          { value: "60% vs 3%", label: "iOS vs web application growth", note: "in the month only iOS had wealth" },
+          { value: "1.3x", label: "lift in mobile engagement" },
+          { value: "+49%", label: "mobile applications, year over year" },
+          { value: "60%", label: "iOS application growth in the month it had wealth" },
         ],
       },
       {
