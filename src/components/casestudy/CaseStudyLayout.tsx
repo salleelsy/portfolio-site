@@ -15,7 +15,7 @@ const CONTAINER = "mx-auto w-full max-w-[1360px] px-6 sm:px-10";
 const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
 // Text blocks read at a 700px measure; visual blocks span the column.
-const FULL_WIDTH_BLOCKS = new Set(["image", "gallery", "screens", "timeline", "impact", "findings"]);
+const FULL_WIDTH_BLOCKS = new Set(["image", "gallery", "screens", "timeline", "impact", "findings", "mediaSplit"]);
 
 /** Caps a block at 700px unless it's a full-width visual block. */
 function BlockRow({ block }: { block: Block }) {

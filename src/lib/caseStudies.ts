@@ -89,7 +89,13 @@ export type Block =
   | { kind: "impact"; eyebrow?: string; heading?: string; stats: { value: string; label: string; note?: string }[] }
   | { kind: "ratings"; eyebrow?: string; heading?: string; note?: string; items: { task: string; value: string }[] }
   | { kind: "callout"; tone: "finding" | "quickwin" | "rec"; title: string; body: string }
-  | { kind: "findings"; title?: string; items: string[] };
+  | { kind: "findings"; title?: string; items: string[] }
+  | {
+      kind: "mediaSplit";
+      eyebrow?: string;
+      groups: { heading: string; body: string[] }[];
+      video?: { src: string; caption?: string };
+    };
 
 export type CaseStudy = {
   slug: string;
@@ -207,22 +213,32 @@ export const CASE_STUDIES: CaseStudy[] = [
         ],
       },
       {
-        kind: "features",
+        kind: "mediaSplit",
         eyebrow: "My role",
-        heading: "What shipped, and my part in it",
-        items: [
-          { title: "My role", body: "Lead designer on a two-designer vendor team — owned the feature design end to end and set the direction." },
-          { title: "Surface", body: "A dedicated wealth space inside the existing Tangerine app, iOS and Android." },
-          { title: "Feature areas at MVP", body: "Seven — projection graph, external assets & liabilities, portfolio allocation, learning hub, transactions & documents, gain/loss, smart banners." },
-          { title: "Teams to align", body: "Compliance, legal, translation, marketing, banking-side design, engineering, QA." },
+        groups: [
+          {
+            heading: "Overview",
+            body: [
+              "Lead designer on a two-designer vendor team — I owned the feature design end to end and set the direction, across a dedicated wealth space inside the existing Tangerine app on iOS and Android.",
+            ],
+          },
+          {
+            heading: "Teams collaborated with",
+            body: [
+              "Compliance, legal, translation, marketing, banking-side design, engineering, and QA.",
+            ],
+          },
+          {
+            heading: "MVP in Wealth",
+            body: [
+              "Seven feature areas — projection graph, external assets & liabilities, portfolio allocation, learning hub, transactions & documents, gain/loss, and smart banners.",
+            ],
+          },
         ],
-      },
-      {
-        kind: "video",
-        src: "https://www.youtube.com/embed/iQojngOnmto",
-        title: "Tangerine wealth launch — promotion video",
-        caption: "The public promotion video for the wealth MVP launch.",
-        vertical: true,
+        video: {
+          src: "https://www.youtube.com/embed/iQojngOnmto",
+          caption: "The public promotion video for the wealth MVP launch.",
+        },
       },
       {
         kind: "timeline",

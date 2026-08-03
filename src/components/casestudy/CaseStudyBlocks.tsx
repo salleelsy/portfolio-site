@@ -693,6 +693,45 @@ export function CaseStudyBlock({ block }: { block: Block }) {
       );
     }
 
+    // mediaSplit — two columns (Figma 795:20773): stacked heading+body groups
+    // on the left, a video with caption on the right.
+    case "mediaSplit":
+      return (
+        <div className="flex flex-col gap-6">
+          {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-14">
+            <div className="flex flex-col gap-10">
+              {block.groups.map((g, i) => (
+                <div key={i} className="flex flex-col gap-3">
+                  <h3 className="text-[22px] font-semibold text-ink sm:text-[26px]">{g.heading}</h3>
+                  {g.body.map((b, j) => (
+                    <p key={j} className="max-w-[560px] text-[18px] leading-[1.7] text-cod-gray">
+                      {b}
+                    </p>
+                  ))}
+                </div>
+              ))}
+            </div>
+            {block.video && (
+              <figure className="flex flex-col gap-3">
+                <div className="aspect-[9/16] w-full overflow-hidden rounded-xl border border-hairline bg-ink">
+                  <iframe
+                    src={block.video.src}
+                    title="Video"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className="h-full w-full"
+                  />
+                </div>
+                {block.video.caption && (
+                  <figcaption className="text-[14px] text-muted">{block.video.caption}</figcaption>
+                )}
+              </figure>
+            )}
+          </div>
+        </div>
+      );
+
     // Findings — Uber Base "Banner" (Figma 795:25698): light-blue box, blue
     // info icon, a bold title and a bulleted list of data findings.
     case "findings":
