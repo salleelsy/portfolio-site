@@ -55,13 +55,16 @@ export function ProjectCard({
               src={thumbnailSrc}
               alt=""
               fill
-              /* Grid tiles span the whole card (~545px at full width), list
-                 rows are a fixed 360px thumbnail — hinting the wrong one makes
-                 Next serve an undersized file that renders soft on HiDPI. */
+              /* These wide banners are object-cover-cropped into a shorter
+                 tile, so the browser renders the image WIDER than the tile to
+                 fill it. The sizes below declare that rendered width (not the
+                 tile width) — otherwise Next serves a file sized for the tile
+                 and it upscales, going soft on HiDPI. Grid tile ≈632px →
+                 ~900px rendered; list thumb 360px → ~520px rendered. */
               sizes={
                 row
-                  ? "(max-width: 640px) 100vw, 360px"
-                  : "(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 560px"
+                  ? "(max-width: 640px) 140vw, 520px"
+                  : "(max-width: 767px) 150vw, (max-width: 1360px) 70vw, 900px"
               }
               quality={90}
               className="object-cover object-[72%_50%]"

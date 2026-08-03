@@ -73,6 +73,29 @@
   }
 }
 
+/* Hero window wall — a gentle up/down drift that plays a couple of calm cycles
+   on load, then settles back to rest (the keyframe returns to translateY(0),
+   so no fill is needed). Per-window duration/delay/amplitude are set inline so
+   the wall breathes naturally rather than moving in lockstep. */
+@keyframes hero-window-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(calc(-1 * var(--float-amp, 8px)));
+  }
+  75% {
+    transform: translateY(var(--float-amp, 8px));
+  }
+}
+
+.hero-float {
+  animation: hero-window-float var(--float-dur, 4s) ease-in-out
+    var(--float-delay, 0s) 2;
+  will-change: transform;
+}
+
 body {
   background: var(--color-paper);
   color: var(--color-cod-gray);
@@ -80,7 +103,8 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
+  .animate-marquee,
+  .hero-float {
     animation: none !important;
   }
 }

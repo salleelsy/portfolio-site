@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { FolderNav } from "./FolderNav";
 
 // Headline is exact from Figma (782:24554) — Poppins Medium 56 / -1.12px.
@@ -82,7 +83,20 @@ export function Hero() {
         className="pointer-events-none absolute left-1/2 top-0 h-[739px] w-[1512px] -translate-x-1/2"
       >
         {WINDOWS.map((win, i) => (
-          <div key={i} className="absolute" style={{ left: win.l, top: win.t }}>
+          <div
+            key={i}
+            className="hero-float absolute"
+            style={
+              {
+                left: win.l,
+                top: win.t,
+                // Staggered so the wall drifts naturally, not in lockstep.
+                "--float-dur": `${3.8 + (i % 4) * 0.5}s`,
+                "--float-delay": `${(i % 5) * 0.18}s`,
+                "--float-amp": `${6 + (i % 3) * 3}px`,
+              } as CSSProperties
+            }
+          >
             <MockWindow w={win.w} h={win.h} lines={win.lines} />
           </div>
         ))}

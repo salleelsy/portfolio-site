@@ -4,14 +4,6 @@
  * the source. Screens are image placeholders until Sallee drops in real assets.
  */
 
-import type { StaticImageData } from "next/image";
-import loyaltyCover from "../../public/work/loyalty/cover.png";
-
-// Static import so the cover travels with the compiled bundle (design-system
-// export) as well as the Next build; both resolve through imgSrc below.
-const imgSrc = (img: StaticImageData | string): string =>
-  typeof img === "string" ? img : img.src;
-
 type CaseImage = { src?: string; label: string; alt?: string; caption?: string };
 
 export type Compare = {
@@ -445,15 +437,18 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Designing a five-tier membership system across malls, offices, and residences — one that users actually understand.",
     cardSummary:
       "A five-tier loyalty membership for a commercial real-estate group (CCG) — making tiers, points, and upgrade paths legible at a glance.",
-    cover: imgSrc(loyaltyCover),
+    cover: "/work/loyalty/5tier-membership-banner.png",
     tags: ["UX", "UI"],
     banner: {
+      variant: "light",
       title: "5-tier membership system for a commercial real estate group",
       subtitle:
         "Designing a five-tier membership system across malls, offices, and residences. One that users actually understand.",
       platform: "iOS & Android",
       timeline: "12 Weeks",
-      artwork: "/work/loyalty/banner-screens.png",
+      client: "CCG · China Chem Group",
+      tools: "Figma, Miro",
+      artwork: "/work/loyalty/5tier-membership-banner.png",
     },
     meta: {
       role: "Product Designer",
@@ -476,6 +471,15 @@ export const CASE_STUDIES: CaseStudy[] = [
         body: [
           "CCG runs shopping malls, offices, and residences. The goal: one comprehensive loyalty app with a membership-tier system that keeps users motivated to earn points and move up — without overwhelming them with numbers.",
           "The core question: how important is it for users to actually understand “membership tiers,” and how do we make that legible at a glance?",
+        ],
+      },
+      {
+        kind: "meta",
+        items: [
+          { term: "Platform", desc: "iOS & Android" },
+          { term: "Timeline", desc: "12 Weeks" },
+          { term: "Client", desc: "CCG · China Chem Group" },
+          { term: "Tools", desc: "Figma, Miro" },
         ],
       },
       {
