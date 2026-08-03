@@ -665,9 +665,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
               >
                 <AwardBadge className="absolute right-4 top-4 size-14" />
                 <dt className="text-[56px] font-medium leading-[59px] text-black">{s.value}</dt>
-                <dd className="mt-3 max-w-[16ch] pr-14 text-[16px] leading-6 text-black">
-                  {s.label}
-                </dd>
+                <dd className="mt-3 text-[16px] leading-6 text-black">{s.label}</dd>
               </div>
             ))}
           </dl>

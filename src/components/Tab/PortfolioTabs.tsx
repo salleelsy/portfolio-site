@@ -69,10 +69,11 @@ export function PortfolioTabs() {
             id={item.panelId}
             aria-labelledby={`tab-${item.value}`}
             hidden={value !== item.value}
-            /* Pull the panel up 2px so the tabs' bottom fill (which sits above
-               at z-20) overlaps it — the tab merges into the panel with no
-               hairline, active or not. */
-            className="relative z-[2] -mt-[2px]"
+            /* Pull the panel up 2px and float it above the tab band (z-30 >
+               the strip's z-20) so the container box surfaces in front: its top
+               edge covers the tabs' feet by 2px, tucking the inactive tabs
+               behind it and merging the active tab into the panel — no seam. */
+            className="relative z-30 -mt-[2px]"
           >
             <Panel />
           </div>
