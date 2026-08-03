@@ -330,7 +330,11 @@ export const CASE_STUDIES: CaseStudy[] = [
             "We decided to remove the static prospect page and introduce an interactive prospect screen. No account required: adjust the inputs, run the portfolio simulator, watch the projection respond, and start an investment journey right from there.",
           ],
         },
-        figure: { label: "Prospect screen" },
+        figure: {
+          label: "Prospect screen",
+          src: "/work/wealth/prospect-screen.png",
+          alt: "Prospect screen — an interactive projection showing a $5,000 investment growing to $44,500 by 2036, with conservative/balanced/growth options",
+        },
       },
       {
         kind: "prose",
@@ -360,7 +364,11 @@ export const CASE_STUDIES: CaseStudy[] = [
             "Detect a Tangerine mortgage, then show the client a paired insight to add their real estate as an asset. It corrects the projection and teaches how the tool works. The insight banner only shows up for clients with a mortgage, with a CTA to “Add an asset.”",
           ],
         },
-        figure: { label: "Projection graph with the paired insight banner for mortgage holders" },
+        figure: {
+          label: "Projection graph with the paired insight banner for mortgage holders",
+          src: "/work/wealth/paired-insight.png",
+          alt: "Net worth screen with the paired-insight banner prompting the client to add the property linked to their Tangerine mortgage as an asset",
+        },
       },
       {
         kind: "prose",

@@ -820,16 +820,22 @@ export function CaseStudyBlock({ block }: { block: Block }) {
               </div>
             </div>
           </div>
-          <div className="flex min-h-[520px] items-center justify-center rounded-[24px] border border-hairline bg-body-bg p-6 lg:min-h-[640px]">
-            {figure.src ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={figure.src} alt={figure.alt ?? figure.label} className="max-h-full w-full rounded-[16px] object-contain" />
-            ) : (
+          {figure.src ? (
+            <figure className="overflow-hidden rounded-[24px]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={figure.src}
+                alt={figure.alt ?? figure.label}
+                className="w-full rounded-[24px]"
+              />
+            </figure>
+          ) : (
+            <div className="flex min-h-[520px] items-center justify-center rounded-[24px] border border-hairline bg-body-bg p-6 lg:min-h-[640px]">
               <span className="max-w-[24ch] text-center font-label text-[14px] uppercase tracking-wide text-muted/70">
                 {figure.label}
               </span>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       );
     }
