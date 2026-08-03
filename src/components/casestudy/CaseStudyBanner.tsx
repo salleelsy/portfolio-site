@@ -10,24 +10,16 @@ import type { CaseStudy } from "@/lib/caseStudies";
 export function CaseStudyBanner({ study }: { study: CaseStudy }) {
   const banner = study.banner!;
 
-  // "light" variant — in-column header (title, subtitle, tags, meta row) with
-  // the artwork as a full-width image below, per the wealth layout spec.
+  // "light" variant — in-column header (title + tags) with the artwork as a
+  // full-width image below, per the wealth layout spec (Figma 794:20726). The
+  // Platform/Timeline/Client/Tools meta lives in the Brief definition list.
   if (banner.variant === "light") {
-    const meta: [string, string | undefined][] = [
-      ["Platform", banner.platform],
-      ["Timeline", banner.timeline],
-      ["Client", banner.client],
-      ["Tools", banner.tools],
-    ];
     return (
       <div className="mx-auto w-full max-w-[1360px] px-6 pb-4 sm:px-10">
         <div className="flex flex-col items-start gap-6">
           <h1 className="font-display max-w-[16ch] text-[40px] font-semibold leading-[1.1] text-ink sm:text-[56px]">
             {banner.title}
           </h1>
-          <p className="max-w-[640px] text-[18px] leading-[1.5] text-cod-gray sm:text-[20px]">
-            {banner.subtitle}
-          </p>
           {study.tags && study.tags.length > 0 && (
             <ul className="flex flex-wrap gap-2">
               {study.tags.map((tag) => (
@@ -40,21 +32,6 @@ export function CaseStudyBanner({ study }: { study: CaseStudy }) {
               ))}
             </ul>
           )}
-          <dl className="flex flex-wrap items-stretch gap-x-6 gap-y-4">
-            {meta
-              .filter(([, v]) => v)
-              .map(([label, value], i) => (
-                <div key={label} className="flex items-stretch gap-6">
-                  {i > 0 && <div aria-hidden className="w-px bg-hairline" />}
-                  <div className="flex flex-col gap-1">
-                    <dt className="font-label text-[14px] uppercase tracking-wide text-muted">
-                      {label}
-                    </dt>
-                    <dd className="text-[18px] font-semibold text-ink">{value}</dd>
-                  </div>
-                </div>
-              ))}
-          </dl>
           {banner.artwork && (
             // eslint-disable-next-line @next/next/no-img-element
             <img

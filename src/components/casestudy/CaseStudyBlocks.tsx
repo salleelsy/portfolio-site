@@ -752,6 +752,20 @@ export function CaseStudyBlock({ block }: { block: Block }) {
           </div>
         </div>
       );
+
+    case "meta":
+      return (
+        <dl className="flex flex-wrap gap-x-8 gap-y-6 border-y border-hairline py-6 sm:gap-x-12">
+          {block.items.map((item) => (
+            <div key={item.term} className="flex flex-col gap-1">
+              <dt className="font-label text-[13px] uppercase tracking-wide text-muted">
+                {item.term}
+              </dt>
+              <dd className="text-[16px] font-medium text-ink">{item.desc}</dd>
+            </div>
+          ))}
+        </dl>
+      );
   }
 }
 

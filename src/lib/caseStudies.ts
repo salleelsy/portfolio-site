@@ -90,6 +90,7 @@ export type Block =
   | { kind: "ratings"; eyebrow?: string; heading?: string; note?: string; items: { task: string; value: string }[] }
   | { kind: "callout"; tone: "finding" | "quickwin" | "rec"; title: string; body: string }
   | { kind: "findings"; title?: string; items: string[] }
+  | { kind: "meta"; items: { term: string; desc: string }[] }
   | {
       kind: "mediaSplit";
       eyebrow?: string;
@@ -194,10 +195,6 @@ export const CASE_STUDIES: CaseStudy[] = [
       { title: "Brief" },
       { title: "My role" },
       { title: "Timeline" },
-      { title: "Some data" },
-      { title: "The Scoping Decision" },
-      { title: "Regulatory Constraint", inStepper: false },
-      { title: "Design System" },
       { title: "After Launch" },
       { title: "Impact" },
       { title: "Where It Stands", inStepper: false },
@@ -210,6 +207,15 @@ export const CASE_STUDIES: CaseStudy[] = [
         body: [
           "Tangerine — a digital bank with 2M+ clients, a Scotiabank subsidiary — was known for everyday banking. The goal: give wealth its own space in the app, so investing reads as a distinct thing a client does with Tangerine.",
           "The MVP's job was not to be a trading tool. It was to show clients their whole financial position clearly enough that investing more felt like an informed decision, not a leap.",
+        ],
+      },
+      {
+        kind: "meta",
+        items: [
+          { term: "Platform", desc: "iOS & Android" },
+          { term: "Timeline", desc: "Jul 2025 → ongoing" },
+          { term: "Client", desc: "Tangerine digital bank" },
+          { term: "Tools", desc: "Figma, Jira" },
         ],
       },
       {
@@ -251,70 +257,6 @@ export const CASE_STUDIES: CaseStudy[] = [
           { date: "Dec 2025", title: "Soft Launch", body: "Soft launch on iOS.", status: "done" },
           { date: "Feb 2026", title: "Public Launch", body: "Public launch on iOS and Android — the first meaningful analytics read.", status: "done" },
           { date: "Mar 2026 →", title: "Continuous Iteration", body: "Iteration sprints and new capability, ongoing.", status: "current" },
-        ],
-      },
-      {
-        kind: "list",
-        eyebrow: "Some data",
-        items: [
-          "Tangerine gave investing its own space in an app 2M+ clients already use. I led design on the MVP.",
-          "Launch: 1.3x jump in mobile engagement; mobile account applications up 49% YoY while web stayed flat.",
-          "Hardest pre-launch call: cutting the feature the data couldn't support — it gave the product a single focus.",
-          "Post-launch: half the clients who reached account details never found the wealth tab. The first fix underperformed; the second pass fixed both its problems.",
-        ],
-      },
-      {
-        kind: "prose",
-        eyebrow: "The Scoping Decision",
-        heading: "Cutting the history graph",
-        body: [
-          "The concept had two graphs: one showing how a client's money grew over the past ten years, one projecting forward. The history graph didn't survive scoping — the backend couldn't supply the data, and reconciling history with the effective dates clients enter on external assets wasn't an MVP-sized problem. Getting it wrong meant publishing a historical record that contradicted itself.",
-          "I pushed, then cut it rather than ship a degraded version. The cut sharpened the product: one graph, one focal point, and one question for every decision after it — does this help a client understand where they're headed?",
-        ],
-      },
-      {
-        kind: "callout",
-        tone: "rec",
-        title: "The call — cut what the data can't support",
-        body: "Two graphs where one is quietly unreliable is worse than one graph that holds. Post-launch feedback asked for exactly what it would have shown — moving it from a cut to a queued feature with demand attached.",
-      },
-      {
-        kind: "image",
-        label: "MVP scoping — early concepts including the history graph, and the final single-graph direction",
-        alt: "Scoping artefacts showing the history graph concept and the final single-graph direction",
-      },
-      {
-        kind: "prose",
-        eyebrow: "Regulatory Constraint",
-        heading: "Compliance decided what a projection is allowed to say",
-        body: [
-          "I designed the projection as a range — conservative to optimistic — because that's how projections honestly work. Compliance disagreed, and the reasoning held: in a regulated product, a visible upper bound reads as a promise a client can point to later.",
-          "We shipped a single static figure, and I documented the conditions for the range to return after MVP — parked, not lost.",
-        ],
-      },
-      {
-        kind: "prose",
-        eyebrow: "Design System",
-        heading: "Extending a system that wasn't built for this",
-        body: [
-          "Wealth needed patterns the banking app never required. For each gap, the same question: core, or wealth-specific spoke?",
-        ],
-      },
-      {
-        kind: "highlights",
-        items: [
-          {
-            title: "The projection graph → spoke",
-            body: [
-              "No charted component existed in core, and other teams' charts had drifted off-language. I built and spec'd it as a wealth spoke — data density, axis limits, extreme negatives, screen-reader readout — because core shouldn't maintain a component with one consumer.",
-            ],
-          },
-          {
-            title: "The accordion list → core",
-            body: [
-              "Built locally to unblock the MVP — then I found three other surfaces with the same need, so I branched the core Figma library, spec'd it, and submitted it. It went to core.",
-            ],
-          },
         ],
       },
       {
@@ -377,7 +319,26 @@ export const CASE_STUDIES: CaseStudy[] = [
       {
         kind: "prose",
         eyebrow: "Problem 2",
-        heading: "The field that cost us completions",
+        heading: "The projection that told mortgage holders bad news",
+        body: [
+          "For clients whose only Tangerine product was a mortgage, the projection sat permanently negative — the house behind it was never added. The graph wasn't wrong; it was accurate about incomplete data, which still misinforms.",
+        ],
+      },
+      {
+        kind: "callout",
+        tone: "rec",
+        title: "Paired insight — a mortgage implies a home",
+        body: "Detect a Tangerine mortgage → prompt the client to add their real estate as an asset. It corrects the projection and teaches how the tool works.",
+      },
+      {
+        kind: "image",
+        label: "Projection graph with the paired insight banner for mortgage holders",
+        alt: "Projection graph with a paired insight banner prompting the client to add their real estate as an asset",
+      },
+      {
+        kind: "prose",
+        eyebrow: "Problem 3",
+        heading: "One input field that cost us completions",
         body: [
           "The largest drop-off in the product: adding an external asset. The form asked for an effective date before the amount — recall, not a number the client has to hand. People stopped to think, and a meaningful share never came back.",
           "We prepopulated it with today's date, fully editable. Precision stays possible; everyone else goes straight to the amount. The data-quality cost is small and bounded. The completion gain was not.",
@@ -394,25 +355,6 @@ export const CASE_STUDIES: CaseStudy[] = [
         kind: "image",
         label: "Add external asset — prepopulated effective date",
         alt: "Add external asset form with the effective date prepopulated to today",
-      },
-      {
-        kind: "prose",
-        eyebrow: "Problem 3",
-        heading: "The projection that told mortgage holders bad news",
-        body: [
-          "For clients whose only Tangerine product was a mortgage, the projection sat permanently negative — the house behind it was never added. The graph wasn't wrong; it was accurate about incomplete data, which still misinforms.",
-        ],
-      },
-      {
-        kind: "callout",
-        tone: "rec",
-        title: "Paired insight — a mortgage implies a home",
-        body: "Detect a Tangerine mortgage → prompt the client to add their real estate as an asset. It corrects the projection and teaches how the tool works.",
-      },
-      {
-        kind: "image",
-        label: "Projection graph with the paired insight banner for mortgage holders",
-        alt: "Projection graph with a paired insight banner prompting the client to add their real estate as an asset",
       },
       {
         kind: "prose",
