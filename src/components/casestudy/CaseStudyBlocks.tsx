@@ -814,18 +814,30 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                     {b}
                   </p>
                 ))}
-                {card.banner && (
+                {card.image && (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
-                    src="/work/wealth/unlock-banner.png"
-                    alt="You've unlocked more — Check it out"
-                    className="mt-1 w-full max-w-[440px] rounded-[16px] border border-hairline"
+                    src={card.image}
+                    alt=""
+                    className="mt-1 w-full rounded-[16px] border border-hairline"
                   />
                 )}
               </div>
             </div>
           </div>
-          {figure.src ? (
+          {figure.video ? (
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              aria-label={figure.alt ?? figure.label}
+              className="w-full rounded-[16px] border border-hairline"
+            >
+              <source src={figure.video.replace(/\.mp4$/, ".webm")} type="video/webm" />
+              <source src={figure.video} type="video/mp4" />
+            </video>
+          ) : figure.src ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src={figure.src}

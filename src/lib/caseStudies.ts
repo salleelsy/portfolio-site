@@ -104,9 +104,10 @@ export type Block =
         number?: number;
         title?: string;
         body: string[];
-        banner?: boolean;
+        /** Optional image dropped inside the card, below the body. */
+        image?: string;
       };
-      figure: { label: string; src?: string; alt?: string };
+      figure: { label: string; src?: string; alt?: string; video?: string };
     };
 
 export type CaseStudy = {
@@ -317,9 +318,9 @@ export const CASE_STUDIES: CaseStudy[] = [
           body: [
             "We decided to provide an entry point on the account details screen itself, and introduce them into the wealth space from the account they were already checking.",
           ],
-          banner: true,
+          image: "/work/wealth/unlock-banner.png",
         },
-        figure: { label: "Spotlight modal" },
+        figure: { label: "Spotlight modal", video: "/work/wealth/cul-de-sac.mp4" },
       },
       {
         kind: "figureRow",
@@ -396,8 +397,13 @@ export const CASE_STUDIES: CaseStudy[] = [
           body: [
             "We prepopulated the field with today's date, fully editable. Precision stays possible, but everyone else can go straight to the amount as of today, with no need to trace back and no friction completing the form. The data-quality cost is small and bounded.",
           ],
+          image: "/work/wealth/prepopulated-date.png",
         },
-        figure: { label: "Add external asset — prepopulated effective date" },
+        figure: {
+          label: "Add external asset — prepopulated effective date",
+          src: "/work/wealth/add-asset.png",
+          alt: "Add external asset form with the effective date prepopulated to today's date",
+        },
       },
       {
         kind: "impact",
