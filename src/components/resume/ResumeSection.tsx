@@ -145,7 +145,7 @@ export function ResumeSection() {
         >
           Resume
         </h2>
-        <div className="mx-auto max-w-[1040px] rounded-card border border-hairline bg-paper p-6 sm:p-10 lg:p-12">
+        <div className="max-w-[1040px] rounded-card border border-hairline bg-paper p-6 sm:p-10 lg:p-12">
           {/* Header */}
           <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
             <div className="flex flex-col gap-3">
@@ -194,63 +194,77 @@ export function ResumeSection() {
               <h3 className="font-label text-[16px] uppercase tracking-wide text-muted">
                 Experience
               </h3>
-              <div className="mt-6 flex flex-col gap-8">
-                {EXPERIENCE.map((job) => (
-                  <article key={job.company} className="flex flex-col gap-3">
-                    <div className="flex flex-col gap-1">
-                      <p className="text-[18px] font-semibold text-ink">
-                        {job.company}
-                      </p>
-                      {job.roles.map((role) => (
-                        <div
-                          key={role.title + role.dates}
-                          className="flex flex-wrap items-baseline justify-between gap-x-4"
-                        >
-                          <p className="text-[16px] font-semibold text-cod-gray">
-                            {role.title}
-                          </p>
-                          <p className="font-label text-[14px] uppercase tracking-wide text-muted">
-                            {role.dates}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-
-                    {job.summary && (
-                      <p className="text-[16px] leading-[1.6] text-muted">
-                        {job.summary}
-                      </p>
-                    )}
-
-                    {job.bullets && (
-                      <ul className="flex flex-col gap-2">
-                        {job.bullets.map((b, i) => (
-                          <li
-                            key={i}
-                            className="relative pl-4 text-[16px] leading-[1.6] text-cod-gray before:absolute before:left-0 before:top-[9px] before:size-[5px] before:rounded-full before:bg-line"
-                          >
-                            {b}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-
-                    {job.projects && (
-                      <div className="mt-1 flex flex-col gap-2">
-                        <p className="font-label text-[14px] uppercase tracking-wide text-muted">
-                          Selected projects
-                        </p>
-                        {job.projects.map((p) => (
-                          <p key={p.name} className="text-[16px] leading-[1.6] text-cod-gray">
-                            <span className="font-bold text-ink">{p.name}:</span>{" "}
-                            {p.detail}
-                          </p>
-                        ))}
+              {/* Timeline — a rail with a node per role, so the career reads
+                  top-to-bottom at a glance and each job has room to breathe. */}
+              <ol className="mt-8 flex flex-col">
+                {EXPERIENCE.map((job, i) => {
+                  const last = i === EXPERIENCE.length - 1;
+                  return (
+                    <li key={job.company} className="flex gap-5">
+                      {/* Rail + node */}
+                      <div aria-hidden className="flex flex-col items-center">
+                        <span className="mt-[6px] size-[13px] shrink-0 rounded-full border-[3px] border-base-blue bg-paper" />
+                        {!last && <span className="w-px flex-1 bg-hairline" />}
                       </div>
-                    )}
-                  </article>
-                ))}
-              </div>
+
+                      {/* Content */}
+                      <article className={`flex flex-1 flex-col gap-4 ${last ? "" : "pb-12"}`}>
+                        <div className="flex flex-col gap-2">
+                          <p className="text-[20px] font-semibold leading-tight text-ink">
+                            {job.company}
+                          </p>
+                          {job.roles.map((role) => (
+                            <div
+                              key={role.title + role.dates}
+                              className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1"
+                            >
+                              <p className="text-[16px] font-medium text-cod-gray">
+                                {role.title}
+                              </p>
+                              <p className="font-label text-[14px] uppercase tracking-wide text-muted">
+                                {role.dates}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+
+                        {job.summary && (
+                          <p className="text-[16px] leading-[1.7] text-muted">
+                            {job.summary}
+                          </p>
+                        )}
+
+                        {job.bullets && (
+                          <ul className="flex flex-col gap-[10px]">
+                            {job.bullets.map((b, j) => (
+                              <li
+                                key={j}
+                                className="relative pl-5 text-[16px] leading-[1.7] text-cod-gray before:absolute before:left-0 before:top-[10px] before:size-[5px] before:rounded-full before:bg-line"
+                              >
+                                {b}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+
+                        {job.projects && (
+                          <div className="mt-2 flex flex-col gap-3 rounded-[12px] bg-body-bg p-5">
+                            <p className="font-label text-[14px] uppercase tracking-wide text-muted">
+                              Selected projects
+                            </p>
+                            {job.projects.map((p) => (
+                              <p key={p.name} className="text-[16px] leading-[1.7] text-cod-gray">
+                                <span className="font-medium text-ink">{p.name}:</span>{" "}
+                                {p.detail}
+                              </p>
+                            ))}
+                          </div>
+                        )}
+                      </article>
+                    </li>
+                  );
+                })}
+              </ol>
             </div>
 
             {/* Sidebar: skills / education / languages */}
@@ -261,18 +275,11 @@ export function ResumeSection() {
                 </h3>
                 <div className="mt-5 flex flex-col gap-5">
                   {SKILLS.map((group) => (
-                    <div key={group.label} className="flex flex-col gap-3">
-                      <p className="text-[16px] font-bold text-ink">{group.label}</p>
-                      <ul className="flex flex-wrap gap-2">
-                        {group.items.map((skill) => (
-                          <li
-                            key={skill}
-                            className="rounded-chip border border-hairline bg-body-bg px-[10px] py-[5px] text-[14px] font-medium text-cod-gray"
-                          >
-                            {skill}
-                          </li>
-                        ))}
-                      </ul>
+                    <div key={group.label} className="flex flex-col gap-2">
+                      <p className="text-[16px] font-medium text-ink">{group.label}</p>
+                      <p className="text-[16px] leading-[1.7] text-cod-gray">
+                        {group.items.join(", ")}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -283,7 +290,7 @@ export function ResumeSection() {
                   Education
                 </h3>
                 <div className="mt-5 flex flex-col gap-1">
-                  <p className="text-[16px] font-bold text-ink">{EDUCATION.school}</p>
+                  <p className="text-[16px] font-medium text-ink">{EDUCATION.school}</p>
                   {EDUCATION.degrees.map((d) => (
                     <p key={d} className="text-[16px] leading-[1.5] text-muted">
                       {d}

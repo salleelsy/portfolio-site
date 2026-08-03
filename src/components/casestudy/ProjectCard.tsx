@@ -67,7 +67,7 @@ export function ProjectCard({
                   : "(max-width: 767px) 150vw, (max-width: 1360px) 70vw, 900px"
               }
               quality={90}
-              className="object-cover object-[72%_50%]"
+              className="object-cover object-center"
             />
           ) : (
             <div
@@ -88,7 +88,7 @@ export function ProjectCard({
             title's first line (items-start keeps it on the top row when the
             title wraps). */}
         <div className="flex items-start justify-between gap-4">
-          <h3 className="min-w-0 flex-1 text-[24px] font-semibold leading-[1.25] text-ink">
+          <h3 className="min-w-0 flex-1 text-[24px] font-medium leading-[1.25] text-ink">
             {title}
           </h3>
           {/* Hover affordance — decorative; the stretched link takes the click. */}

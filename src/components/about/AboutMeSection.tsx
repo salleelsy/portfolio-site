@@ -6,18 +6,19 @@ const INTERESTS = [
   {
     title: "Config 2026",
     caption:
-      "I love learning something new about the industry — I made it to Config 2026!",
+      "A little design dream come true. I left with new ideas, new friends, and way too much inspiration.",
     src: "/about/config-2026.jpg",
   },
   {
     title: "Volleyball",
-    caption: "On the court, I play setter — I like being the one who sets people up.",
+    caption:
+      "Setter is my favorite position. I enjoy reading the game and helping my teammates shine.",
     src: "/about/volleyball.jpg",
   },
   {
     title: "Photography",
     caption:
-      "Lately I've been shooting maternity and couple photos for people I love.",
+      "Lately I've been behind the camera, shooting maternity and couple sessions for friends.",
     src: "/about/photography.jpg",
   },
 ];
