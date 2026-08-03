@@ -18,12 +18,35 @@ const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 const FULL_WIDTH_BLOCKS = new Set(["image", "gallery", "screens", "timeline", "impact", "findings", "mediaSplit", "meta", "figureRow"]);
 
 /** Caps a block at 700px unless it's a full-width visual block. */
-function BlockRow({ block }: { block: Block }) {
+function BlockRow({ block, className = "" }: { block: Block; className?: string }) {
+  const width = FULL_WIDTH_BLOCKS.has(block.kind) ? "" : "max-w-[700px]";
   return (
-    <div className={FULL_WIDTH_BLOCKS.has(block.kind) ? "" : "max-w-[700px]"}>
+    <div className={`${width} ${className}`.trim()}>
       <CaseStudyBlock block={block} />
     </div>
   );
+}
+
+/**
+ * Tighten the default 64px block gap down to ~24px in the spots Figma keeps
+ * close: around a Findings banner and between a "So…" lead-in and the figure
+ * that answers it, plus above the Brief meta list. Returns a negative-margin
+ * class or "" for the normal rhythm.
+ */
+function tightGap(block: Block, prev: Block | undefined): string {
+  const TIGHT = "-mt-10";
+  if (block.kind === "meta") return TIGHT;
+  if (block.kind === "findings") return TIGHT;
+  if (prev?.kind === "findings") return TIGHT;
+  if (
+    block.kind === "figureRow" &&
+    prev &&
+    prev.kind === "prose" &&
+    prev.body?.[prev.body.length - 1] === "So..."
+  ) {
+    return TIGHT;
+  }
+  return "";
 }
 
 type Section = { title: string; inStepper: boolean; blocks: Block[] };
@@ -170,7 +193,7 @@ export function CaseStudyLayout({ study }: { study: CaseStudy }) {
                   <SectionTitle>{section.title}</SectionTitle>
                   <div className="flex flex-col gap-16">
                     {section.blocks.map((block, i) => (
-                      <BlockRow key={i} block={block} />
+                      <BlockRow key={i} block={block} className={tightGap(block, section.blocks[i - 1])} />
                     ))}
                   </div>
                 </section>

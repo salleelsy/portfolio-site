@@ -664,7 +664,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                 className="relative flex flex-col rounded-[12px] border-2 border-[#e2e2e2] bg-white p-4"
               >
                 <AwardBadge className="absolute right-4 top-4 size-14" />
-                <dt className="text-[56px] font-bold leading-[59px] text-black">{s.value}</dt>
+                <dt className="text-[56px] font-medium leading-[59px] text-black">{s.value}</dt>
                 <dd className="mt-3 max-w-[16ch] pr-14 text-[16px] leading-6 text-black">
                   {s.label}
                 </dd>
@@ -777,12 +777,10 @@ export function CaseStudyBlock({ block }: { block: Block }) {
 
     case "meta":
       return (
-        <dl className="flex flex-wrap gap-x-8 gap-y-6 border-y border-hairline py-6 sm:gap-x-12">
+        <dl className="flex flex-wrap gap-x-8 gap-y-6 sm:gap-x-12">
           {block.items.map((item) => (
             <div key={item.term} className="flex flex-col gap-1">
-              <dt className="font-label text-[13px] uppercase tracking-wide text-muted">
-                {item.term}
-              </dt>
+              <dt className="font-label text-[13px] text-muted">{item.term}</dt>
               <dd className="text-[16px] font-medium text-ink">{item.desc}</dd>
             </div>
           ))}
@@ -795,7 +793,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
     case "figureRow": {
       const { card, figure } = block;
       return (
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-14">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_380px]">
           <div className="rounded-[16px] bg-body-bg p-6">
             {card.badge && (
               <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#cfe6d6] bg-[#eaf6ee] px-3 py-[6px] text-[15px] font-semibold text-[#1e7d3e]">
@@ -816,21 +814,26 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                     {b}
                   </p>
                 ))}
-                {card.banner && <UnlockedBanner />}
+                {card.banner && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src="/work/wealth/unlock-banner.png"
+                    alt="You've unlocked more — Check it out"
+                    className="mt-1 w-full max-w-[440px] rounded-[16px] border border-hairline"
+                  />
+                )}
               </div>
             </div>
           </div>
           {figure.src ? (
-            <figure className="overflow-hidden rounded-[24px]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={figure.src}
-                alt={figure.alt ?? figure.label}
-                className="w-full rounded-[24px]"
-              />
-            </figure>
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={figure.src}
+              alt={figure.alt ?? figure.label}
+              className="w-full rounded-[16px] border border-hairline"
+            />
           ) : (
-            <div className="flex min-h-[520px] items-center justify-center rounded-[24px] border border-hairline bg-body-bg p-6 lg:min-h-[640px]">
+            <div className="flex min-h-[520px] items-center justify-center rounded-[16px] border border-hairline bg-body-bg p-6 lg:min-h-[640px]">
               <span className="max-w-[24ch] text-center font-label text-[14px] uppercase tracking-wide text-muted/70">
                 {figure.label}
               </span>
@@ -848,24 +851,6 @@ function HeartIcon({ className }: { className?: string }) {
     <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden focusable="false">
       <path d="M12 21s-6.7-4.35-9.33-8.02C.9 10.24 1.6 6.6 4.6 5.55c1.98-.7 3.9.12 4.9 1.62l.5.76.5-.76c1-1.5 2.92-2.32 4.9-1.62 3 1.05 3.7 4.69 1.93 7.43C18.7 16.65 12 21 12 21z" />
     </svg>
-  );
-}
-
-/**
- * UnlockedBanner — the small "You've unlocked more" promo pill shown inside the
- * Problem-1 card (Figma 796:29763): wealth artwork, headline, dark CTA button.
- */
-function UnlockedBanner() {
-  return (
-    <div className="flex w-fit items-center gap-3 rounded-[14px] border border-hairline bg-white px-3 py-[10px] shadow-sm">
-      <span aria-hidden className="flex size-9 items-center justify-center rounded-full bg-[#ff6a13] text-[18px]">
-        📊
-      </span>
-      <span className="text-[16px] font-bold text-ink">You&apos;ve unlocked more</span>
-      <span className="rounded-full bg-[#1b1b1b] px-4 py-2 text-[14px] font-semibold text-white">
-        Check it out
-      </span>
-    </div>
   );
 }
 

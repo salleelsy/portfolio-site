@@ -37,7 +37,7 @@ export function CaseStudyBanner({ study }: { study: CaseStudy }) {
             <img
               src={banner.artwork}
               alt={`${banner.title} — app screens`}
-              className="mt-4 w-full rounded-[24px]"
+              className="mt-4 w-full rounded-[16px] border border-hairline"
             />
           )}
         </div>
