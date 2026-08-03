@@ -667,6 +667,238 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
 
   {
+    slug: "wealth-studio-design-system",
+    badge: "Design Systems",
+    category: "Design Systems / 2026",
+    title: "Storybook became the source of truth",
+    subtitle:
+      "Building a 100+ component design system for Wealth Studio — an internal portfolio-management tool for advisors — and what it taught me about where design sits in the sequence now.",
+    cardSummary:
+      "A 100+ component design system for an internal advisor tool, built in a code-first loop where Storybook — not Figma — was the source of truth.",
+    tags: ["Design system", "UX"],
+    banner: {
+      variant: "light",
+      title: "Storybook became the source of truth. Figma became a place to think.",
+      subtitle:
+        "Building a 100+ component design system for Wealth Studio, and what it taught me about where design sits in the sequence now.",
+      platform: "Internal advisor tool",
+      timeline: "2026",
+    },
+    meta: {
+      role: "Product designer, design-system workstream",
+      timeline: "2026 · ongoing",
+      tools: "Figma, Storybook, GitHub, Claude Code, Greptile",
+      note: "Screens are from an internal advisor tool; component names, product naming, and screenshots are held as placeholders pending NDA review.",
+    },
+    sections: [
+      { title: "Overview" },
+      { title: "The old model" },
+      { title: "The pipeline" },
+      { title: "What changed" },
+      { title: "Sequencing" },
+      { title: "Takeaways", inStepper: false },
+    ],
+    blocks: [
+      {
+        kind: "prose",
+        eyebrow: "Overview",
+        heading: "The product, briefly",
+        body: [
+          "Wealth Studio is a portfolio-management system built for advisors inside the bank. It covers deposits and withdrawals, asset allocation, glide paths, rebalancing, and tax analysis, and it replaces a legacy tool advisors use every working day.",
+          "My job was the design system underneath it: 100+ components, split across three designers, sequenced by priority so engineering never had to wait on design to unblock a build.",
+          "That's the product. This case study is about something else — because the way we built it looked almost nothing like the way I built things a year ago.",
+        ],
+      },
+      {
+        kind: "meta",
+        items: [
+          { term: "Role", desc: "Product designer, design-system workstream" },
+          { term: "Team", desc: "3 designers, engineering, PO" },
+          { term: "Scope", desc: "100+ components, Critical to Low" },
+          { term: "Product", desc: "Wealth Studio, advisor portfolio management" },
+          { term: "Focus", desc: "The workflow, not the interface" },
+        ],
+      },
+      {
+        kind: "highlights",
+        heading: "The stack that replaced the old workflow",
+        items: [
+          { title: "Lovable", body: ["Where the first working prototype gets built."] },
+          { title: "GitHub", body: ["One main repo, one component per pull request."] },
+          { title: "Storybook", body: ["Every component actually in use — and the source of truth."] },
+          { title: "Figma", body: ["Where the direction gets refined, not where components originate."] },
+          { title: "Claude Code", body: ["Moves components between code and canvas, and opens the PRs."] },
+          { title: "Greptile", body: ["Reviews every pull request before a human does."] },
+        ],
+      },
+      {
+        kind: "prose",
+        eyebrow: "The old model",
+        heading: "Design used to go first",
+        body: [
+          "On every project before this one, the order was the same. A PRD gets written, a designer opens Figma, a spec gets reviewed and approved, engineering builds toward it. Figma was the source of truth. If the product and the Figma file disagreed, the Figma file won the argument.",
+          "That model assumes design happens first and code catches up. On this project, the order flipped.",
+        ],
+      },
+      {
+        kind: "beforeAfter",
+        before: {
+          title: "Before — design leads",
+          pros: [
+            "PRD written",
+            "Designer explores in Figma",
+            "Spec reviewed and approved",
+            "Handoff to engineering",
+            "Engineering builds toward the file",
+            "Figma stays the reference",
+          ],
+        },
+        after: {
+          title: "Now — design refines",
+          pros: [
+            "PO prototypes in Lovable",
+            "PRD written from the prototype",
+            "Engineering builds the repo + Storybook",
+            "Designer reviews what exists",
+            "Designer refines and ships a PR",
+            "Storybook stays the reference",
+          ],
+        },
+      },
+      {
+        kind: "prose",
+        eyebrow: "The pipeline",
+        heading: "The actual pipeline, and who owns each step",
+        body: [
+          "Here is the loop we ran, start to finish, for every component. The part worth looking at is the sequence: design doesn't appear until step four.",
+        ],
+      },
+      {
+        kind: "list",
+        items: [
+          "PO · Prototype in Lovable — built on shadcn/ui and Lucide icons as a starting foundation. Not a polished design; a working approximation of the flow.",
+          "PO · Write the PRD — written off the back of something that already runs, not ahead of it.",
+          "Engineering · Build infrastructure, main repo, Storybook — Storybook captures every component actually in use. This is the moment the system gets a canonical home, and it isn't Figma.",
+          "Designer · Review Storybook and Lovable together — check the user flow and UI against what has been built, not against a file that doesn't exist yet.",
+          "Designer · Clone the repo locally — preview changes against the real thing instead of a static mockup.",
+          "Designer + AI · Pull components into Figma with Claude Code and the Figma MCP — components travel from code to canvas. Figma stops being where they originate.",
+          "Designer · Set the core direction in Figma — spacing, padding, and the sm / md / lg scale across text, graphics, and icons. The judgment layer on top of what already exists.",
+          "Designer · Internal review and competitor research — where variants get argued about before they get written.",
+          "Designer + AI · Open a PR through Claude Code, using SKILLS.md — one component per PR, so any issue traces back to a single isolated change.",
+          "Bot · Greptile reviews the PR — checks alignment before a human looks at it. Anything it flags goes back into Claude to resolve, not into a comment thread to die.",
+          "Eng / PO · Review and merge — the last gate is a human one, and by then the change is small enough to read in a sitting.",
+          "Everyone · Rebase, daily — three designers and a team of engineers ship into the same repo. Nothing is static while you're working on it, including the parts you didn't touch.",
+        ],
+      },
+      {
+        kind: "callout",
+        tone: "finding",
+        title: "Design owns four of the twelve steps",
+        body: "And the first one only lands after the system is already running — design refines and governs the build rather than leading it.",
+      },
+      {
+        kind: "prose",
+        eyebrow: "What changed",
+        heading: "What actually changed for me",
+        body: [
+          "Five things shifted — about authority, anticipation, what a deliverable is, who reviews it first, and how stable the ground is under a design.",
+        ],
+      },
+      {
+        kind: "prose",
+        eyebrow: "Authority",
+        heading: "Figma lost its authority, and I had to learn to trust the code",
+        body: [
+          "For most of my career, if Figma and the shipped product disagreed, Figma won. On this project, if my Figma file drifted from Storybook, I was the one who was wrong.",
+          "That's a real shift in where design authority lives. It meant reading a component's current state in code before forming an opinion about it, and treating the live library as the thing to be described accurately rather than the thing to be corrected.",
+        ],
+      },
+      {
+        kind: "image",
+        label: "Fig. 1 — The Alert component in Storybook",
+        caption:
+          "Every variant, prop, and control lives here with real product content. When the Figma file and this page disagree, this page is correct.",
+      },
+      {
+        kind: "prose",
+        eyebrow: "Anticipation",
+        heading: "I had to think in variants before I had feedback to work from",
+        body: [
+          "Storybook captures what's in use. It doesn't capture what a component will need six screens from now. A lot of the work was designing variations that didn't exist yet: states, sizes, and combinations the prototype had never had a reason to produce.",
+        ],
+      },
+      {
+        kind: "image",
+        label: "Fig. 2 — The same component in Figma, expanded past what Storybook contained",
+        caption:
+          "Types, states, and styles mapped out so engineering had a complete surface to build against, rather than the one case the prototype happened to need.",
+      },
+      {
+        kind: "image",
+        label: "Fig. 3 — A composed pattern rather than a primitive",
+        caption:
+          "The controls panel on the right is the part that shaped my work: props are the real specification, so the design decision has to survive being expressed as one.",
+      },
+      {
+        kind: "prose",
+        eyebrow: "Deliverable",
+        heading: "The deliverable stopped being a file and started being a PR",
+        body: [
+          "Opening PRs through Claude Code, one component at a time, meant the artifact I was accountable for wasn't a frame with redlines. It was a change that either passed review or didn't.",
+          "The one-component-per-PR rule was the constraint that made this workable. It kept every change small enough for an engineer to trace, and it kept me honest about scope: if a PR started sprawling, that was a signal the component boundary was wrong.",
+        ],
+      },
+      {
+        kind: "prose",
+        eyebrow: "Review",
+        heading: "A bot joined the critique loop",
+        body: [
+          "Greptile reviewing every PR before a human touched it changed what the first pass of review means. It isn't taste — it's whether the change is structurally consistent with the rest of the system. Feedback stopped being a comment thread and became something you resolve by running it back through Claude.",
+        ],
+      },
+      {
+        kind: "prose",
+        eyebrow: "Instability",
+        heading: "Daily rebasing meant designing inside a system that never holds still",
+        body: [
+          "In the old workflow, an approved spec was stable. Here the ground could move under a component I'd already shipped, because someone else's change landed nearby. Rebasing daily wasn't housekeeping — it was the only way to know what you were designing against.",
+        ],
+      },
+      {
+        kind: "prose",
+        eyebrow: "Sequencing",
+        heading: "Sequencing 100+ components across three designers",
+        body: [
+          "With a repo changing daily and no single approval gate, the coordination problem was as real as the design problem. We sorted every component into four priority bands and tracked status on a shared board, so anyone could see at a glance what was in progress, what was waiting on review, and what had already shipped.",
+        ],
+      },
+      {
+        kind: "list",
+        intro: "Every component was sorted into four priority bands:",
+        bulleted: true,
+        items: ["Critical", "High", "Medium", "Low"],
+      },
+      {
+        kind: "image",
+        label: "Fig. 4 — The tracking board for the Critical and High bands",
+        caption:
+          "Each component carries its own PR number and status, so the board doubles as an index into the repo. Statuses like “Ready to create PR,” “To be reviewed,” and “Need to merge PR again” were the shared vocabulary for three people working in parallel.",
+      },
+      {
+        kind: "prose",
+        eyebrow: "Takeaways",
+        heading: "What I took from it",
+        body: [
+          "The biggest shift wasn't a tool — it was where design sits in the sequence.",
+          "Design used to be the thing that happened before code. Here it became the layer that refines, governs, and keeps coherent a system that engineering and AI tooling were already building in parallel. That changes what a design-system role actually is: less “I define the spec and you build it,” more “I keep a hundred moving parts, made by several people and several agents, consistent, traceable, and reviewable.”",
+          "The skill that mattered most wasn't visual craft. It was being precise enough that a bot and an engineer could both act on what I decided.",
+          "Reading a component's real state in code. Knowing what good looks like at the token level. Encoding that judgment into something reviewable rather than something interpretable. Those turned out to be the load-bearing skills — and none of them are the ones I would have listed a year ago.",
+        ],
+      },
+    ],
+  },
+
+  {
     slug: "utility-app-usability",
     badge: "NDA Project",
     category: "UX Research / 2024",
