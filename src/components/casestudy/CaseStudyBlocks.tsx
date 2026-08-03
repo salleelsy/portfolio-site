@@ -171,7 +171,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
         <div className="flex flex-col gap-4">
           {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
           {block.heading && <Heading>{block.heading}</Heading>}
-          {block.body.map((p, i) => (
+          {block.body?.map((p, i) => (
             <p key={i} className="max-w-[700px] text-[18px] leading-[1.7] text-cod-gray">
               {p}
             </p>
@@ -187,16 +187,27 @@ export function CaseStudyBlock({ block }: { block: Block }) {
           {block.intro && (
             <p className="text-[18px] leading-[1.7] text-cod-gray">{block.intro}</p>
           )}
-          <ol className="flex flex-col gap-3">
-            {block.items.map((item, i) => (
-              <li key={i} className="flex items-start gap-3">
-                <span className="mt-[2px] flex size-6 shrink-0 items-center justify-center rounded-full bg-ink text-[14px] font-bold text-paper">
-                  {i + 1}
-                </span>
-                <span className="text-[18px] leading-[1.6] text-cod-gray">{item}</span>
-              </li>
-            ))}
-          </ol>
+          {block.bulleted ? (
+            <ul className="flex flex-col gap-2 pl-1">
+              {block.items.map((item, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span aria-hidden className="mt-[11px] size-[6px] shrink-0 rounded-full bg-cod-gray" />
+                  <span className="text-[18px] leading-[1.6] text-cod-gray">{item}</span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <ol className="flex flex-col gap-3">
+              {block.items.map((item, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span className="mt-[2px] flex size-6 shrink-0 items-center justify-center rounded-full bg-ink text-[14px] font-bold text-paper">
+                    {i + 1}
+                  </span>
+                  <span className="text-[18px] leading-[1.6] text-cod-gray">{item}</span>
+                </li>
+              ))}
+            </ol>
+          )}
         </div>
       );
 
@@ -704,11 +715,22 @@ export function CaseStudyBlock({ block }: { block: Block }) {
               {block.groups.map((g, i) => (
                 <div key={i} className="flex flex-col gap-3">
                   <h3 className="text-[22px] font-semibold text-ink sm:text-[26px]">{g.heading}</h3>
-                  {g.body.map((b, j) => (
-                    <p key={j} className="max-w-[560px] text-[18px] leading-[1.7] text-cod-gray">
-                      {b}
-                    </p>
-                  ))}
+                  {g.ordered ? (
+                    <ol className="flex flex-col gap-2 pl-1">
+                      {g.body.map((b, j) => (
+                        <li key={j} className="flex items-start gap-3">
+                          <span className="text-[18px] leading-[1.6] text-muted">{j + 1}.</span>
+                          <span className="text-[18px] leading-[1.6] text-cod-gray">{b}</span>
+                        </li>
+                      ))}
+                    </ol>
+                  ) : (
+                    g.body.map((b, j) => (
+                      <p key={j} className="max-w-[560px] text-[18px] leading-[1.7] text-cod-gray">
+                        {b}
+                      </p>
+                    ))
+                  )}
                 </div>
               ))}
             </div>
@@ -766,7 +788,79 @@ export function CaseStudyBlock({ block }: { block: Block }) {
           ))}
         </dl>
       );
+
+    // figureRow — the After-Launch solution rows (Figma 795:25720/25721/25782):
+    // a grey card (numbered lead, bold title, or a Quick Fix tag) on the left,
+    // a tall phone-screen figure on the right.
+    case "figureRow": {
+      const { card, figure } = block;
+      return (
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-14">
+          <div className="rounded-[16px] bg-body-bg p-6">
+            {card.badge && (
+              <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#cfe6d6] bg-[#eaf6ee] px-3 py-[6px] text-[15px] font-semibold text-[#1e7d3e]">
+                <HeartIcon className="size-4" />
+                {card.badge}
+              </span>
+            )}
+            <div className="flex items-start gap-2">
+              {card.number != null && (
+                <span className="text-[18px] font-bold leading-[1.6] text-ink">{card.number}.</span>
+              )}
+              <div className="flex flex-col gap-3">
+                {card.title && (
+                  <p className="text-[18px] font-bold leading-[1.6] text-ink">{card.title}</p>
+                )}
+                {card.body.map((b, i) => (
+                  <p key={i} className="text-[18px] leading-[1.6] text-cod-gray">
+                    {b}
+                  </p>
+                ))}
+                {card.banner && <UnlockedBanner />}
+              </div>
+            </div>
+          </div>
+          <div className="flex min-h-[520px] items-center justify-center rounded-[24px] border border-hairline bg-body-bg p-6 lg:min-h-[640px]">
+            {figure.src ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={figure.src} alt={figure.alt ?? figure.label} className="max-h-full w-full rounded-[16px] object-contain" />
+            ) : (
+              <span className="max-w-[24ch] text-center font-label text-[14px] uppercase tracking-wide text-muted/70">
+                {figure.label}
+              </span>
+            )}
+          </div>
+        </div>
+      );
+    }
   }
+}
+
+/** Solid heart for the "Quick Fix" tag (Figma 795:25750). */
+function HeartIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden focusable="false">
+      <path d="M12 21s-6.7-4.35-9.33-8.02C.9 10.24 1.6 6.6 4.6 5.55c1.98-.7 3.9.12 4.9 1.62l.5.76.5-.76c1-1.5 2.92-2.32 4.9-1.62 3 1.05 3.7 4.69 1.93 7.43C18.7 16.65 12 21 12 21z" />
+    </svg>
+  );
+}
+
+/**
+ * UnlockedBanner — the small "You've unlocked more" promo pill shown inside the
+ * Problem-1 card (Figma 796:29763): wealth artwork, headline, dark CTA button.
+ */
+function UnlockedBanner() {
+  return (
+    <div className="flex w-fit items-center gap-3 rounded-[14px] border border-hairline bg-white px-3 py-[10px] shadow-sm">
+      <span aria-hidden className="flex size-9 items-center justify-center rounded-full bg-[#ff6a13] text-[18px]">
+        📊
+      </span>
+      <span className="text-[16px] font-bold text-ink">You&apos;ve unlocked more</span>
+      <span className="rounded-full bg-[#1b1b1b] px-4 py-2 text-[14px] font-semibold text-white">
+        Check it out
+      </span>
+    </div>
+  );
 }
 
 /** Uber-style blue "info" badge for the Findings banner. */

@@ -53,8 +53,8 @@ type IdeationCase = {
 };
 
 export type Block =
-  | { kind: "prose"; eyebrow?: string; heading?: string; body: string[] }
-  | { kind: "list"; eyebrow?: string; heading?: string; intro?: string; items: string[] }
+  | { kind: "prose"; eyebrow?: string; heading?: string; body?: string[] }
+  | { kind: "list"; eyebrow?: string; heading?: string; intro?: string; items: string[]; bulleted?: boolean }
   | {
       kind: "priorityList";
       eyebrow?: string;
@@ -94,8 +94,19 @@ export type Block =
   | {
       kind: "mediaSplit";
       eyebrow?: string;
-      groups: { heading: string; body: string[] }[];
+      groups: { heading: string; body: string[]; ordered?: boolean }[];
       video?: { src: string; caption?: string };
+    }
+  | {
+      kind: "figureRow";
+      card: {
+        badge?: string;
+        number?: number;
+        title?: string;
+        body: string[];
+        banner?: boolean;
+      };
+      figure: { label: string; src?: string; alt?: string };
     };
 
 export type CaseStudy = {
@@ -176,7 +187,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     tags: ["Design system", "UX", "UI"],
     banner: {
       variant: "light",
-      title: "Launching wealth inside a bank's app",
+      title: "Launching Wealth inside a Bank's App",
       subtitle:
         "Tangerine's digital wealth MVP — scoped under hard data constraints, improved by reading the post-launch numbers.",
       platform: "iOS & Android",
@@ -203,9 +214,9 @@ export const CASE_STUDIES: CaseStudy[] = [
       {
         kind: "prose",
         eyebrow: "Brief",
-        heading: "A bank with two million clients wanted them to invest",
+        heading: "A brand new wealth space for a major Canadian bank",
         body: [
-          "Tangerine — a digital bank with 2M+ clients, a Scotiabank subsidiary — was known for everyday banking. The goal: give wealth its own space in the app, so investing reads as a distinct thing a client does with Tangerine.",
+          "Tangerine, a digital bank with 2M+ clients, wanted a brand new wealth space: a new tab on the navigation bar of the Tangerine mobile app. The goal was to give wealth its own place in the app, so investing reads as a distinct thing a client does with Tangerine.",
           "The MVP's job was not to be a trading tool. It was to show clients their whole financial position clearly enough that investing more felt like an informed decision, not a leap.",
         ],
       },
@@ -225,19 +236,31 @@ export const CASE_STUDIES: CaseStudy[] = [
           {
             heading: "Overview",
             body: [
-              "Lead designer on a two-designer vendor team — I owned the feature design end to end and set the direction, across a dedicated wealth space inside the existing Tangerine app on iOS and Android.",
+              "As lead designer on a two-person vendor design team, I owned the MVP feature design end to end and set the direction: from PRD and research to design, cross-functional workshops, design system adoption, user stories, design QA, and launch.",
             ],
           },
           {
             heading: "Teams collaborated with",
+            ordered: true,
             body: [
-              "Compliance, legal, translation, marketing, banking-side design, engineering, and QA.",
+              "Fintex PM, BA, QA, and developers (we were the vendor team)",
+              "Client (bank side): design team for daily banking",
+              "Compliance team",
+              "Content team",
+              "Marketing team",
             ],
           },
           {
             heading: "MVP in Wealth",
+            ordered: true,
             body: [
-              "Seven feature areas — projection graph, external assets & liabilities, portfolio allocation, learning hub, transactions & documents, gain/loss, and smart banners.",
+              "My net worth projection graph",
+              "Add external assets & liabilities",
+              "Transactions & documents",
+              "Learning hub",
+              "My portfolio",
+              "Account allocations",
+              "Smart banners",
             ],
           },
         ],
@@ -249,14 +272,13 @@ export const CASE_STUDIES: CaseStudy[] = [
       {
         kind: "timeline",
         eyebrow: "Timeline",
-        heading: "From framing to a loop that keeps shipping",
         items: [
-          { date: "Jul 2025", title: "Research & Framing", body: "Research and problem framing.", status: "done" },
-          { date: "Aug – Oct 2025", title: "Design & Alignment", body: "Design, design-system extension, cross-team alignment.", status: "done" },
-          { date: "Oct – Dec 2025", title: "Sprint Delivery", body: "Sprint delivery, QA partnership, bug triage and retest.", status: "done" },
-          { date: "Dec 2025", title: "Soft Launch", body: "Soft launch on iOS.", status: "done" },
-          { date: "Feb 2026", title: "Public Launch", body: "Public launch on iOS and Android — the first meaningful analytics read.", status: "done" },
-          { date: "Mar 2026 →", title: "Continuous Iteration", body: "Iteration sprints and new capability, ongoing.", status: "current" },
+          { date: "Jul 2025", title: "Research", body: "Competitor research", status: "done" },
+          { date: "Aug – Oct 2025", title: "Design & Alignment", body: "Design, design-system extension, cross-team alignment", status: "done" },
+          { date: "Oct – Dec 2025", title: "DQA", body: "Sprint delivery, QA partnership, bug triage and retest", status: "done" },
+          { date: "Dec 2025", title: "Soft Launch", body: "Soft launch on iOS", status: "done" },
+          { date: "Feb 2026", title: "Public Launch", body: "Public launch on iOS and Android — the first meaningful analytics read", status: "done" },
+          { date: "Mar 2026 →", title: "Continuous Iteration", body: "Iteration sprints and new capabilities, ongoing", status: "current" },
         ],
       },
       {
@@ -264,33 +286,13 @@ export const CASE_STUDIES: CaseStudy[] = [
         eyebrow: "After Launch",
         heading: "The analytics decided what we built next",
         body: [
-          "The product team publishes a monthly impact report. My job was to read it as a designer — find which numbers described a design problem, not a market condition — and turn those into tickets. Three problems surfaced that only appear at real traffic volumes.",
+          "The product team publishes a monthly impact report. My job was to read it as a designer: find which numbers pointed to a design problem rather than a market condition, flag those issues, identify whether each was a quick fix, prioritize them as low, medium, or high, and get them into the sprint through the PM.",
         ],
       },
       {
         kind: "prose",
         eyebrow: "Problem 1",
         heading: "The cul-de-sac",
-        body: [
-          "Most clients landed on their investment account details from the banking side, read the balance, and left — the wealth space one tap away, untaken. Instead of redirecting traffic, we met them where they were.",
-        ],
-      },
-      {
-        kind: "highlights",
-        items: [
-          {
-            title: "Existing investors",
-            body: [
-              "An entry point on the account details screen itself — into the wealth space from the account they were already checking.",
-            ],
-          },
-          {
-            title: "Everyone else",
-            body: [
-              "A prospect screen, no account required: adjust the inputs, watch the projection respond, act from there.",
-            ],
-          },
-        ],
       },
       {
         kind: "findings",
@@ -301,75 +303,101 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
       {
         kind: "prose",
-        heading: "The first fix underperformed",
         body: [
-          "The first banner competed with accident — clients still found the tab on their own more often than through it. It sat in a screen dense with actions, and its copy asked for effort with no stated reward.",
-          "The second pass fixed both: a one-time spotlight modal (interruption is expensive — we spent it once), and banner copy rewritten from instruction to reward — you've unlocked more, not go explore.",
+          "Most clients landed on their investment account details from the banking side, read the balance, and left. The wealth space was one tap away and untaken. Instead of redirecting traffic, we met them where they were.",
+          "Some thought... Existing investors were used to checking their investment account through daily banking. That behaviour made sense, it's just what they were used to.",
+          "So...",
         ],
       },
       {
-        kind: "screens",
-        heading: "In the UI",
-        items: [
-          { label: "Spotlight modal", alt: "Spotlight modal introducing the wealth space on first open of an investing account" },
-          { label: "Revised account-details banner", alt: "Rewritten banner on the investment account details screen" },
-          { label: "Prospect screen — playable projection", alt: "Prospect screen where clients without an account adjust inputs and watch the projection respond" },
-        ],
+        kind: "figureRow",
+        card: {
+          number: 1,
+          title: "For existing investors:",
+          body: [
+            "We decided to provide an entry point on the account details screen itself, and introduce them into the wealth space from the account they were already checking.",
+          ],
+          banner: true,
+        },
+        figure: { label: "Spotlight modal" },
+      },
+      {
+        kind: "figureRow",
+        card: {
+          number: 2,
+          title: "For everyone else (no investment account users):",
+          body: [
+            "We decided to remove the static prospect page and introduce an interactive prospect screen. No account required: adjust the inputs, run the portfolio simulator, watch the projection respond, and start an investment journey right from there.",
+          ],
+        },
+        figure: { label: "Prospect screen" },
       },
       {
         kind: "prose",
         eyebrow: "Problem 2",
         heading: "The projection that told mortgage holders bad news",
-        body: [
-          "For clients whose only Tangerine product was a mortgage, the projection sat permanently negative — the house behind it was never added. The graph wasn't wrong; it was accurate about incomplete data, which still misinforms.",
+      },
+      {
+        kind: "findings",
+        items: [
+          "A user has a Tangerine mortgage product; the graph is always negative",
+          "The 10-year projection made users feel bad, constantly emphasizing that they were in debt",
         ],
       },
       {
-        kind: "callout",
-        tone: "rec",
-        title: "Paired insight — a mortgage implies a home",
-        body: "Detect a Tangerine mortgage → prompt the client to add their real estate as an asset. It corrects the projection and teaches how the tool works.",
+        kind: "prose",
+        body: [
+          "For clients whose only Tangerine product was a mortgage, the projection sat permanently negative because the house behind it was never added. The graph wasn't wrong, it was accurate about incomplete data, which still misinforms.",
+          "“Hey! Don't forget your house is your ASSET!”",
+          "So...",
+        ],
       },
       {
-        kind: "image",
-        label: "Projection graph with the paired insight banner for mortgage holders",
-        alt: "Projection graph with a paired insight banner prompting the client to add their real estate as an asset",
+        kind: "figureRow",
+        card: {
+          title: "Paired insight: a mortgage implies a home",
+          body: [
+            "Detect a Tangerine mortgage, then show the client a paired insight to add their real estate as an asset. It corrects the projection and teaches how the tool works. The insight banner only shows up for clients with a mortgage, with a CTA to “Add an asset.”",
+          ],
+        },
+        figure: { label: "Projection graph with the paired insight banner for mortgage holders" },
       },
       {
         kind: "prose",
         eyebrow: "Problem 3",
         heading: "One input field that cost us completions",
-        body: [
-          "The largest drop-off in the product: adding an external asset. The form asked for an effective date before the amount — recall, not a number the client has to hand. People stopped to think, and a meaningful share never came back.",
-          "We prepopulated it with today's date, fully editable. Precision stays possible; everyone else goes straight to the amount. The data-quality cost is small and bounded. The completion gain was not.",
-        ],
       },
       {
         kind: "findings",
         items: [
           "Under 6% of clients who reached the net worth view ever reached the add-asset screen",
-          "Of those who did start the flow, only ~40% finished — two problems, stacked",
+          "Only ~40% of those who started finished: two problems, stacked",
         ],
-      },
-      {
-        kind: "image",
-        label: "Add external asset — prepopulated effective date",
-        alt: "Add external asset form with the effective date prepopulated to today",
       },
       {
         kind: "prose",
-        eyebrow: "Impact",
-        heading: "What it did for the business",
         body: [
-          "iOS launched a month before Android — a natural experiment. In that month, investing account applications rose 60% YoY on iOS vs 12% on Android and 3% on web. When Android caught up, it jumped 52% while web stayed flat. Seasonality hit all three platforms equally; only two had the wealth space.",
+          "The largest drop-off in the product was adding an external asset or liability. The form asked for an effective date before the amount, a recall detail, not a number clients had on hand. People had to stop and think, or trace back what they owned, and a meaningful share never came back.",
+          "So...",
         ],
       },
       {
+        kind: "figureRow",
+        card: {
+          badge: "Quick Fix",
+          body: [
+            "We prepopulated the field with today's date, fully editable. Precision stays possible, but everyone else can go straight to the amount as of today, with no need to trace back and no friction completing the form. The data-quality cost is small and bounded.",
+          ],
+        },
+        figure: { label: "Add external asset — prepopulated effective date" },
+      },
+      {
         kind: "impact",
+        eyebrow: "Impact",
         stats: [
           { value: "1.3x", label: "lift in mobile engagement" },
           { value: "+49%", label: "mobile applications, year over year" },
-          { value: "60%", label: "iOS application growth in the month it had wealth" },
+          { value: "60%", label: "iOS application growth in the month had wealth" },
         ],
       },
       {
@@ -377,8 +405,17 @@ export const CASE_STUDIES: CaseStudy[] = [
         eyebrow: "Where It Stands",
         heading: "A strong foundation, still shipping",
         body: [
-          "Satisfaction scored 7.8 over the first 90 days. Clients didn't struggle — they asked for more: how the projection is calculated (the cost of the static figure), and the compounding view the history graph would have shown. That became the brief for the next phase.",
-          "The part I'd defend hardest is the loop. The MVP was a hypothesis, scoped to what the data could support — what it got right and wrong were decided afterwards, by watching what clients did.",
+          "Satisfaction scored 7.8 over the first 90 days. Clients weren't struggling, but there's still a long way to go to make it much better.",
+        ],
+      },
+      {
+        kind: "list",
+        intro: "In the future state:",
+        bulleted: true,
+        items: [
+          "Keep iterating",
+          "Portfolio focus, and integrate it into mobile, not just the website",
+          "Transitioning to a brand new design system in 2027",
         ],
       },
     ],
