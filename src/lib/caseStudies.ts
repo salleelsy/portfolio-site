@@ -106,7 +106,7 @@ export type Block =
       eyebrow?: string;
       heading?: string;
       intro?: string;
-      steps: { owner: string; title: string; desc: string; tools?: string[]; design?: boolean }[];
+      steps: { owners: string[]; title: string; desc: string; tools?: string[]; design?: boolean }[];
       note?: string;
     }
   | {
@@ -695,15 +695,15 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
       "Building a 100+ component design system for Wealth Studio — an internal portfolio-management tool for advisors — and what it taught me about where design sits in the sequence now.",
     cardSummary:
       "A 100+ component design system for an internal advisor tool, built in a code-first loop where Storybook — not Figma — was the source of truth.",
-    tags: ["Design system", "UX"],
+    tags: ["Design system", "UI", "AI"],
     cover: "/work/wealth-studio/banner.png",
     banner: {
       variant: "light",
-      title: "Storybook became the source of truth. Figma became a place to think.",
+      title: "One component, one pull request",
       subtitle:
         "Building a 100+ component design system for Wealth Studio, and what it taught me about where design sits in the sequence now.",
-      platform: "Internal advisor tool",
-      timeline: "2026",
+      platform: "Internal website",
+      timeline: "6 weeks",
       artwork: "/work/wealth-studio/banner.png",
     },
     meta: {
@@ -728,17 +728,16 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
         body: [
           "Wealth Studio is a portfolio-management system built for advisors inside the bank. It covers deposits and withdrawals, asset allocation, glide paths, rebalancing, and tax analysis, and it replaces a legacy tool advisors use every working day.",
           "My job was the design system underneath it: 100+ components, split across three designers, sequenced by priority so engineering never had to wait on design to unblock a build.",
-          "That's the product. This case study is about something else — because the way we built it looked almost nothing like the way I built things a year ago.",
+          "That's the product. This case study is about something else, because the way we built it looked almost nothing like the way I built things a year ago.",
         ],
       },
       {
         kind: "meta",
         items: [
-          { term: "Role", desc: "Product designer, design-system workstream" },
-          { term: "Team", desc: "3 designers, engineering, PO" },
-          { term: "Scope", desc: "100+ components, Critical to Low" },
-          { term: "Product", desc: "Wealth Studio, advisor portfolio management" },
-          { term: "Focus", desc: "The workflow, not the interface" },
+          { term: "Platform", desc: "Internal website" },
+          { term: "Timeline", desc: "6 weeks" },
+          { term: "Client", desc: "Canadian major banks" },
+          { term: "Tools", desc: "Claude Code, Storybook, Figma, Github" },
         ],
       },
       {
@@ -766,7 +765,7 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
         kind: "flip",
         columns: [
           {
-            label: "Before // design leads",
+            label: "Before: Design leads",
             items: [
               { text: "PRD written" },
               { text: "Designer explores in Figma", design: true },
@@ -777,7 +776,7 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
             ],
           },
           {
-            label: "Now // design refines",
+            label: "Now: Design defines",
             items: [
               { text: "PO prototypes in Lovable" },
               { text: "PRD written from the prototype" },
@@ -800,27 +799,27 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
       {
         kind: "pipeline",
         steps: [
-          { owner: "PO", title: "Prototype in Lovable", desc: "Built on shadcn/ui and Lucide icons as the starting foundation. Not a polished design, a working approximation of the flow.", tools: ["Lovable"] },
-          { owner: "PO", title: "Write the PRD", desc: "Written off the back of something that already runs, not ahead of it.", tools: ["PRD"] },
-          { owner: "Engineering", title: "Build infrastructure, main repo, Storybook", desc: "Storybook captures every component actually in use. This is the moment the system gets a canonical home, and it isn't Figma.", tools: ["GitHub", "Storybook"] },
-          { owner: "Designer", title: "Review Storybook and Lovable together", desc: "Check the user flow and UI against what has been built, not against a file that doesn't exist yet.", tools: ["Storybook", "Lovable"], design: true },
-          { owner: "Designer", title: "Clone the repo locally", desc: "Preview changes against the real thing instead of a static mockup.", tools: ["git clone", "Local build"], design: true },
-          { owner: "Designer + AI", title: "Pull components into Figma with Claude Code and the Figma MCP", desc: "Components travel from code to canvas. Figma stops being where they originate.", tools: ["Claude Code", "Figma MCP", "Figma"], design: true },
-          { owner: "Designer", title: "Set the core direction in Figma", desc: "Spacing, padding, and the sm / md / lg scale across text, graphics, and icons. The judgment layer on top of what already exists.", tools: ["Figma"], design: true },
-          { owner: "Designer", title: "Internal review and competitor research", desc: "Where variants get argued about before they get written.", tools: ["Figma", "Storybook"], design: true },
-          { owner: "Designer + AI", title: "Open a PR through Claude Code, using SKILLS.md", desc: "One component per PR, so any issue traces back to a single isolated change.", tools: ["Claude Code", "SKILLS.md", "GitHub"], design: true },
-          { owner: "Bot", title: "Greptile reviews the PR", desc: "Checks alignment before a human looks at it. Anything it flags goes back into Claude to resolve, not into a comment thread to die.", tools: ["Greptile", "Claude Code"] },
-          { owner: "Eng / PO", title: "Review and merge", desc: "The last gate is a human one, and by then the change is small enough to read in a sitting.", tools: ["GitHub"] },
-          { owner: "Everyone", title: "Rebase, daily", desc: "Three designers and a team of engineers ship into the same repo. Nothing is static while you're working on it, including the parts you didn't touch.", tools: ["git rebase"] },
+          { owners: ["PO"], title: "Prototype in Lovable", desc: "Built on Shadcn Ui and Lucide icons as the starting foundation. Not a polished design, a working approximation of the flow.", tools: ["Lovable"] },
+          { owners: ["PO"], title: "Write the PRD", desc: "Written off the back of something that already runs, not ahead of it." },
+          { owners: ["Engineer"], title: "Build infrastructure, main repo, Storybook", desc: "Storybook captures every component actually in use. This is the moment the system gets a canonical home, and it isn't Figma.", tools: ["GitHub", "Storybook"] },
+          { owners: ["Designer"], title: "Review Storybook and Lovable together", desc: "Check the user flow and UI against what has been built, not against a file that doesn't exist yet.", tools: ["Storybook", "Lovable"], design: true },
+          { owners: ["Designer"], title: "Clone the repo locally", desc: "Preview changes against the real thing instead of a static mockup.", design: true },
+          { owners: ["Designer + AI"], title: "Pull components into Figma with Claude Code and the Figma MCP", desc: "Components travel from code to canvas. Figma stops being where they originate.", tools: ["Claude Code", "Figma"], design: true },
+          { owners: ["Designer"], title: "Set the core direction in Figma", desc: "Spacing, padding, and the small/ medium/ large scale across text, graphics, and icons. The judgment layer on top of what already exists.", tools: ["Figma"], design: true },
+          { owners: ["Designer"], title: "Competitor research and internal review", desc: "Where variants get argued about before they get written.", tools: ["Figma", "Storybook"], design: true },
+          { owners: ["Designer + AI"], title: "Open a PR through Claude Code, using SKILLS.md", desc: "One component per PR, so any issue traces back to a single isolated change.", tools: ["Claude Code", "GitHub"], design: true },
+          { owners: ["Bot"], title: "Greptile reviews the PR", desc: "Checks alignment before a human looks at it. Anything it flags goes back into Claude to resolve, not into a comment thread to die.", tools: ["Greptile", "Claude Code"] },
+          { owners: ["PO", "Engineer"], title: "Review and merge", desc: "The last gate is a human one, and by then the change is small enough to read in a sitting.", tools: ["GitHub"] },
+          { owners: ["Everyone"], title: "Rebase, daily", desc: "Three designers and a team of engineers ship into the same repo. Nothing is static while you're working on it, including the parts you didn't touch." },
         ],
-        note: "Highlighted rows are design-owned — four of twelve steps, and the first one only lands after the system is already running.",
       },
       {
         kind: "prose",
         eyebrow: "What changed",
         heading: "What actually changed for me",
         body: [
-          "Five things shifted — about authority, anticipation, what a deliverable is, who reviews it first, and how stable the ground is under a design.",
+          "5 things shifted.",
+          "About authority, anticipation, what a deliverable is, who reviews it first, and how stable the ground is under a design.",
         ],
       },
       {
@@ -836,14 +835,14 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
         kind: "image",
         label: "Fig. 1 — The Alert component in Storybook",
         caption:
-          "Every variant, prop, and control lives here with real product content. When the Figma file and this page disagree, this page is correct.",
+          "Every variant, prop, and control lives here with real product content. Storybook documented every states, animations, interactions, etc.",
       },
       {
         kind: "prose",
         eyebrow: "Anticipation",
         heading: "I had to think in variants before I had feedback to work from",
         body: [
-          "Storybook captures what's in use. It doesn't capture what a component will need six screens from now. A lot of the work was designing variations that didn't exist yet: states, sizes, and combinations the prototype had never had a reason to produce.",
+          "Storybook documents existing components, but it doesn't capture every possible variation for future usage. We needed to design additional states, sizes, and component combinations that hadn't been defined yet.",
         ],
       },
       {

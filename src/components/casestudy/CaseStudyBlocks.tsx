@@ -956,22 +956,29 @@ export function CaseStudyBlock({ block }: { block: Block }) {
             {block.steps.map((s, i) => (
               <div
                 key={i}
-                className="grid grid-cols-[32px_minmax(0,1fr)] gap-x-4 gap-y-3 border-b border-hairline py-5 sm:grid-cols-[44px_150px_minmax(0,1fr)] sm:gap-x-6 sm:gap-y-0"
+                className={`grid grid-cols-[40px_minmax(0,1fr)] gap-x-4 gap-y-3 border-b border-hairline px-3 py-5 sm:grid-cols-[64px_150px_minmax(0,1fr)] sm:gap-x-6 sm:gap-y-0 ${
+                  s.design ? "bg-[#f4f6fc]" : ""
+                }`}
               >
                 <span
-                  className={`row-start-1 pt-[3px] font-label text-[13px] tabular-nums ${
-                    s.design ? "font-medium text-base-blue" : "text-muted"
+                  className={`row-start-1 tabular-nums text-[28px] leading-none sm:text-[32px] ${
+                    s.design ? "font-medium text-base-blue" : "font-normal text-muted"
                   }`}
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span
-                  className={`col-start-2 row-start-1 inline-flex h-fit w-fit items-center rounded-[6px] border px-2 py-1 font-label text-[11px] font-medium uppercase tracking-[0.1em] ${ownerTagClasses(
-                    s.owner,
-                  )}`}
-                >
-                  {s.owner}
-                </span>
+                <div className="col-start-2 row-start-1 flex flex-wrap gap-2">
+                  {s.owners.map((owner) => (
+                    <span
+                      key={owner}
+                      className={`inline-flex h-fit w-fit items-center rounded-[6px] border px-2 py-1 font-label text-[11px] font-medium uppercase tracking-[0.1em] ${ownerTagClasses(
+                        owner,
+                      )}`}
+                    >
+                      {owner}
+                    </span>
+                  ))}
+                </div>
                 <div className="col-start-2 row-start-2 flex flex-col gap-2 sm:col-start-3 sm:row-start-1">
                   <p className={`text-[18px] font-semibold leading-snug ${s.design ? "text-base-blue" : "text-ink"}`}>
                     {s.title}
