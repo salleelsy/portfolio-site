@@ -221,7 +221,7 @@ export function CaseStudyLayout({ study }: { study: CaseStudy }) {
             className="group mt-3 flex items-center justify-between gap-6"
           >
             <span className="text-[24px] font-semibold text-ink sm:text-[32px]">
-              {next.title}
+              {next.banner?.title ?? next.title}
             </span>
             <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-ink text-paper transition-transform group-hover:translate-x-1">
               <ArrowRightIcon className="size-6" />

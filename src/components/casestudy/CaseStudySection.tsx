@@ -2,15 +2,17 @@
 
 import { useState } from "react";
 import { ProjectCard, type ProjectCardProps } from "./ProjectCard";
-import { ArrowRightIcon, GridIcon, ListIcon } from "../icons";
+import { GridIcon, ListIcon } from "../icons";
 import { CASE_STUDIES } from "@/lib/caseStudies";
 
-const FILTERS = ["All", "Design system", "UX", "UI"] as const;
+const FILTERS = ["All", "UX", "UI", "Design System", "AI", "Research"] as const;
 
 // Real case studies, linked to their detail pages. Tags share the FILTERS
-// vocabulary, so the pills below actually filter the grid.
+// vocabulary, so the pills below actually filter the grid. The card title
+// mirrors the banner headline shown on the case-study page (falling back to
+// the study title) so the two stay in sync.
 const PROJECTS: (ProjectCardProps & { tags: string[] })[] = CASE_STUDIES.map((c) => ({
-  title: c.title,
+  title: c.banner?.title ?? c.title,
   description: c.cardSummary,
   href: `/work/${c.slug}`,
   thumbnailSrc: c.cover,
@@ -110,16 +112,6 @@ export function CaseStudySection() {
           ))}
         </div>
 
-        {/* Load more (TODO: pagination) */}
-        <div className="mt-8 flex justify-center">
-          <button
-            type="button"
-            className="inline-flex items-center gap-2 rounded-[10px] border border-hairline bg-paper px-[14px] py-[10px] text-[16px] font-bold text-ink outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-body-bg"
-          >
-            Load more
-            <ArrowRightIcon className="size-6" />
-          </button>
-        </div>
       </div>
     </section>
   );

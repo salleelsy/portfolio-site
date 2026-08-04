@@ -235,12 +235,22 @@ export function CaseStudyBlock({ block }: { block: Block }) {
     case "image":
       return (
         <figure className="flex flex-col gap-3">
-          <PhotoFrame
-            src={block.src}
-            alt={block.alt}
-            className={`w-full border border-hairline ${block.ratio === "4/3" ? "aspect-[4/3]" : "aspect-video"}`}
-            label={block.label}
-          />
+          {block.src ? (
+            // Real screenshots render at their natural aspect (uncropped).
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={block.src}
+              alt={block.alt ?? block.label}
+              className="w-full rounded-[12px] border border-hairline"
+            />
+          ) : (
+            <PhotoFrame
+              src={block.src}
+              alt={block.alt}
+              className={`w-full border border-hairline ${block.ratio === "4/3" ? "aspect-[4/3]" : "aspect-video"}`}
+              label={block.label}
+            />
+          )}
           {block.caption && (
             <figcaption className="text-[16px] text-muted">{block.caption}</figcaption>
           )}

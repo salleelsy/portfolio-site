@@ -197,7 +197,7 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
       "Leading design on Tangerine's digital wealth MVP — a 1.3x lift in mobile engagement and +49% YoY account applications.",
     // NOTE: drop the dark phone-collage image at /public/work/wealth/banner-screens.png
     cover: "/work/wealth/banner-screens.png",
-    tags: ["Design system", "UX", "UI"],
+    tags: ["UX", "UI", "Research"],
     banner: {
       variant: "light",
       title: "Launching Wealth inside a Bank's App",
@@ -695,7 +695,7 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
       "Building a 100+ component design system for Wealth Studio — an internal portfolio-management tool for advisors — and what it taught me about where design sits in the sequence now.",
     cardSummary:
       "A 100+ component design system for an internal advisor tool, built in a code-first loop where Storybook — not Figma — was the source of truth.",
-    tags: ["Design system", "UI", "AI"],
+    tags: ["Design System", "UI", "AI"],
     cover: "/work/wealth-studio/banner.png",
     banner: {
       variant: "light",
@@ -833,7 +833,8 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
       },
       {
         kind: "image",
-        label: "Fig. 1 — The Alert component in Storybook",
+        src: "/work/wealth-studio/storybook-alert.png",
+        label: "The Alert component in Storybook",
         caption:
           "Every variant, prop, and control lives here with real product content. Storybook documented every states, animations, interactions, etc.",
       },
@@ -847,31 +848,46 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
       },
       {
         kind: "image",
-        label: "Fig. 2 — The same component in Figma, expanded past what Storybook contained",
-        caption:
-          "Types, states, and styles mapped out so engineering had a complete surface to build against, rather than the one case the prototype happened to need.",
+        src: "/work/wealth-studio/alert.png",
+        label: "The Alert component expanded in Figma",
       },
       {
         kind: "image",
-        label: "Fig. 3 — A composed pattern rather than a primitive",
+        src: "/work/wealth-studio/figma-components.png",
+        label: "Every component mapped out in Figma",
         caption:
-          "The controls panel on the right is the part that shaped my work: props are the real specification, so the design decision has to survive being expressed as one.",
+          "Types, states, and styles mapped out so engineering had a complete surface to build against, rather than the one case the prototype happened to need.",
       },
       {
         kind: "prose",
         eyebrow: "Deliverable",
         heading: "The deliverable stopped being a file and started being a PR",
         body: [
-          "Opening PRs through Claude Code, one component at a time, meant the artifact I was accountable for wasn't a frame with redlines. It was a change that either passed review or didn't.",
-          "The one-component-per-PR rule was the constraint that made this workable. It kept every change small enough for an engineer to trace, and it kept me honest about scope: if a PR started sprawling, that was a signal the component boundary was wrong.",
+          "Opening PRs through Claude Code, one component at a time, meant the artifact I was accountable for wasn't a frame on Figma anymore. It was a change to the codebase that either passed review or didn't. And each of the pull request, I have the responsibility to make it legible to a reviewer who wasn't in the conversation where the decision was made.",
+          "The 1 component per PR rule was the constraint that made this workable. It kept every change small enough for an engineer to trace, and it kept me honest about scope: if a PR started sprawling, that was a signal the component boundary was wrong.",
         ],
+      },
+      {
+        kind: "image",
+        src: "/work/wealth-studio/create-pr.png",
+        label: "The pull request that shipped the change",
+        caption:
+          "The controls panel on the right is the part that shaped my work: props are the real specification, so the design decision has to survive being expressed as one.",
       },
       {
         kind: "prose",
         eyebrow: "Review",
         heading: "A bot joined the critique loop",
+      },
+      {
+        kind: "image",
+        src: "/work/wealth-studio/review-bot.png",
+        label: "Greptile's automated review on a pull request",
+      },
+      {
+        kind: "prose",
         body: [
-          "Greptile reviewing every PR before a human touched it changed what the first pass of review means. It isn't taste — it's whether the change is structurally consistent with the rest of the system. Feedback stopped being a comment thread and became something you resolve by running it back through Claude.",
+          "Greptile reviewing every PR before a human touched it changed what the first pass of review means. It isn't taste, it's whether the change is structurally consistent with the rest of the system. Feedback stopped being a comment thread and became something you resolve by running it back through Claude.",
         ],
       },
       {
@@ -879,7 +895,7 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
         eyebrow: "Instability",
         heading: "Daily rebasing meant designing inside a system that never holds still",
         body: [
-          "In the old workflow, an approved spec was stable. Here the ground could move under a component I'd already shipped, because someone else's change landed nearby. Rebasing daily wasn't housekeeping — it was the only way to know what you were designing against.",
+          "In the old workflow, an approved spec was stable. Here the ground could move under a component I'd already shipped, because someone else's change landed nearby. Rebasing daily wasn't housekeeping, it was the only way to know what you were designing against.",
         ],
       },
       {
@@ -888,6 +904,7 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
         heading: "Sequencing 100+ components across three designers",
         body: [
           "With a repo changing daily and no single approval gate, the coordination problem was as real as the design problem. We sorted every component into four priority bands and tracked status on a shared board, so anyone could see at a glance what was in progress, what was waiting on review, and what had already shipped.",
+          "Each component carries its own PR number and status, so the board doubles as an index into the repo. Statuses like “Ready to create PR,” “To be reviewed,” and “Need to merge PR again” were the shared vocabulary for three people working in parallel.",
         ],
       },
       {
@@ -897,20 +914,13 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
         items: ["Critical", "High", "Medium", "Low"],
       },
       {
-        kind: "image",
-        label: "Fig. 4 — The tracking board for the Critical and High bands",
-        caption:
-          "Each component carries its own PR number and status, so the board doubles as an index into the repo. Statuses like “Ready to create PR,” “To be reviewed,” and “Need to merge PR again” were the shared vocabulary for three people working in parallel.",
-      },
-      {
         kind: "prose",
         eyebrow: "Takeaways",
-        heading: "What I took from it",
+        heading: "The biggest shift wasn't a tool. It was where design sits in the sequence.",
         body: [
-          "The biggest shift wasn't a tool — it was where design sits in the sequence.",
-          "Design used to be the thing that happened before code. Here it became the layer that refines, governs, and keeps coherent a system that engineering and AI tooling were already building in parallel. That changes what a design-system role actually is: less “I define the spec and you build it,” more “I keep a hundred moving parts, made by several people and several agents, consistent, traceable, and reviewable.”",
-          "The skill that mattered most wasn't visual craft. It was being precise enough that a bot and an engineer could both act on what I decided.",
-          "Reading a component's real state in code. Knowing what good looks like at the token level. Encoding that judgment into something reviewable rather than something interpretable. Those turned out to be the load-bearing skills — and none of them are the ones I would have listed a year ago.",
+          "Design used to happen before code. In this project, it became the layer that refined, governed, and kept a system coherent while engineers and AI tools were building it in parallel.",
+          "That changed what a design system role meant. It was less about handing off specs and more about keeping work created by people and AI consistent, traceable, and easy to review.",
+          "The clearest difference is how “done” feels. A year ago, I finished by closing a Figma file. Now, I finish by opening a pull request and seeing whether my decisions survive implementation.",
         ],
       },
     ],
@@ -1055,7 +1065,7 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
     subtitle: "A centralised platform for teams to manage emissions data and reporting.",
     cardSummary:
       "A centralised emissions dashboard for a logistics group that cut form-management time in half and made reporting far more accurate.",
-    tags: ["UX", "UI"],
+    tags: ["UX"],
     meta: {
       role: "Product Designer",
       timeline: "4 months",
