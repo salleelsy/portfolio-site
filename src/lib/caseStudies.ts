@@ -130,6 +130,8 @@ export type CaseStudy = {
   title: string;
   subtitle: string;
   cardSummary: string;
+  /** Placeholder card: shows a "Coming Soon" tag and isn't clickable yet. */
+  comingSoon?: boolean;
   /** 21:9 cover image, reused as the portfolio-card thumbnail. */
   cover?: string;
   /**
@@ -1117,6 +1119,22 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
       },
     ],
   },
+
+  {
+    slug: "advisor-supervision-dashboard",
+    badge: "Fintech · Compliance",
+    category: "Product Design",
+    title: "Financial advisor supervision dashboard",
+    subtitle:
+      "Simplified complex compliance workflows by designing a centralized dashboard for financial advisors to monitor, investigate, and resolve exceptions.",
+    cardSummary:
+      "Simplified complex compliance workflows by designing a centralized dashboard for financial advisors to monitor, investigate, and resolve exceptions.",
+    tags: ["UX", "UI"],
+    cover: "/work/advisor-supervision/banner.png",
+    comingSoon: true,
+    meta: { role: "Product Designer", timeline: "TBD", tools: "Figma" },
+    blocks: [],
+  },
 ];
 
 // Display order across the site (landing grid + next-study links).
@@ -1126,6 +1144,7 @@ const STUDY_ORDER = [
   "ccg-loyalty-membership",
   "logistics-emissions-dashboard",
   "utility-app-usability",
+  "advisor-supervision-dashboard",
 ];
 
 export const CASE_STUDIES: CaseStudy[] = [...RAW_CASE_STUDIES].sort((a, b) => {

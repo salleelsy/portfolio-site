@@ -17,6 +17,8 @@ export type ProjectCardProps = {
    * "column" (grid view — thumbnail on top).
    */
   layout?: "row" | "column";
+  /** Placeholder card: shows a "Coming Soon" tag and isn't clickable. */
+  comingSoon?: boolean;
 };
 
 /**
@@ -33,12 +35,14 @@ export function ProjectCard({
   thumbnailSrc,
   thumbnail,
   layout = "row",
+  comingSoon = false,
 }: ProjectCardProps) {
   const row = layout === "row";
   return (
     <article
       className={[
-        "group relative flex flex-col gap-6 rounded-card border border-hairline bg-paper p-6 drop-shadow-[0px_2px_5px_rgba(0,0,0,0.05)] transition-shadow hover:drop-shadow-[0px_4px_12px_rgba(0,0,0,0.08)]",
+        "group relative flex flex-col gap-6 rounded-card border border-hairline bg-paper p-6 drop-shadow-[0px_2px_5px_rgba(0,0,0,0.05)]",
+        comingSoon ? "" : "transition-shadow hover:drop-shadow-[0px_4px_12px_rgba(0,0,0,0.08)]",
         row ? "sm:flex-row sm:items-start" : "",
       ].join(" ")}
     >
@@ -49,6 +53,11 @@ export function ProjectCard({
           row ? "sm:aspect-auto sm:h-[220px] sm:w-[360px]" : "",
         ].join(" ")}
       >
+        {comingSoon && (
+          <span className="absolute left-3 top-3 z-10 rounded-full bg-ink/85 px-3 py-1 font-label text-[13px] font-semibold uppercase tracking-wide text-paper backdrop-blur-sm">
+            Coming Soon
+          </span>
+        )}
         {thumbnail ??
           (thumbnailSrc ? (
             <Image
@@ -92,12 +101,14 @@ export function ProjectCard({
             {title}
           </h3>
           {/* Hover affordance — decorative; the stretched link takes the click. */}
-          <span
-            aria-hidden
-            className="pointer-events-none flex size-12 shrink-0 items-center justify-center rounded-full bg-body-bg text-cod-gray opacity-0 transition-[opacity,transform] duration-200 group-hover:opacity-100 group-focus-within:opacity-100 motion-safe:-translate-y-1 motion-safe:group-hover:translate-y-0 motion-safe:group-focus-within:translate-y-0"
-          >
-            <ArrowUpRightIcon className="size-5" />
-          </span>
+          {!comingSoon && (
+            <span
+              aria-hidden
+              className="pointer-events-none flex size-12 shrink-0 items-center justify-center rounded-full bg-body-bg text-cod-gray opacity-0 transition-[opacity,transform] duration-200 group-hover:opacity-100 group-focus-within:opacity-100 motion-safe:-translate-y-1 motion-safe:group-hover:translate-y-0 motion-safe:group-focus-within:translate-y-0"
+            >
+              <ArrowUpRightIcon className="size-5" />
+            </span>
+          )}
         </div>
         {/* Grid tiles stay scannable — the description shows in list view only. */}
         {row && (
@@ -107,13 +118,16 @@ export function ProjectCard({
         )}
       </div>
 
-      {/* One stretched link covers the card, so the whole tile is clickable. */}
-      <Link
-        href={href}
-        className="absolute inset-0 rounded-card outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-body-bg"
-      >
-        <span className="sr-only">{`${ctaLabel}: ${title}`}</span>
-      </Link>
+      {/* One stretched link covers the card, so the whole tile is clickable.
+          Coming-soon cards are placeholders, so they get no link. */}
+      {!comingSoon && (
+        <Link
+          href={href}
+          className="absolute inset-0 rounded-card outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-body-bg"
+        >
+          <span className="sr-only">{`${ctaLabel}: ${title}`}</span>
+        </Link>
+      )}
     </article>
   );
 }
