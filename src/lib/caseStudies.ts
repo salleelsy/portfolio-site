@@ -90,6 +90,26 @@ export type Block =
       video?: { src: string; caption?: string };
     }
   | {
+      kind: "toolStack";
+      eyebrow?: string;
+      heading?: string;
+      items: { name: string; desc: string; logo: string }[];
+    }
+  | {
+      kind: "flip";
+      eyebrow?: string;
+      heading?: string;
+      columns: { label: string; items: { text: string; design?: boolean }[] }[];
+    }
+  | {
+      kind: "pipeline";
+      eyebrow?: string;
+      heading?: string;
+      intro?: string;
+      steps: { owner: string; title: string; desc: string; tools?: string[]; design?: boolean }[];
+      note?: string;
+    }
+  | {
       kind: "figureRow";
       card: {
         badge?: string;
@@ -720,15 +740,15 @@ export const CASE_STUDIES: CaseStudy[] = [
         ],
       },
       {
-        kind: "highlights",
+        kind: "toolStack",
         heading: "The stack that replaced the old workflow",
         items: [
-          { title: "Lovable", body: ["Where the first working prototype gets built."] },
-          { title: "GitHub", body: ["One main repo, one component per pull request."] },
-          { title: "Storybook", body: ["Every component actually in use — and the source of truth."] },
-          { title: "Figma", body: ["Where the direction gets refined, not where components originate."] },
-          { title: "Claude Code", body: ["Moves components between code and canvas, and opens the PRs."] },
-          { title: "Greptile", body: ["Reviews every pull request before a human does."] },
+          { name: "Lovable", logo: "lovable", desc: "Where the first working prototype gets built." },
+          { name: "GitHub", logo: "github", desc: "One main repo, one component per pull request." },
+          { name: "Storybook", logo: "storybook", desc: "Every component actually in use, and the source of truth." },
+          { name: "Figma", logo: "figma", desc: "Where the direction gets refined, not where components originate." },
+          { name: "Claude Code", logo: "claude", desc: "Moves components between code and canvas, and opens the PRs." },
+          { name: "Greptile", logo: "greptile", desc: "Reviews every pull request before a human does." },
         ],
       },
       {
@@ -741,29 +761,31 @@ export const CASE_STUDIES: CaseStudy[] = [
         ],
       },
       {
-        kind: "beforeAfter",
-        before: {
-          title: "Before — design leads",
-          pros: [
-            "PRD written",
-            "Designer explores in Figma",
-            "Spec reviewed and approved",
-            "Handoff to engineering",
-            "Engineering builds toward the file",
-            "Figma stays the reference",
-          ],
-        },
-        after: {
-          title: "Now — design refines",
-          pros: [
-            "PO prototypes in Lovable",
-            "PRD written from the prototype",
-            "Engineering builds the repo + Storybook",
-            "Designer reviews what exists",
-            "Designer refines and ships a PR",
-            "Storybook stays the reference",
-          ],
-        },
+        kind: "flip",
+        columns: [
+          {
+            label: "Before // design leads",
+            items: [
+              { text: "PRD written" },
+              { text: "Designer explores in Figma", design: true },
+              { text: "Spec reviewed and approved", design: true },
+              { text: "Handoff to engineering" },
+              { text: "Engineering builds toward the file" },
+              { text: "Figma stays the reference" },
+            ],
+          },
+          {
+            label: "Now // design refines",
+            items: [
+              { text: "PO prototypes in Lovable" },
+              { text: "PRD written from the prototype" },
+              { text: "Engineering builds the repo + Storybook" },
+              { text: "Designer reviews what exists", design: true },
+              { text: "Designer refines and ships a PR", design: true },
+              { text: "Storybook stays the reference" },
+            ],
+          },
+        ],
       },
       {
         kind: "prose",
@@ -774,27 +796,22 @@ export const CASE_STUDIES: CaseStudy[] = [
         ],
       },
       {
-        kind: "list",
-        items: [
-          "PO · Prototype in Lovable — built on shadcn/ui and Lucide icons as a starting foundation. Not a polished design; a working approximation of the flow.",
-          "PO · Write the PRD — written off the back of something that already runs, not ahead of it.",
-          "Engineering · Build infrastructure, main repo, Storybook — Storybook captures every component actually in use. This is the moment the system gets a canonical home, and it isn't Figma.",
-          "Designer · Review Storybook and Lovable together — check the user flow and UI against what has been built, not against a file that doesn't exist yet.",
-          "Designer · Clone the repo locally — preview changes against the real thing instead of a static mockup.",
-          "Designer + AI · Pull components into Figma with Claude Code and the Figma MCP — components travel from code to canvas. Figma stops being where they originate.",
-          "Designer · Set the core direction in Figma — spacing, padding, and the sm / md / lg scale across text, graphics, and icons. The judgment layer on top of what already exists.",
-          "Designer · Internal review and competitor research — where variants get argued about before they get written.",
-          "Designer + AI · Open a PR through Claude Code, using SKILLS.md — one component per PR, so any issue traces back to a single isolated change.",
-          "Bot · Greptile reviews the PR — checks alignment before a human looks at it. Anything it flags goes back into Claude to resolve, not into a comment thread to die.",
-          "Eng / PO · Review and merge — the last gate is a human one, and by then the change is small enough to read in a sitting.",
-          "Everyone · Rebase, daily — three designers and a team of engineers ship into the same repo. Nothing is static while you're working on it, including the parts you didn't touch.",
+        kind: "pipeline",
+        steps: [
+          { owner: "PO", title: "Prototype in Lovable", desc: "Built on shadcn/ui and Lucide icons as the starting foundation. Not a polished design, a working approximation of the flow.", tools: ["Lovable"] },
+          { owner: "PO", title: "Write the PRD", desc: "Written off the back of something that already runs, not ahead of it.", tools: ["PRD"] },
+          { owner: "Engineering", title: "Build infrastructure, main repo, Storybook", desc: "Storybook captures every component actually in use. This is the moment the system gets a canonical home, and it isn't Figma.", tools: ["GitHub", "Storybook"] },
+          { owner: "Designer", title: "Review Storybook and Lovable together", desc: "Check the user flow and UI against what has been built, not against a file that doesn't exist yet.", tools: ["Storybook", "Lovable"], design: true },
+          { owner: "Designer", title: "Clone the repo locally", desc: "Preview changes against the real thing instead of a static mockup.", tools: ["git clone", "Local build"], design: true },
+          { owner: "Designer + AI", title: "Pull components into Figma with Claude Code and the Figma MCP", desc: "Components travel from code to canvas. Figma stops being where they originate.", tools: ["Claude Code", "Figma MCP", "Figma"], design: true },
+          { owner: "Designer", title: "Set the core direction in Figma", desc: "Spacing, padding, and the sm / md / lg scale across text, graphics, and icons. The judgment layer on top of what already exists.", tools: ["Figma"], design: true },
+          { owner: "Designer", title: "Internal review and competitor research", desc: "Where variants get argued about before they get written.", tools: ["Figma", "Storybook"], design: true },
+          { owner: "Designer + AI", title: "Open a PR through Claude Code, using SKILLS.md", desc: "One component per PR, so any issue traces back to a single isolated change.", tools: ["Claude Code", "SKILLS.md", "GitHub"], design: true },
+          { owner: "Bot", title: "Greptile reviews the PR", desc: "Checks alignment before a human looks at it. Anything it flags goes back into Claude to resolve, not into a comment thread to die.", tools: ["Greptile", "Claude Code"] },
+          { owner: "Eng / PO", title: "Review and merge", desc: "The last gate is a human one, and by then the change is small enough to read in a sitting.", tools: ["GitHub"] },
+          { owner: "Everyone", title: "Rebase, daily", desc: "Three designers and a team of engineers ship into the same repo. Nothing is static while you're working on it, including the parts you didn't touch.", tools: ["git rebase"] },
         ],
-      },
-      {
-        kind: "callout",
-        tone: "finding",
-        title: "Design owns four of the twelve steps",
-        body: "And the first one only lands after the system is already running — design refines and governs the build rather than leading it.",
+        note: "Highlighted rows are design-owned — four of twelve steps, and the first one only lands after the system is already running.",
       },
       {
         kind: "prose",

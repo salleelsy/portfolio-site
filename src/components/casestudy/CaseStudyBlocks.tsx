@@ -852,7 +852,178 @@ export function CaseStudyBlock({ block }: { block: Block }) {
         </div>
       );
     }
+
+    // toolStack — the stack cards (Figma 818:39315+): a hairline grid, each cell
+    // a tool icon, name, and one-line role.
+    case "toolStack":
+      return (
+        <div className="flex flex-col gap-6">
+          {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
+          {block.heading && <Heading>{block.heading}</Heading>}
+          <div className="grid grid-cols-1 gap-px overflow-hidden rounded-card border border-hairline bg-hairline sm:grid-cols-2">
+            {block.items.map((item) => (
+              <div key={item.name} className="flex items-start gap-4 bg-paper p-6">
+                <ToolLineIcon name={item.logo} className="size-6 shrink-0 text-ink" />
+                <div className="flex flex-col gap-1">
+                  <p className="text-[18px] font-semibold text-ink">{item.name}</p>
+                  <p className="text-[16px] leading-[1.5] text-muted">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+
+    // flip — the before/now comparison (Figma layout): two panels, each a
+    // restarting numbered list; design-owned rows carry the base-blue accent.
+    case "flip":
+      return (
+        <div className="flex flex-col gap-6">
+          {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
+          {block.heading && <Heading>{block.heading}</Heading>}
+          <div className="grid grid-cols-1 gap-px overflow-hidden rounded-card border border-hairline bg-hairline sm:grid-cols-2">
+            {block.columns.map((col) => (
+              <div key={col.label} className="bg-paper p-6 sm:p-8">
+                <p className="mb-3 font-label text-[13px] uppercase tracking-[0.14em] text-muted">
+                  {col.label}
+                </p>
+                <ol>
+                  {col.items.map((it, i) => (
+                    <li
+                      key={i}
+                      className="flex items-baseline gap-3 border-b border-hairline py-[10px] last:border-0"
+                    >
+                      <span
+                        className={`w-4 shrink-0 text-[13px] tabular-nums ${
+                          it.design ? "font-bold text-base-blue" : "text-muted"
+                        }`}
+                      >
+                        {i + 1}
+                      </span>
+                      <span
+                        className={`text-[16px] leading-[1.4] ${
+                          it.design ? "font-semibold text-ink" : "text-cod-gray"
+                        }`}
+                      >
+                        {it.text}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+
+    // pipeline — the ownership loop (Figma layout): index rail, owner tag, and a
+    // title/description/tool-tags column; design-owned steps take the accent.
+    case "pipeline":
+      return (
+        <div className="flex flex-col gap-6">
+          {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
+          {block.heading && <Heading>{block.heading}</Heading>}
+          {block.intro && (
+            <p className="max-w-[700px] text-[18px] leading-[1.7] text-cod-gray">{block.intro}</p>
+          )}
+          <div className="border-t border-ink">
+            {block.steps.map((s, i) => (
+              <div
+                key={i}
+                className="grid grid-cols-[32px_minmax(0,1fr)] gap-x-4 gap-y-3 border-b border-hairline py-5 sm:grid-cols-[44px_150px_minmax(0,1fr)] sm:gap-x-6 sm:gap-y-0"
+              >
+                <span className="row-start-1 pt-[3px] font-label text-[13px] tabular-nums text-muted">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span
+                  className={`col-start-2 row-start-1 inline-flex h-fit w-fit items-center rounded-[6px] border px-2 py-1 font-label text-[11px] uppercase tracking-[0.1em] ${
+                    s.design
+                      ? "border-base-blue text-base-blue"
+                      : "border-hairline bg-body-bg text-muted"
+                  }`}
+                >
+                  {s.owner}
+                </span>
+                <div className="col-start-2 row-start-2 flex flex-col gap-2 sm:col-start-3 sm:row-start-1">
+                  <p className={`text-[18px] font-semibold leading-snug ${s.design ? "text-base-blue" : "text-ink"}`}>
+                    {s.title}
+                  </p>
+                  <p className="text-[16px] leading-[1.6] text-muted">{s.desc}</p>
+                  {s.tools && s.tools.length > 0 && (
+                    <div className="flex flex-wrap gap-2 pt-1">
+                      {s.tools.map((t) => (
+                        <span
+                          key={t}
+                          className={`rounded-[6px] border px-2 py-1 font-label text-[11px] uppercase tracking-[0.08em] ${
+                            s.design ? "border-base-blue/40 text-base-blue" : "border-hairline bg-body-bg text-muted"
+                          }`}
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+          {block.note && <p className="max-w-[720px] text-[16px] leading-[1.6] text-muted">{block.note}</p>}
+        </div>
+      );
   }
+}
+
+/**
+ * ToolLineIcon — line-style marks for the tool-stack cards (Figma 818:39315+):
+ * Lovable (heart), GitHub (branch), Storybook (book), Figma, Claude (sparkle),
+ * Greptile (shield). Monochrome strokes so the grid reads as one system; the
+ * full-colour brand logos can drop in as <img> once exported.
+ */
+function ToolLineIcon({ name, className }: { name: string; className?: string }) {
+  const stroke = {
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.6,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+  };
+  const paths: Record<string, React.ReactNode> = {
+    lovable: <path d="M12 20s-6.5-4.35-9-8C1.4 9.4 2.3 5.8 5.6 5.1c1.9-.4 3.5.7 4.4 2 .9-1.3 2.5-2.4 4.4-2 3.3.7 4.2 4.3 2.6 6.9-2.5 3.65-9 8-9 8z" {...stroke} />,
+    github: (
+      <>
+        <line x1="6" y1="3" x2="6" y2="15" {...stroke} />
+        <circle cx="18" cy="6" r="3" {...stroke} />
+        <circle cx="6" cy="18" r="3" {...stroke} />
+        <path d="M18 9a9 9 0 0 1-9 9" {...stroke} />
+      </>
+    ),
+    storybook: (
+      <>
+        <path d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16a3 3 0 0 0-3-3H2z" {...stroke} />
+        <path d="M22 4a2 2 0 0 0-2-2h-6a2 2 0 0 0-2 2v16a3 3 0 0 1 3-3h7z" {...stroke} />
+      </>
+    ),
+    figma: (
+      <>
+        <path d="M8.5 2H12v7H8.5A3.5 3.5 0 0 1 8.5 2z" {...stroke} />
+        <path d="M12 2h3.5a3.5 3.5 0 0 1 0 7H12z" {...stroke} />
+        <circle cx="15.5" cy="12.5" r="3.5" {...stroke} />
+        <path d="M8.5 9H12v7H8.5a3.5 3.5 0 0 1 0-7z" {...stroke} />
+        <path d="M8.5 16H12v3.5A3.5 3.5 0 1 1 8.5 16z" {...stroke} />
+      </>
+    ),
+    claude: (
+      <>
+        <path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4" {...stroke} />
+      </>
+    ),
+    greptile: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" {...stroke} />,
+  };
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden focusable="false">
+      {paths[name] ?? null}
+    </svg>
+  );
 }
 
 /** Solid heart for the "Quick Fix" tag (Figma 795:25750). */
