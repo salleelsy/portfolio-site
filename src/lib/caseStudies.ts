@@ -696,6 +696,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     cardSummary:
       "A 100+ component design system for an internal advisor tool, built in a code-first loop where Storybook — not Figma — was the source of truth.",
     tags: ["Design system", "UX"],
+    cover: "/work/wealth-studio/banner.png",
     banner: {
       variant: "light",
       title: "Storybook became the source of truth. Figma became a place to think.",
@@ -703,6 +704,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         "Building a 100+ component design system for Wealth Studio, and what it taught me about where design sits in the sequence now.",
       platform: "Internal advisor tool",
       timeline: "2026",
+      artwork: "/work/wealth-studio/banner.png",
     },
     meta: {
       role: "Product designer, design-system workstream",
