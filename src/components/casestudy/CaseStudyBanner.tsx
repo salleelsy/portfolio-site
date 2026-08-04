@@ -17,7 +17,7 @@ export function CaseStudyBanner({ study }: { study: CaseStudy }) {
     return (
       <div className="mx-auto w-full max-w-[1360px] px-6 pb-4 sm:px-10">
         <div className="flex flex-col items-start gap-6">
-          <h1 className="font-display max-w-[16ch] text-[40px] font-semibold leading-[1.1] text-ink sm:text-[56px]">
+          <h1 className="font-display max-w-[900px] text-[40px] font-semibold leading-[1.1] text-ink sm:text-[56px]">
             {banner.title}
           </h1>
           {study.tags && study.tags.length > 0 && (
@@ -37,7 +37,7 @@ export function CaseStudyBanner({ study }: { study: CaseStudy }) {
             <img
               src={banner.artwork}
               alt={`${banner.title} — app screens`}
-              className="mt-4 w-full rounded-[16px] border border-hairline"
+              className="mt-4 w-full rounded-[16px]"
             />
           )}
         </div>

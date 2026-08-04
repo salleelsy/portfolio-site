@@ -8,9 +8,9 @@ export function SectionTitle({ children }: { children: React.ReactNode }) {
     <div className="flex items-center gap-4 border-t border-hairline pb-8 pt-10">
       <span
         aria-hidden
-        className="h-[26px] w-[56px] shrink-0 rounded-full border-[8px] border-base-blue"
+        className="h-[26px] w-[56px] shrink-0 rounded-full border-[5px] border-base-blue"
       />
-      <h2 className="font-section text-[24px] font-semibold leading-[1.3] text-base-blue">
+      <h2 className="font-section text-[20px] font-semibold leading-[1.3] text-base-blue">
         {children}
       </h2>
     </div>

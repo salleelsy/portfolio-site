@@ -15,7 +15,12 @@ const CONTAINER = "mx-auto w-full max-w-[1360px] px-6 sm:px-10";
 const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
 // Text blocks read at a 700px measure; visual blocks span the column.
-const FULL_WIDTH_BLOCKS = new Set(["image", "gallery", "screens", "timeline", "impact", "findings", "mediaSplit", "meta", "figureRow", "toolStack", "flip", "pipeline"]);
+const FULL_WIDTH_BLOCKS = new Set([
+  "image", "gallery", "screens", "timeline", "impact", "findings", "mediaSplit",
+  "meta", "figureRow", "toolStack", "flip", "pipeline",
+  // Card/visual blocks span the column; only prose/list stay at the 700px measure.
+  "tierTable", "priorityList", "beforeAfter", "personas", "ideation", "hierarchy", "highlights",
+]);
 
 /** Caps a block at 700px unless it's a full-width visual block. */
 function BlockRow({ block, className = "" }: { block: Block; className?: string }) {
@@ -115,7 +120,7 @@ export function CaseStudyLayout({ study }: { study: CaseStudy }) {
               </span>
             )}
           </div>
-          <h1 className="max-w-[18ch] text-[40px] font-semibold leading-[1.05] tracking-[-0.01em] text-ink sm:text-[56px]">
+          <h1 className="max-w-[900px] text-[40px] font-semibold leading-[1.05] tracking-[-0.01em] text-ink sm:text-[56px]">
             {study.title}
           </h1>
           <p className="max-w-[60ch] text-[18px] leading-[1.5] text-muted sm:text-[20px]">

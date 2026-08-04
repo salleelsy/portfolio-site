@@ -11,7 +11,12 @@ const FILTERS = ["All", "UX", "UI", "Design System", "AI", "Research"] as const;
 // vocabulary, so the pills below actually filter the grid. The card title
 // mirrors the banner headline shown on the case-study page (falling back to
 // the study title) so the two stay in sync.
-const PROJECTS: (ProjectCardProps & { tags: string[] })[] = CASE_STUDIES.map((c) => ({
+// Cards hidden from the grid for now (pages still exist).
+const HIDDEN_SLUGS = new Set(["utility-app-usability", "logistics-emissions-dashboard"]);
+
+const PROJECTS: (ProjectCardProps & { tags: string[] })[] = CASE_STUDIES.filter(
+  (c) => !HIDDEN_SLUGS.has(c.slug),
+).map((c) => ({
   title: c.banner?.title ?? c.title,
   description: c.cardSummary,
   href: `/work/${c.slug}`,

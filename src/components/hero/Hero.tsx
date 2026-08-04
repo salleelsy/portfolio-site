@@ -1,5 +1,4 @@
 import type { CSSProperties } from "react";
-import { FolderNav } from "./FolderNav";
 
 // Headline is exact from Figma (782:24554) — Poppins Medium 56 / -1.12px.
 const HEADLINE = [
@@ -131,8 +130,9 @@ export function Hero() {
           ))}
         </h1>
 
-        {/* Folder nav — pinned top-right within the column (Figma 782:24555) */}
-        <FolderNav className="absolute right-6 top-10 sm:right-10 lg:top-[104px]" />
+        {/* Folder nav — pinned top-right within the column (Figma 782:24555).
+            Hidden for now per request. */}
+        {/* <FolderNav className="absolute right-6 top-10 sm:right-10 lg:top-[104px]" /> */}
       </div>
     </section>
   );
