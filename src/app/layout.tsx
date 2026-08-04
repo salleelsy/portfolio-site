@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Work_Sans, Poppins, Outfit, Geist } from "next/font/google";
 import "./globals.css";
+import { PasswordGate } from "@/components/PasswordGate";
 
 // Work Sans — small caption/label text (e.g. folder labels).
 const workSans = Work_Sans({
@@ -54,7 +55,9 @@ export default function RootLayout({
           window-wall, the brand marquee) ever creating horizontal page scroll.
           `clip` (not `hidden`) keeps sticky descendants like the case-study
           stepper working. */}
-      <body className="flex min-h-full flex-col overflow-x-clip">{children}</body>
+      <body className="flex min-h-full flex-col overflow-x-clip">
+        <PasswordGate>{children}</PasswordGate>
+      </body>
     </html>
   );
 }
