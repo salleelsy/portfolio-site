@@ -132,6 +132,27 @@ const CALLOUT = {
   rec: { label: "Recommendation", bar: "border-l-muted" },
 } as const;
 
+// Uber Base "Tag" colours for pipeline owners: Designer blue, Engineering
+// green, PO gold; support roles (Bot, Everyone) stay neutral.
+function ownerTagClasses(owner: string): string {
+  if (owner.startsWith("Designer")) return "border-[#a9c6fb] bg-[#eef4fe] text-[#1c5fd6]";
+  if (owner.startsWith("Eng")) return "border-[#a7dcbe] bg-[#e9f7ef] text-[#1e7d3e]";
+  if (owner.startsWith("PO")) return "border-[#e7cf93] bg-[#fbf3e0] text-[#8a6412]";
+  return "border-hairline bg-body-bg text-muted";
+}
+
+// Pipeline tool tags that map to an exported brand logo; anything else
+// (PRD, git clone, SKILLS.md, …) falls back to a text chip.
+const TOOL_LOGO: Record<string, string> = {
+  Lovable: "lovable",
+  GitHub: "github",
+  Storybook: "storybook",
+  Figma: "figma",
+  "Figma MCP": "figma",
+  "Claude Code": "claude",
+  Greptile: "greptile",
+};
+
 // Phone-mockup sizing across all case-study screens: fixed responsive width
 // (≈290px mobile → 340px desktop). Rows scroll horizontally rather than wrapping
 // one-per-row. Full-height keeps each screenshot uncropped regardless of aspect.
@@ -900,7 +921,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                     >
                       <span
                         className={`w-4 shrink-0 text-[13px] tabular-nums ${
-                          it.design ? "font-bold text-base-blue" : "text-muted"
+                          it.design ? "font-medium text-base-blue" : "text-muted"
                         }`}
                       >
                         {i + 1}
@@ -937,15 +958,17 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                 key={i}
                 className="grid grid-cols-[32px_minmax(0,1fr)] gap-x-4 gap-y-3 border-b border-hairline py-5 sm:grid-cols-[44px_150px_minmax(0,1fr)] sm:gap-x-6 sm:gap-y-0"
               >
-                <span className="row-start-1 pt-[3px] font-label text-[13px] tabular-nums text-muted">
+                <span
+                  className={`row-start-1 pt-[3px] font-label text-[13px] tabular-nums ${
+                    s.design ? "font-medium text-base-blue" : "text-muted"
+                  }`}
+                >
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span
-                  className={`col-start-2 row-start-1 inline-flex h-fit w-fit items-center rounded-[6px] border px-2 py-1 font-label text-[11px] uppercase tracking-[0.1em] ${
-                    s.design
-                      ? "border-base-blue text-base-blue"
-                      : "border-hairline bg-body-bg text-muted"
-                  }`}
+                  className={`col-start-2 row-start-1 inline-flex h-fit w-fit items-center rounded-[6px] border px-2 py-1 font-label text-[11px] font-medium uppercase tracking-[0.1em] ${ownerTagClasses(
+                    s.owner,
+                  )}`}
                 >
                   {s.owner}
                 </span>
@@ -955,17 +978,26 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                   </p>
                   <p className="text-[16px] leading-[1.6] text-muted">{s.desc}</p>
                   {s.tools && s.tools.length > 0 && (
-                    <div className="flex flex-wrap gap-2 pt-1">
-                      {s.tools.map((t) => (
-                        <span
-                          key={t}
-                          className={`rounded-[6px] border px-2 py-1 font-label text-[11px] uppercase tracking-[0.08em] ${
-                            s.design ? "border-base-blue/40 text-base-blue" : "border-hairline bg-body-bg text-muted"
-                          }`}
-                        >
-                          {t}
-                        </span>
-                      ))}
+                    <div className="flex flex-wrap items-center gap-2 pt-1">
+                      {s.tools.map((t) =>
+                        TOOL_LOGO[t] ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            key={t}
+                            src={`/work/wealth-studio/logos/${TOOL_LOGO[t]}.svg`}
+                            alt={t}
+                            title={t}
+                            className="size-8 rounded-[6px]"
+                          />
+                        ) : (
+                          <span
+                            key={t}
+                            className="rounded-[6px] border border-hairline bg-body-bg px-2 py-1 font-label text-[11px] uppercase tracking-[0.08em] text-muted"
+                          >
+                            {t}
+                          </span>
+                        ),
+                      )}
                     </div>
                   )}
                 </div>

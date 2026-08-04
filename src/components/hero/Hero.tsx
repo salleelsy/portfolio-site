@@ -90,7 +90,8 @@ export function Hero() {
               {
                 left: win.l,
                 top: win.t,
-                // Staggered so the wall drifts naturally, not in lockstep.
+                // Staggered fade-in on load, then a naturally-varied drift.
+                "--in-delay": `${(i % 8) * 0.09}s`,
                 "--float-dur": `${3.8 + (i % 4) * 0.5}s`,
                 "--float-delay": `${(i % 5) * 0.18}s`,
                 "--float-amp": `${6 + (i % 3) * 3}px`,

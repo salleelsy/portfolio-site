@@ -73,10 +73,21 @@
   }
 }
 
-/* Hero window wall — a gentle up/down drift that plays a couple of calm cycles
-   on load, then settles back to rest (the keyframe returns to translateY(0),
-   so no fill is needed). Per-window duration/delay/amplitude are set inline so
-   the wall breathes naturally rather than moving in lockstep. */
+/* Hero window wall — on load each window fades in from 0 → 1 (with a small
+   rise), staggered so the wall populates rather than appearing at once, then a
+   gentle up/down drift breathes for a couple of calm cycles and settles.
+   Per-window delay/duration/amplitude are set inline. */
+@keyframes hero-window-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @keyframes hero-window-float {
   0%,
   100% {
@@ -91,9 +102,12 @@
 }
 
 .hero-float {
-  animation: hero-window-float var(--float-dur, 4s) ease-in-out
-    var(--float-delay, 0s) 2;
-  will-change: transform;
+  opacity: 0;
+  animation:
+    hero-window-in 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) var(--in-delay, 0s) forwards,
+    hero-window-float var(--float-dur, 4s) ease-in-out
+      calc(var(--in-delay, 0s) + 0.7s) 2;
+  will-change: transform, opacity;
 }
 
 body {
@@ -106,5 +120,9 @@ body {
   .animate-marquee,
   .hero-float {
     animation: none !important;
+  }
+  /* Keep the wall visible when the entrance fade is disabled. */
+  .hero-float {
+    opacity: 1;
   }
 }

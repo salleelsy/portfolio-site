@@ -184,7 +184,7 @@ const CHRISTY: Persona = {
   tint: "amber",
 };
 
-export const CASE_STUDIES: CaseStudy[] = [
+const RAW_CASE_STUDIES: CaseStudy[] = [
   {
     slug: "tangerine-wealth-mvp",
     badge: "Fintech · Wealth",
@@ -1109,6 +1109,21 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
   },
 ];
+
+// Display order across the site (landing grid + next-study links).
+const STUDY_ORDER = [
+  "wealth-studio-design-system",
+  "tangerine-wealth-mvp",
+  "ccg-loyalty-membership",
+  "logistics-emissions-dashboard",
+  "utility-app-usability",
+];
+
+export const CASE_STUDIES: CaseStudy[] = [...RAW_CASE_STUDIES].sort((a, b) => {
+  const ia = STUDY_ORDER.indexOf(a.slug);
+  const ib = STUDY_ORDER.indexOf(b.slug);
+  return (ia === -1 ? Infinity : ia) - (ib === -1 ? Infinity : ib);
+});
 
 export function getCaseStudy(slug: string): CaseStudy | undefined {
   return CASE_STUDIES.find((c) => c.slug === slug);
