@@ -93,7 +93,16 @@ function groupSections(study: CaseStudy): { lead: Block[]; sections: Section[] }
 /** Full case-study page shell. */
 export function CaseStudyLayout({ study }: { study: CaseStudy }) {
   const idx = CASE_STUDIES.findIndex((c) => c.slug === study.slug);
-  const next = CASE_STUDIES[(idx + 1) % CASE_STUDIES.length];
+  // Next study, cycling forward and skipping coming-soon placeholders.
+  const n = CASE_STUDIES.length;
+  let next = study;
+  for (let step = 1; step <= n; step++) {
+    const candidate = CASE_STUDIES[(idx + step) % n];
+    if (!candidate.comingSoon && candidate.slug !== study.slug) {
+      next = candidate;
+      break;
+    }
+  }
   const sectioned = (study.sections?.length ?? 0) > 0;
   const { lead, sections } = groupSections(study);
   const stepperItems: StepperItem[] = sections

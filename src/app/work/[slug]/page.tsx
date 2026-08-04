@@ -6,7 +6,7 @@ import { CaseStudyLayout } from "@/components/casestudy/CaseStudyLayout";
 type Params = { slug: string };
 
 export function generateStaticParams(): Params[] {
-  return CASE_STUDIES.map((c) => ({ slug: c.slug }));
+  return CASE_STUDIES.filter((c) => !c.comingSoon).map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({
@@ -30,6 +30,6 @@ export default async function CaseStudyPage({
 }) {
   const { slug } = await params;
   const study = getCaseStudy(slug);
-  if (!study) notFound();
+  if (!study || study.comingSoon) notFound();
   return <CaseStudyLayout study={study} />;
 }

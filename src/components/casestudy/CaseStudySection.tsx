@@ -22,6 +22,7 @@ const PROJECTS: (ProjectCardProps & { tags: string[] })[] = CASE_STUDIES.filter(
   href: `/work/${c.slug}`,
   thumbnailSrc: c.cover,
   tags: c.tags ?? [],
+  comingSoon: c.comingSoon,
 }));
 
 /**
