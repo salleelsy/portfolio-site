@@ -101,7 +101,7 @@ export function ProjectCard({
         </div>
         {/* Grid tiles stay scannable — the description shows in list view only. */}
         {row && (
-          <p className="text-[16px] font-normal leading-[1.5] text-muted">
+          <p className="max-w-[700px] text-[16px] font-normal leading-[1.5] text-muted">
             {description}
           </p>
         )}

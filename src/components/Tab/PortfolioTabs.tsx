@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ComponentType } from "react";
+import { useEffect, useState, type ComponentType } from "react";
 import { TabList, type TabItem } from "./index";
 import { CaseStudySection } from "../casestudy/CaseStudySection";
 import { BrandsStrip } from "../brands/BrandsStrip";
@@ -38,15 +38,31 @@ const PANELS: Record<string, ComponentType> = {
  * The tab strip sits between the hero and the panels; the selected tab's section
  * (Selected works / About me / Say hello / Resume) is shown, the rest are hidden.
  */
+const TAB_VALUES = new Set(NAV.map((n) => n.value));
+
 export function PortfolioTabs() {
   const [value, setValue] = useState("portfolio");
+
+  // Footer links (e.g. /#about) select the matching tab and scroll it into view.
+  useEffect(() => {
+    const applyHash = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (TAB_VALUES.has(hash)) {
+        setValue(hash);
+        document.getElementById("work")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    };
+    applyHash();
+    window.addEventListener("hashchange", applyHash);
+    return () => window.removeEventListener("hashchange", applyHash);
+  }, []);
 
   return (
     <>
       {/* Transparent band pulled up so the tabs overlap the hero collage
           (Figma layout). z-2 keeps the folder tabs above the hero and the
           panel below. */}
-      <div className="relative z-20 -mt-[120px] sm:-mt-[150px] lg:-mt-[170px]">
+      <div id="work" className="relative z-20 -mt-[120px] scroll-mt-4 sm:-mt-[150px] lg:-mt-[170px]">
         {/* No overflow clip here: the tab shapes' feet bleed sideways and the
             soft top shadow rises above the strip — both must stay visible.
             pt gives the shadow headroom; sm:px-4 keeps the strip in-column. */}
