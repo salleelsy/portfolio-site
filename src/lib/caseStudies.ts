@@ -1126,14 +1126,247 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
     category: "Product Design",
     title: "Financial advisor supervision dashboard",
     subtitle:
-      "Simplified complex compliance workflows by designing a centralized dashboard for financial advisors to monitor, investigate, and resolve exceptions.",
+      "Redesigning the compliance investigation workflow so supervisors could act with more speed and confidence.",
     cardSummary:
-      "Simplified complex compliance workflows by designing a centralized dashboard for financial advisors to monitor, investigate, and resolve exceptions.",
-    tags: ["UX", "UI"],
+      "Redesigning the compliance investigation workflow for a wealth management supervision tool — layered hierarchy, risk-based prioritization, and a single investigation surface.",
     cover: "/work/advisor-supervision/banner.png",
-    comingSoon: true,
-    meta: { role: "Product Designer", timeline: "TBD", tools: "Figma" },
-    blocks: [],
+    tags: ["UX", "UI"],
+    banner: {
+      variant: "light",
+      title: "Advisor Supervision Tool",
+      subtitle:
+        "Helping supervisors investigate compliance exceptions with greater speed and confidence.",
+      platform: "Enterprise web app",
+      timeline: "TBD",
+      artwork: "/work/advisor-supervision/banner.png",
+    },
+    meta: {
+      role: "Product Designer",
+      timeline: "TBD",
+      tools: "Figma",
+      note: "Some screens and details are modified or omitted for confidentiality.",
+    },
+    sections: [
+      { title: "Overview" },
+      { title: "Journey" },
+      { title: "Challenge 1" },
+      { title: "Challenge 2" },
+      { title: "Challenge 3" },
+      { title: "Outcome", inStepper: false },
+    ],
+    blocks: [
+      {
+        kind: "prose",
+        eyebrow: "Overview",
+        heading:
+          "Supervisors weren't struggling to understand compliance. They were struggling to know where to begin.",
+        body: [
+          "As advisor activity continued to grow, supervisors were responsible for monitoring hundreds of accounts, investment rules, and compliance exceptions.",
+          "Finding the highest-priority issue often required navigating multiple datasets, cross-checking account history, and manually piecing together context before any decision could be made.",
+          "My role was to redesign the investigation workflow so supervisors could quickly surface critical risks, understand why they occurred, and confidently determine the next action.",
+        ],
+      },
+      {
+        kind: "meta",
+        items: [
+          { term: "Platform", desc: "Enterprise web application" },
+          { term: "Industry", desc: "Wealth management · Financial compliance" },
+          { term: "Timeline", desc: "TBD" },
+          { term: "Tools", desc: "Figma" },
+        ],
+      },
+      {
+        kind: "list",
+        heading: "What the platform covered",
+        intro:
+          "The tool spanned the full supervision surface. This case study follows only the parts a supervisor touches while working through a single exception, from the first alert to the final decision.",
+        bulleted: true,
+        items: [
+          "Compliance dashboard",
+          "Compliance exceptions",
+          "KPI summary cards",
+          "Severity indicators",
+          "Exception aging",
+          "Smart filtering",
+          "Exception detail page",
+          "Investigation workflow",
+          "Timeline of activities",
+          "Household, account, and position views",
+          "Compliance history",
+          "Business rule details",
+          "Override, resolve, and escalate actions",
+        ],
+      },
+      {
+        kind: "features",
+        eyebrow: "Journey",
+        heading:
+          "A supervisor's day doesn't start with a dashboard. It starts with a compliance alert.",
+        items: [
+          { title: "01 · Alert", body: "Something has been flagged." },
+          {
+            title: "02 · Prioritize",
+            body: "Which issue carries the most risk?",
+          },
+          { title: "03 · Investigate", body: "Why did this happen?" },
+          { title: "04 · Decide", body: "What should I do next?" },
+          {
+            title: "05 · Resolve",
+            body: "Resolve, override, or escalate.",
+          },
+        ],
+      },
+      {
+        kind: "prose",
+        eyebrow: "Challenge 1",
+        heading: "Managing information overload",
+      },
+      {
+        kind: "prose",
+        heading: "Everything looked equally important.",
+        body: [
+          "Supervisors monitored thousands of advisor activities every day. As more compliance rules were introduced, important issues became buried inside large tables and exception lists. Finding the right issue required too much scanning.",
+          "Rather than exposing every piece of data at once, I introduced a layered information hierarchy.",
+        ],
+      },
+      {
+        kind: "features",
+        heading: "The dashboard answers three questions immediately",
+        items: [
+          {
+            title: "What changed?",
+            body: "KPI summary cards show the state of the book before any scrolling happens.",
+          },
+          {
+            title: "What is most urgent?",
+            body: "Severity indicators make risk level readable at a glance, not inferred from the rule name.",
+          },
+          {
+            title: "Where should I investigate first?",
+            body: "Exception aging surfaces how long an item has gone unreviewed as its own signal.",
+          },
+        ],
+      },
+      {
+        kind: "image",
+        label: "Supervision dashboard",
+        caption:
+          "Quick filters, trend summaries, and severity indicators on the main dashboard.",
+      },
+      {
+        kind: "prose",
+        eyebrow: "Challenge 2",
+        heading: "Prioritizing regulatory risk",
+      },
+      {
+        kind: "prose",
+        heading: "Not every exception carries the same level of business risk.",
+        body: [
+          "Yet every item competed for the same visual attention. Supervisors needed to understand urgency before spending time investigating.",
+          "Prioritization became a system rather than a single sort.",
+        ],
+      },
+      {
+        kind: "features",
+        heading: "Six layers of prioritization",
+        items: [
+          {
+            title: "Severity",
+            body: "Regulatory weight, set by the rule and not by the supervisor.",
+          },
+          {
+            title: "Exception aging",
+            body: "Time unreviewed escalates an item on its own.",
+          },
+          {
+            title: "Smart filters",
+            body: "Saved cuts that match how a supervisor divides their day.",
+          },
+          {
+            title: "Grouping",
+            body: "Related exceptions collapse into one review instead of many.",
+          },
+          {
+            title: "Sorting",
+            body: "A default order that reflects risk, not the order data arrived.",
+          },
+          {
+            title: "Visual hierarchy",
+            body: "Cleared and low-risk items recede so critical items carry weight.",
+          },
+        ],
+      },
+      {
+        kind: "image",
+        label: "Compliance exceptions list",
+        caption:
+          "Severity column anchored left, aging weighted against severity in the default sort, and smart filters that stay visible.",
+      },
+      {
+        kind: "prose",
+        eyebrow: "Challenge 3",
+        heading: "Supporting efficient investigation",
+      },
+      {
+        kind: "prose",
+        heading: "Everything existed in a different place.",
+        body: [
+          "Investigating a single compliance issue meant moving between account information, the activity timeline, rule details, the client profile, previous violations, advisor history, and supervisor notes. The decision was easy. Assembling the evidence was not.",
+          "Rather than making supervisors search for information, I brought the information to the decision.",
+          "The exception detail page became a single working surface. Evidence on the left, the decision on the right, and every action recorded in the same place it was made.",
+        ],
+      },
+      {
+        kind: "features",
+        heading: "What lives on the investigation surface",
+        items: [
+          {
+            title: "Activity timeline",
+            body: "The sequence that produced the breach, in order.",
+          },
+          {
+            title: "Violation details",
+            body: "The business rule, its threshold, and the value that broke it.",
+          },
+          {
+            title: "Client information",
+            body: "Household, account, and position context without leaving the page.",
+          },
+          {
+            title: "Compliance history",
+            body: "Previous exceptions on this account and this advisor.",
+          },
+          {
+            title: "Decision panel",
+            body: "Pinned beside the evidence rather than at the end of the page.",
+          },
+          {
+            title: "Actions",
+            body: "Resolve, override, or escalate — each with the rationale it requires.",
+          },
+          {
+            title: "Supervisor notes",
+            body: "Written at the point of decision, so the audit trail writes itself.",
+          },
+        ],
+      },
+      {
+        kind: "image",
+        label: "Exception detail — the investigation surface",
+        caption:
+          "Activity timeline, violation details, client context, compliance history, decision panel, and supervisor notes on one page.",
+      },
+      {
+        kind: "prose",
+        eyebrow: "Outcome",
+        heading:
+          "Good enterprise UX isn't about showing more data. It's about helping people make better decisions.",
+        body: [
+          "Working on this project taught me that compliance isn't primarily a data problem. It's a decision-making problem.",
+          "Every design decision focused on reducing cognitive load so supervisors could spend less time searching and more time making confident regulatory decisions.",
+        ],
+      },
+    ],
   },
 ];
 
