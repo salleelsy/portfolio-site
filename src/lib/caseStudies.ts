@@ -1309,10 +1309,17 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
       },
       {
         kind: "image",
-        src: "/work/advisor-supervision/blotter.png",
+        src: "/work/advisor-supervision/daily-trade-review.png",
         label: "Trade Review blotter",
         alt: "Trade Review blotter showing high and medium violation counts, sign-off progress, filters, and a table of flagged trades.",
         caption: "Trade Review blotter, the daily home base",
+      },
+      {
+        kind: "image",
+        src: "/work/advisor-supervision/trade-review-summary.png",
+        label: "Trade Review summary",
+        alt: "Trade Review summary showing the branch-level starting screen with each daily blotter and its status.",
+        caption: "Summary of Work, planning the day",
       },
 
       // ── Challenge 02 ──
@@ -1356,7 +1363,7 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
       },
       {
         kind: "image",
-        src: "/work/advisor-supervision/violation-detail.png",
+        src: "/work/advisor-supervision/violation-details.png",
         label: "Violation detail page",
         alt: "Violation detail page showing account information, client details, authorities, trade details, an insight callout, and tabs for account details, IPS, KYC, transactions, and violation history.",
         caption: "Violation detail, the investigation surface",
@@ -1413,7 +1420,7 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
       },
       {
         kind: "image",
-        src: "/work/advisor-supervision/create-rfi.png",
+        src: "/work/advisor-supervision/create-rfi-modal.png",
         label: "Create an RFI",
         alt: "The RFI compose step, showing the pre-populated violation rule and client information.",
         caption: "Requesting information from the advisor",
