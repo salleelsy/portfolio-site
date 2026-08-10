@@ -49,17 +49,15 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
         className="absolute left-1/2 top-0 h-[83px] w-[117%] -translate-x-1/2"
       />
 
-      {/* Label + index (Figma 782:24596 — centered, top 17, 4px gap;
-          active: SemiBold black · inactive: Regular #e4e4e4). */}
       <span
         className={[
-          "absolute left-0 right-0 top-[17px] flex flex-col items-center gap-[4px] whitespace-nowrap text-center",
-          active ? "text-ink" : "text-[#e4e4e4]",
+          "absolute inset-x-0 top-0 bottom-[4px] flex flex-col items-center justify-center gap-[2px] px-1 text-center",
+          active ? "whitespace-nowrap text-ink" : "text-[#e4e4e4]",
         ].join(" ")}
       >
         <span
           className={[
-            "font-sans text-[16px] leading-4",
+            "font-sans text-[16px] leading-[1.15]",
             active ? "font-semibold" : "font-normal",
           ].join(" ")}
         >

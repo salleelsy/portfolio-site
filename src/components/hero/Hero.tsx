@@ -121,7 +121,7 @@ export function Hero() {
 
       {/* Content — centered 1280px column, above the wall. Headline sits in the
           upper third (Figma 782:26738 — top 175 of 739). */}
-      <div className="relative z-10 mx-auto flex h-[520px] w-full max-w-[1360px] items-start px-6 pt-[110px] sm:h-[600px] sm:px-10 sm:pt-[150px] lg:h-[739px] lg:pt-[175px]">
+      <div className="relative z-10 mx-auto flex h-[520px] w-full max-w-[1360px] items-center px-6 sm:h-[600px] sm:items-start sm:px-10 sm:pt-[150px] lg:h-[739px] lg:pt-[175px]">
         <h1 className="max-w-[1000px] pl-2 font-sans text-[32px] font-medium leading-[1.2] tracking-[-0.03em] text-ink sm:pl-8 sm:text-[44px] lg:pl-16 lg:text-[56px] lg:tracking-[-1.12px]">
           {HEADLINE.map((line) => (
             <span key={line} className="block">
