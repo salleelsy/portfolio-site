@@ -36,12 +36,9 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
       aria-controls={panelId}
       tabIndex={active ? 0 : -1}
       className={[
-        // clip-path leaves the top + sides open (feet bleed, top shadow shows)
-        // but cuts everything at the bottom edge, so the shadow never casts a
-        // line onto the panel — the tab bottom reads as one flush edge.
-        "group relative block h-[80px] w-[224px] shrink-0 cursor-pointer bg-transparent p-0 [clip-path:inset(-24px_-28px_0_-28px)]",
+        "group relative block h-[80px] w-[224px] cursor-pointer bg-transparent p-0 [clip-path:inset(-24px_-28px_0_-28px)]",
         "outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-panel",
-        active ? "z-20" : "z-0",
+        active ? "z-20 shrink-0" : "z-0",
         className ?? "",
       ].join(" ")}
       {...buttonProps}
@@ -49,20 +46,18 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
       {/* Decorative silhouette — 262 wide, centered on the 224 slot. */}
       <FolderShape
         fill={active ? "var(--color-folder-active)" : "var(--color-folder-inactive)"}
-        className="absolute left-1/2 top-0 -translate-x-1/2"
+        className="absolute left-1/2 top-0 h-[83px] w-[117%] -translate-x-1/2"
       />
 
-      {/* Label + index (Figma 782:24596 — centered, top 17, 4px gap;
-          active: SemiBold black · inactive: Regular #e4e4e4). */}
       <span
         className={[
-          "absolute left-0 right-0 top-[17px] flex flex-col items-center gap-[4px] whitespace-nowrap text-center",
-          active ? "text-ink" : "text-[#e4e4e4]",
+          "absolute inset-x-0 top-0 bottom-[4px] flex flex-col items-center justify-center gap-[2px] px-1 text-center",
+          active ? "whitespace-nowrap text-ink" : "text-[#e4e4e4]",
         ].join(" ")}
       >
         <span
           className={[
-            "font-sans text-[16px] leading-4",
+            "font-sans text-[16px] leading-[1.15]",
             active ? "font-semibold" : "font-normal",
           ].join(" ")}
         >
