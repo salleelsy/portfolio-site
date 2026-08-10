@@ -75,9 +75,9 @@ export type Block =
       topLabel?: string;
       bottomLabel?: string;
     }
-  | { kind: "highlights"; eyebrow?: string; heading?: string; items: { title: string; body: string[] }[] }
+  | { kind: "highlights"; eyebrow?: string; heading?: string; items: { title: string; body: string[]; tone?: "red" | "amber" | "blue" }[] }
   | { kind: "beforeAfter"; eyebrow?: string; heading?: string; before: Compare; after: Compare }
-  | { kind: "features"; eyebrow?: string; heading?: string; items: { title: string; body: string }[] }
+  | { kind: "features"; eyebrow?: string; heading?: string; variant?: "phases" | "stepper" | "numbered"; image?: string; items: { title: string; body: string; badge?: string; meta?: string }[] }
   | { kind: "impact"; eyebrow?: string; heading?: string; stats: { value: string; label: string; note?: string }[] }
   | { kind: "ratings"; eyebrow?: string; heading?: string; note?: string; items: { task: string; value: string }[] }
   | { kind: "callout"; tone: "finding" | "quickwin" | "rec"; title: string; body: string }
@@ -1124,16 +1124,294 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
     slug: "advisor-supervision-dashboard",
     badge: "Fintech · Compliance",
     category: "Product Design",
-    title: "Financial advisor supervision dashboard",
+    title: "Advisor Supervision Dashboard",
     subtitle:
-      "Simplified complex compliance workflows by designing a centralized dashboard for financial advisors to monitor, investigate, and resolve exceptions.",
+      "When everything is flagged, nothing feels urgent - redesigning the supervision experience so supervisors can spot high-risk issues, investigate with the right context, and document actions in one place.",
     cardSummary:
-      "Simplified complex compliance workflows by designing a centralized dashboard for financial advisors to monitor, investigate, and resolve exceptions.",
-    tags: ["UX", "UI"],
+      "From a violation list to a supervision workflow - helping supervisors spot high-risk issues, investigate with context, and document actions in one place.",
     cover: "/work/advisor-supervision/banner.png",
-    comingSoon: true,
-    meta: { role: "Product Designer", timeline: "TBD", tools: "Figma" },
-    blocks: [],
+    tags: ["UX", "UI"],
+    banner: {
+      variant: "light",
+      title: "From a violation list to a supervision workflow",
+      subtitle:
+        "Helping supervisors spot high-risk issues, investigate with the right context, and document actions in one place.",
+      platform: "Internal enterprise web",
+      timeline: "10 weeks",
+      artwork: "/work/advisor-supervision/banner.png",
+      client: "Canadian major bank",
+      tools: "Figma, Miro",
+    },
+    meta: {
+      role: "Sole product designer, client facing",
+      timeline: "10 weeks",
+      tools: "Figma, Miro",
+      note: "Some screens, names, and details are modified or omitted for confidentiality.",
+    },
+    sections: [
+      { title: "Brief" },
+      { title: "My role" },
+      { title: "User journey" },
+      { title: "Challenge 1" },
+      { title: "Challenge 2" },
+      { title: "Challenge 3" },
+      { title: "What changed" },
+    ],
+    blocks: [
+      // ── Brief ──
+      {
+        kind: "prose",
+        eyebrow: "Brief",
+        heading: "When everything is flagged, nothing feels urgent.",
+        body: [
+          "As investment activity grew, supervisors faced an increasing volume of compliance violations across advisors, accounts, and rules. The existing experience surfaced the data, but offered little guidance on what mattered most or what to do next.",
+          "I redesigned the supervision experience around the supervisor’s decision-making process, helping them spot high-risk issues, investigate with the right context, and document actions in one place.",
+        ],
+      },
+      {
+        kind: "meta",
+        items: [
+          { term: "Platform", desc: "Internal enterprise web" },
+          { term: "Timeline", desc: "10 weeks" },
+          { term: "Client", desc: "Canadian major bank" },
+          { term: "Tools", desc: "Figma, Miro" },
+          { term: "Users", desc: "Branch directors & investment advisors" },
+        ],
+      },
+
+      // ── My role ──
+      {
+        kind: "prose",
+        eyebrow: "My role",
+        heading: "I led the experience from discovery to final design.",
+        body: [
+          "I owned the end-to-end UX for the supervision experience, from understanding how branch directors managed compliance today to defining the future workflow, designing the core interactions, and presenting logics and flows to the client.",
+          "The project ran across three phases over 10 weeks, with workshops and iterative reviews helping us align on user needs, business priorities, and technical feasibility.",
+        ],
+      },
+      {
+        kind: "features",
+        variant: "phases",
+        heading: "3 Phases, 10 weeks",
+        items: [
+          {
+            badge: "Phase 1",
+            meta: "2 weeks",
+            title: "Understand",
+            body: "Mapped the existing workflow through workshops, interviews, and a tool walkthrough. Identified key gaps in prioritizing and investigating violations.",
+          },
+          {
+            badge: "Phase 2",
+            meta: "6 weeks",
+            title: "Explore & Design",
+            body: "Turned findings into concepts and prototypes, iterating with branch directors and advisors to validate the workflow and key interactions.",
+          },
+          {
+            badge: "Phase 3",
+            meta: "2 weeks",
+            title: "Prioritize",
+            body: "Refined the priority experience into high-fidelity designs, balancing user needs with technical feasibility, data availability, and the client roadmap.",
+          },
+        ],
+      },
+
+      // ── User journey ──
+      {
+        kind: "prose",
+        eyebrow: "User journey",
+        heading: "From a list of violations to a clear decision.",
+        body: [
+          "Supervisors move through a recurring review cycle: understand the workload, investigate violations, take action, and sign off. The new experience brings these steps into a clearer structure, so supervisors can move between reviews without losing context.",
+        ],
+      },
+      {
+        kind: "features",
+        variant: "stepper",
+        heading: "The six-step supervision flow",
+        items: [
+          { title: "Review the day", body: "Start the day by seeing which blotters need attention." },
+          { title: "Open a blotter", body: "Choose a review and see the violations waiting." },
+          { title: "Investigate a violation", body: "Understand the flagged trade with the right context." },
+          { title: "Take action", body: "Send RFI, place on watch, create note, or take the appropriate next step." },
+          { title: "Sign off the review", body: "Resolve the violations and move to the next review." },
+          { title: "Sign off the blotter", body: "Close the day once all high-priority violations are reviewed." },
+        ],
+      },
+      {
+        kind: "prose",
+        body: [
+          "The existing experience scattered supervision tasks across different areas. I reorganized the navigation around the work supervisors actually perform, separating daily work items from summaries, requests, and reporting.",
+        ],
+      },
+      {
+        kind: "features",
+        variant: "numbered",
+        heading: "Navigation architecture",
+        image: "/work/advisor-supervision/navigation-menu.png",
+        items: [
+          { title: "Overview", body: "A high-level view of supervision activity, with dedicated advisor and client pages." },
+          { title: "Work Items", body: "The reviews supervisors work through, including Trade Review, PAT, Bulk Account, and EMR." },
+          { title: "Summary of Work", body: "A consolidated view of branch blotters and their current status." },
+          { title: "RFIs", body: "Information requests sent to advisors and their responses." },
+          { title: "Reporting", body: "Violation, RFI, and delegation history for review and reporting." },
+        ],
+      },
+
+      // ── Challenge 1 ──
+      {
+        kind: "prose",
+        eyebrow: "Challenge 1",
+        heading: "Too many rules made it hard to know what mattered.",
+        body: [
+          "Dozens of violation rules each carried different levels of urgency. But the existing tool exposed supervisors to rule codes without the context needed to understand what they meant or what needed attention first.",
+          "The result was a flat list where urgent violations competed with items that could wait.",
+          "Supervisors didn’t need every rule explained upfront. They needed to know what had to be done today. So I introduced a severity system that translated rule complexity into clear priorities.",
+        ],
+      },
+      {
+        kind: "highlights",
+        heading: "The severity system",
+        items: [
+          {
+            title: "High violation · Daily",
+            body: ["Requires review", "Must be reviewed and cleared before the blotter can be signed off. This defines the day’s workload."],
+            tone: "red",
+          },
+          {
+            title: "Medium violation · Daily",
+            body: ["Requires awareness", "Visible for awareness and included in sign-off, without requiring every item to be reviewed."],
+            tone: "amber",
+          },
+          {
+            title: "EMR violation · Monthly",
+            body: ["Monthly review", "Handled on a separate monthly cadence, keeping it out of the daily workflow."],
+            tone: "blue",
+          },
+        ],
+      },
+      {
+        kind: "prose",
+        body: [
+          "A supervisor can now open the day knowing exactly how many high-priority violations stand between them and a signed-off blotter.",
+        ],
+      },
+      {
+        kind: "image",
+        src: "/work/advisor-supervision/daily-trade-review.png",
+        label: "Trade Review blotter",
+        alt: "Trade Review blotter showing high and medium violation counts, sign-off progress, filters, and a table of flagged trades.",
+        caption: "Trade Review blotter",
+      },
+
+      // ── Challenge 2 ──
+      {
+        kind: "prose",
+        eyebrow: "Challenge 2",
+        heading: "A flagged trade, but nowhere to investigate it.",
+        body: [
+          "Seeing a violation was easy. Understanding it was not.",
+          "The old experience could tell supervisors that a trade broke a rule, but not why. To investigate, they had to piece together the account, client, trade, IPS, KYC profile, transactions, and past violations from different places.",
+          "Every investigation meant leaving the flag and rebuilding the context by hand.",
+        ],
+      },
+      {
+        kind: "prose",
+        heading: "One place to understand the whole picture",
+        body: [
+          "I brought the relevant context into the violation detail, giving supervisors a single working surface to understand the trade, assess the risk, and decide what to do next.",
+        ],
+      },
+      {
+        kind: "image",
+        src: "/work/advisor-supervision/violation-details.png",
+        label: "Violation detail",
+        alt: "Violation detail page showing account information, client details, authorities, trade details, and tabs for account details, IPS, KYC, transactions, and violation history.",
+        caption: "Violation detail - Rule context, client profile, investment policy, transaction history, and past violations come together in one view.",
+      },
+
+      // ── Challenge 3 ──
+      {
+        kind: "prose",
+        eyebrow: "Challenge 3",
+        heading: "Not every violation ends in yes or no.",
+        body: [
+          "Some violations could be cleared immediately. Others needed more information, ongoing monitoring, or a record of why a decision was made.",
+          "The workflow needed to support these different outcomes without forcing supervisors into a single path.",
+        ],
+      },
+      {
+        kind: "highlights",
+        heading: "Four actions for four outcomes",
+        items: [
+          {
+            title: "Request information (RFI)",
+            body: ["Ask the advisor for more context, with the violation and client details pre-populated."],
+          },
+          {
+            title: "Put on watch",
+            body: ["Keep a client or advisor on the radar so the concern resurfaces in a future review."],
+          },
+          {
+            title: "Drop a note",
+            body: ["Record the reasoning behind a decision so the next reviewer has the context."],
+          },
+          {
+            title: "Sign off the review",
+            body: ["Clear the violation and move directly to the next one without breaking the review flow."],
+          },
+        ],
+      },
+      {
+        kind: "prose",
+        heading: "The sign-off gate",
+        body: [
+          "High-risk violations could never be accidentally skipped.",
+          "The Sign Off Blotter action remains inactive until every high violation has been reviewed. This creates a clear safety net: supervisors can work quickly, while the system ensures the day’s critical issues are accounted for.",
+        ],
+      },
+      {
+        kind: "image",
+        src: "/work/advisor-supervision/create-rfi-modal.png",
+        label: "Create an RFI",
+        alt: "The RFI compose step, showing the pre-populated violation rule and client information.",
+        caption: "RFI with violation and client details pre-populated.",
+      },
+
+      // ── What changed ──
+      {
+        kind: "beforeAfter",
+        eyebrow: "What changed",
+        heading: "The tool stopped being a list and started being a workflow.",
+        before: {
+          title: "A spreadsheet of violations",
+          cons: [
+            "Coded rules supervisors had to know by heart",
+            "Urgent and routine items mixed together",
+            "No clear path to investigate a flagged trade",
+            "Decisions recorded after the fact, if at all",
+          ],
+        },
+        after: {
+          title: "A guided supervision day",
+          pros: [
+            "Severity sets priority, giving the day a clear workload",
+            "A consistent review pattern across daily and monthly work",
+            "Relevant context brought into the violation being judged",
+            "RFIs, watches, and notes captured in the moment",
+            "A sign-off gate ensures every high-priority violation is reviewed",
+          ],
+        },
+      },
+      {
+        kind: "prose",
+        heading: "Reflection",
+        body: [
+          "Compliance work isn’t primarily a data problem. It’s a decision-making problem.",
+          "As the only designer, I learned that the flow had to be resolved before the screens were worth designing. Workshops helped us uncover the real moments where supervisors were forced to leave the decision to find something - whether that was the meaning of a rule, the context behind a trade, or a place to record their reasoning.",
+          "The redesign closed those gaps by bringing priority, context, action, and accountability into the workflow itself. The result wasn’t simply a faster tool. It was a more complete and defensible record of how supervision decisions were made.",
+        ],
+      },
+    ],
   },
 ];
 
