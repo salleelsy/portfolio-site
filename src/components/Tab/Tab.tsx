@@ -1,4 +1,4 @@
-import { forwardRef, type CSSProperties } from "react";
+import { forwardRef } from "react";
 import { FolderShape } from "./FolderShape";
 
 export type TabProps = {
@@ -35,19 +35,16 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
       aria-selected={active}
       aria-controls={panelId}
       tabIndex={active ? 0 : -1}
-      style={
-        {
-          "--folder-fill": active
-            ? "var(--color-folder-active)"
-            : "var(--color-folder-inactive)",
-        } as CSSProperties
-      }
       className={[
         "group relative block h-[80px] w-[224px] shrink-0 cursor-pointer bg-transparent p-0 [clip-path:inset(-24px_-28px_0_-28px)]",
         "outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-panel",
         // Inactive tabs lighten their charcoal fill on hover for a natural,
-        // tactile response; the active tab is already selected so it doesn't move.
-        active ? "z-20" : "z-0 hover:[--folder-fill:#454545]",
+        // tactile response; the active tab is already selected so it stays put.
+        // The fill is driven by a CSS var set in a class (not inline style) so
+        // the :hover class can actually override it.
+        active
+          ? "z-20 [--folder-fill:var(--color-folder-active)]"
+          : "z-0 [--folder-fill:var(--color-folder-inactive)] hover:[--folder-fill:#4d4d4d]",
         className ?? "",
       ].join(" ")}
       {...buttonProps}
@@ -55,7 +52,7 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
       {/* Decorative silhouette — 262 wide, centered on the 224 slot. */}
       <FolderShape
         fill="var(--folder-fill)"
-        className="absolute left-1/2 top-0 h-[83px] w-[117%] -translate-x-1/2 [transition:fill_150ms_ease]"
+        className="absolute left-1/2 top-0 h-[83px] w-[117%] -translate-x-1/2 transition-colors duration-150"
       />
 
       <span
