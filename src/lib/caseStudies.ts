@@ -75,9 +75,9 @@ export type Block =
       topLabel?: string;
       bottomLabel?: string;
     }
-  | { kind: "highlights"; eyebrow?: string; heading?: string; items: { title: string; body: string[] }[] }
+  | { kind: "highlights"; eyebrow?: string; heading?: string; items: { title: string; body: string[]; tone?: "red" | "amber" | "blue" }[] }
   | { kind: "beforeAfter"; eyebrow?: string; heading?: string; before: Compare; after: Compare }
-  | { kind: "features"; eyebrow?: string; heading?: string; items: { title: string; body: string }[] }
+  | { kind: "features"; eyebrow?: string; heading?: string; variant?: "phases" | "stepper" | "numbered"; image?: string; items: { title: string; body: string; badge?: string; meta?: string }[] }
   | { kind: "impact"; eyebrow?: string; heading?: string; stats: { value: string; label: string; note?: string }[] }
   | { kind: "ratings"; eyebrow?: string; heading?: string; note?: string; items: { task: string; value: string }[] }
   | { kind: "callout"; tone: "finding" | "quickwin" | "rec"; title: string; body: string }
@@ -1191,18 +1191,25 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
       },
       {
         kind: "features",
+        variant: "phases",
         heading: "3 Phases, 10 weeks",
         items: [
           {
-            title: "Phase 1 · Understand (2 weeks)",
+            badge: "Phase 1",
+            meta: "2 weeks",
+            title: "Understand",
             body: "Mapped the existing workflow through workshops, interviews, and a tool walkthrough. Identified key gaps in prioritizing and investigating violations.",
           },
           {
-            title: "Phase 2 · Explore & Design (6 weeks)",
+            badge: "Phase 2",
+            meta: "6 weeks",
+            title: "Explore & Design",
             body: "Turned findings into concepts and prototypes, iterating with branch directors and advisors to validate the workflow and key interactions.",
           },
           {
-            title: "Phase 3 · Prioritize (2 weeks)",
+            badge: "Phase 3",
+            meta: "2 weeks",
+            title: "Prioritize",
             body: "Refined the priority experience into high-fidelity designs, balancing user needs with technical feasibility, data availability, and the client roadmap.",
           },
         ],
@@ -1219,14 +1226,15 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
       },
       {
         kind: "features",
+        variant: "stepper",
         heading: "The six-step supervision flow",
         items: [
-          { title: "01 · Review the day", body: "Start the day by seeing which blotters need attention." },
-          { title: "02 · Open a blotter", body: "Choose a review and see the violations waiting." },
-          { title: "03 · Investigate a violation", body: "Understand the flagged trade with the right context." },
-          { title: "04 · Take action", body: "Send RFI, place on watch, create note, or take the appropriate next step." },
-          { title: "05 · Sign off the review", body: "Resolve the violations and move to the next review." },
-          { title: "06 · Sign off the blotter", body: "Close the day once all high-priority violations are reviewed." },
+          { title: "Review the day", body: "Start the day by seeing which blotters need attention." },
+          { title: "Open a blotter", body: "Choose a review and see the violations waiting." },
+          { title: "Investigate a violation", body: "Understand the flagged trade with the right context." },
+          { title: "Take action", body: "Send RFI, place on watch, create note, or take the appropriate next step." },
+          { title: "Sign off the review", body: "Resolve the violations and move to the next review." },
+          { title: "Sign off the blotter", body: "Close the day once all high-priority violations are reviewed." },
         ],
       },
       {
@@ -1237,7 +1245,9 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
       },
       {
         kind: "features",
+        variant: "numbered",
         heading: "Navigation architecture",
+        image: "/work/advisor-supervision/navigation-menu.png",
         items: [
           { title: "Overview", body: "A high-level view of supervision activity, with dedicated advisor and client pages." },
           { title: "Work Items", body: "The reviews supervisors work through, including Trade Review, PAT, Bulk Account, and EMR." },
@@ -1245,13 +1255,6 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
           { title: "RFIs", body: "Information requests sent to advisors and their responses." },
           { title: "Reporting", body: "Violation, RFI, and delegation history for review and reporting." },
         ],
-      },
-      {
-        kind: "image",
-        src: "/work/advisor-supervision/nav-architecture.png",
-        label: "Navigation architecture",
-        alt: "Product navigation: Overview, Work Items, Summary of Work, RFIs, and Reporting.",
-        caption: "Navigation architecture",
       },
 
       // ── Challenge 1 ──
@@ -1272,14 +1275,17 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
           {
             title: "High violation · Daily",
             body: ["Requires review", "Must be reviewed and cleared before the blotter can be signed off. This defines the day’s workload."],
+            tone: "red",
           },
           {
             title: "Medium violation · Daily",
             body: ["Requires awareness", "Visible for awareness and included in sign-off, without requiring every item to be reviewed."],
+            tone: "amber",
           },
           {
             title: "EMR violation · Monthly",
             body: ["Monthly review", "Handled on a separate monthly cadence, keeping it out of the daily workflow."],
+            tone: "blue",
           },
         ],
       },

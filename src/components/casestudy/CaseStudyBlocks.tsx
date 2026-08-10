@@ -625,44 +625,200 @@ export function CaseStudyBlock({ block }: { block: Block }) {
       );
     }
 
-    case "highlights":
+    case "highlights": {
+      const TONE_STYLES = {
+        red: { dot: "bg-[#dc2626]", header: "bg-[#fef2f2]", border: "border-[#fca5a5]", line: "bg-[#ef4444]" },
+        amber: { dot: "bg-[#f59e0b]", header: "bg-[#fffbeb]", border: "border-[#fde68a]", line: "bg-[#f59e0b]" },
+        blue: { dot: "bg-[#3b82f6]", header: "bg-[#eff6ff]", border: "border-[#93c5fd]", line: "bg-[#3b82f6]" },
+      } as const;
+      const hasTones = block.items.some((it) => "tone" in it && it.tone);
       return (
         <div className="flex flex-col gap-6">
           {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
           {block.heading && <Heading>{block.heading}</Heading>}
-          <div className="grid gap-4 md:grid-cols-2">
-            {block.items.map((item) => (
-              <div
-                key={item.title}
-                className="flex flex-col gap-3 rounded-card border border-hairline bg-body-bg p-6"
-              >
-                <p className="text-[20px] font-semibold text-base-blue">
-                  {item.title}
-                </p>
-                {item.body.map((b, i) => (
-                  <p key={i} className="text-[18px] leading-[1.6] text-cod-gray">
-                    {b}
+          <div className={`grid gap-4 ${hasTones ? "sm:grid-cols-2 lg:grid-cols-3" : "md:grid-cols-2"}`}>
+            {block.items.map((item) => {
+              const tone = "tone" in item ? item.tone : undefined;
+              if (tone) {
+                const s = TONE_STYLES[tone];
+                return (
+                  <div
+                    key={item.title}
+                    className={`flex flex-col overflow-hidden rounded-card border ${s.border} bg-paper`}
+                  >
+                    <div className={`flex items-center gap-3 px-5 py-4 ${s.header}`}>
+                      <span className={`size-[10px] shrink-0 rounded-full ${s.dot}`} />
+                      <div className="flex flex-col">
+                        <p className="text-[16px] font-semibold text-ink">{item.title}</p>
+                        {item.body[0] && (
+                          <p className="text-[14px] text-muted">{item.body[0]}</p>
+                        )}
+                      </div>
+                    </div>
+                    <div className={`h-[2px] ${s.line}`} />
+                    <div className="flex flex-col gap-2 px-5 py-4">
+                      {item.body.slice(1).map((b, i) => (
+                        <p key={i} className="text-[16px] leading-[1.6] text-cod-gray">
+                          {b}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+              return (
+                <div
+                  key={item.title}
+                  className="flex flex-col gap-3 rounded-card border border-hairline bg-body-bg p-6"
+                >
+                  <p className="text-[20px] font-semibold text-base-blue">
+                    {item.title}
                   </p>
-                ))}
-              </div>
-            ))}
+                  {item.body.map((b, i) => (
+                    <p key={i} className="text-[18px] leading-[1.6] text-cod-gray">
+                      {b}
+                    </p>
+                  ))}
+                </div>
+              );
+            })}
           </div>
         </div>
       );
+    }
 
     case "beforeAfter":
       return (
         <div className="flex flex-col gap-6">
           {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
           {block.heading && <Heading>{block.heading}</Heading>}
-          <div className="flex flex-col gap-4">
-            <ComparePanel data={block.before} />
-            <ComparePanel data={block.after} highlight />
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="flex flex-col gap-4 rounded-card bg-body-bg p-6">
+              <span className="w-fit rounded-full border border-[#fbe5b6] bg-[#fdf2dc] px-3 py-[5px] text-[14px] font-semibold text-[#845201]">
+                Before
+              </span>
+              <p className="text-[18px] font-semibold text-ink">{block.before.title}</p>
+              {block.before.cons && (
+                <ul className="flex flex-col gap-2">
+                  {block.before.cons.map((c, i) => (
+                    <li key={i} className="flex gap-2 text-[16px] leading-[1.5] text-cod-gray">
+                      <span aria-hidden className="shrink-0 text-muted">•</span>
+                      {c}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            <div className="flex flex-col gap-4 rounded-card bg-body-bg p-6">
+              <span className="w-fit rounded-full border border-[#cfe6d6] bg-[#eaf6ee] px-3 py-[5px] text-[14px] font-semibold text-[#1e7d3e]">
+                After
+              </span>
+              <p className="text-[18px] font-semibold text-ink">{block.after.title}</p>
+              {block.after.pros && (
+                <ul className="flex flex-col gap-2">
+                  {block.after.pros.map((p, i) => (
+                    <li key={i} className="flex gap-2 text-[16px] leading-[1.5] text-cod-gray">
+                      <span aria-hidden className="shrink-0 text-muted">•</span>
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
         </div>
       );
 
-    case "features":
+    case "features": {
+      if (block.variant === "phases") {
+        return (
+          <div className="flex flex-col gap-6">
+            {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
+            {block.heading && <Heading>{block.heading}</Heading>}
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {block.items.map((item, i) => (
+                <div
+                  key={i}
+                  className="flex flex-col gap-4 rounded-card border border-hairline bg-paper p-5"
+                >
+                  <div className="flex items-center justify-between">
+                    {item.badge && (
+                      <span className="rounded-full border border-[#cfe6d6] bg-[#eaf6ee] px-3 py-[5px] text-[14px] font-semibold text-[#1e7d3e]">
+                        {item.badge}
+                      </span>
+                    )}
+                    {item.meta && (
+                      <span className="text-[15px] text-muted">{item.meta}</span>
+                    )}
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <p className="text-[18px] font-semibold text-ink">{item.title}</p>
+                    <p className="text-[16px] leading-[1.6] text-muted">{item.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      }
+
+      if (block.variant === "stepper") {
+        return (
+          <div className="flex flex-col gap-6">
+            {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
+            {block.heading && <Heading>{block.heading}</Heading>}
+            <ol className="relative ml-5 flex flex-col gap-0 border-l-2 border-ink pl-8">
+              {block.items.map((item, i) => (
+                <li key={i} className="relative flex flex-col gap-1 py-4">
+                  <span className="absolute -left-[calc(2rem+1px+18px)] top-4 flex size-9 items-center justify-center rounded-full bg-ink text-[15px] font-bold text-paper">
+                    {i + 1}
+                  </span>
+                  <p className="text-[18px] font-semibold text-ink">{item.title}</p>
+                  <p className="text-[16px] leading-[1.6] text-muted">{item.body}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        );
+      }
+
+      if (block.variant === "numbered") {
+        const content = (
+          <ol className="flex flex-col gap-0">
+            {block.items.map((item, i) => (
+              <li key={i} className="flex items-start gap-4 border-b border-hairline py-4 last:border-0">
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-ink text-[15px] font-bold text-paper">
+                  {i + 1}
+                </span>
+                <div className="flex flex-col gap-1">
+                  <p className="text-[17px] font-semibold text-ink">{item.title}</p>
+                  <p className="text-[15px] leading-[1.6] text-muted">{item.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        );
+        return (
+          <div className="flex flex-col gap-6">
+            {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
+            {block.heading && <Heading>{block.heading}</Heading>}
+            {block.image ? (
+              <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
+                <div>{content}</div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={block.image}
+                  alt={block.heading ?? ""}
+                  className="w-full rounded-[12px] border border-hairline"
+                />
+              </div>
+            ) : (
+              content
+            )}
+          </div>
+        );
+      }
+
       return (
         <div className="flex flex-col gap-6">
           {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
@@ -680,6 +836,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
           </div>
         </div>
       );
+    }
 
     // Impact — Uber Base "Card / Artwork trailing" (Figma 795:27923): white
     // card, 2px #e2e2e2 border, big number + label, blue award badge trailing.
