@@ -38,21 +38,27 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
       className={[
         "group relative block h-[80px] w-[224px] shrink-0 cursor-pointer bg-transparent p-0 [clip-path:inset(-24px_-28px_0_-28px)]",
         "outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-panel",
-        active ? "z-20" : "z-0",
+        // Inactive tabs lighten their charcoal fill on hover for a natural,
+        // tactile response; the active tab is already selected so it stays put.
+        // The fill is driven by a CSS var set in a class (not inline style) so
+        // the :hover class can actually override it.
+        active
+          ? "z-20 [--folder-fill:var(--color-folder-active)]"
+          : "z-0 [--folder-fill:var(--color-folder-inactive)] hover:[--folder-fill:#4d4d4d]",
         className ?? "",
       ].join(" ")}
       {...buttonProps}
     >
       {/* Decorative silhouette — 262 wide, centered on the 224 slot. */}
       <FolderShape
-        fill={active ? "var(--color-folder-active)" : "var(--color-folder-inactive)"}
-        className="absolute left-1/2 top-0 h-[83px] w-[117%] -translate-x-1/2"
+        fill="var(--folder-fill)"
+        className="absolute left-1/2 top-0 h-[83px] w-[117%] -translate-x-1/2 transition-colors duration-150"
       />
 
       <span
         className={[
-          "absolute left-0 right-0 top-[17px] flex flex-col items-center gap-[4px] whitespace-nowrap text-center",
-          active ? "text-ink" : "text-[#e4e4e4]",
+          "absolute left-0 right-0 top-[17px] flex flex-col items-center gap-[4px] whitespace-nowrap text-center transition-colors",
+          active ? "text-ink" : "text-[#e4e4e4] group-hover:text-[#f5f5f5]",
         ].join(" ")}
       >
         <span

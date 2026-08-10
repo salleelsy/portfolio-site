@@ -196,7 +196,7 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
     subtitle:
       "Tangerine's digital wealth MVP — scoped under hard data constraints, shipped inside a regulated app, improved by reading the post-launch numbers.",
     cardSummary:
-      "Leading design on Tangerine's digital wealth MVP — a 1.3x lift in mobile engagement and +49% YoY account applications.",
+      "Leading design on Tangerine's digital wealth MVP, from research through post-launch iteration. Mobile engagement rose 1.3x and account applications grew 49% year over year.",
     // NOTE: drop the dark phone-collage image at /public/work/wealth/banner-screens.png
     cover: "/work/wealth/banner-screens.png",
     tags: ["UX", "UI", "Research"],
@@ -458,7 +458,7 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
     subtitle:
       "Designing a five-tier membership system across malls, offices, and residences — one that users actually understand.",
     cardSummary:
-      "A five-tier loyalty membership for a commercial real-estate group (CCG) — making tiers, points, and upgrade paths legible at a glance.",
+      "A five-tier loyalty membership for CCG, making points, tier status, and the path to the next upgrade legible at a glance.",
     cover: "/work/loyalty/5tier-membership-banner.png",
     tags: ["UX", "UI"],
     banner: {
@@ -696,7 +696,7 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
     subtitle:
       "Building a 100+ component design system for Wealth Studio — an internal portfolio-management tool for advisors — and what it taught me about where design sits in the sequence now.",
     cardSummary:
-      "A 100+ component design system for an internal advisor tool, built in a code-first loop where Storybook — not Figma — was the source of truth.",
+      "A 100+ component design system for an internal advisor tool, built the way AI-era teams work: design in code, shipped to Storybook, one pull request at a time.",
     tags: ["Design System", "UI", "AI"],
     cover: "/work/wealth-studio/banner.png",
     banner: {
@@ -1128,7 +1128,7 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
     subtitle:
       "When everything is flagged, nothing feels urgent - redesigning the supervision experience so supervisors can spot high-risk issues, investigate with the right context, and document actions in one place.",
     cardSummary:
-      "From a violation list to a supervision workflow - helping supervisors spot high-risk issues, investigate with context, and document actions in one place.",
+      "An internal compliance tool for wealth supervisors: triage flagged trades by severity, investigate with full account context on one screen, and document the outcome.",
     cover: "/work/advisor-supervision/banner.png",
     tags: ["UX", "UI"],
     banner: {

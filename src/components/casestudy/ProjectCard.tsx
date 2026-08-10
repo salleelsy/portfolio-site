@@ -38,12 +38,25 @@ export function ProjectCard({
   comingSoon = false,
 }: ProjectCardProps) {
   const row = layout === "row";
+
+  // Hover affordance — decorative; the stretched link takes the click. In grid
+  // view it sits on the title's first line; in list view it's a centred sibling
+  // (see below), so it's rendered in one of two places, never both.
+  const affordance = comingSoon ? null : (
+    <span
+      aria-hidden
+      className="pointer-events-none flex size-12 shrink-0 items-center justify-center rounded-full bg-body-bg text-cod-gray opacity-0 transition-[opacity,transform] duration-200 group-hover:opacity-100 group-focus-within:opacity-100 motion-safe:-translate-y-1 motion-safe:group-hover:translate-y-0 motion-safe:group-focus-within:translate-y-0"
+    >
+      <ArrowUpRightIcon className="size-5" />
+    </span>
+  );
+
   return (
     <article
       className={[
         "group relative flex flex-col gap-4 rounded-card border border-hairline bg-paper p-4 drop-shadow-[0px_2px_5px_rgba(0,0,0,0.05)]",
         comingSoon ? "" : "transition-shadow hover:drop-shadow-[0px_4px_12px_rgba(0,0,0,0.08)]",
-        row ? "sm:flex-row sm:items-start" : "",
+        row ? "sm:flex-row sm:items-center" : "",
       ].join(" ")}
     >
       {/* Thumbnail */}
@@ -92,23 +105,15 @@ export function ProjectCard({
       </div>
 
       {/* Content */}
-      <div className="flex min-w-0 flex-1 flex-col gap-3">
-        {/* Title row — the hover arrow sits to the right, aligned with the
-            title's first line (items-start keeps it on the top row when the
-            title wraps). */}
+      <div className="flex min-w-0 flex-1 flex-col gap-2">
+        {/* Title row. In grid view the hover arrow sits to the right, aligned
+            with the title's first line; in list view the arrow is a centred
+            sibling of the card instead, so it's omitted here. */}
         <div className="flex items-start justify-between gap-4">
           <h3 className="min-w-0 flex-1 text-[24px] font-medium leading-[1.25] text-ink">
             {title}
           </h3>
-          {/* Hover affordance — decorative; the stretched link takes the click. */}
-          {!comingSoon && (
-            <span
-              aria-hidden
-              className="pointer-events-none flex size-12 shrink-0 items-center justify-center rounded-full bg-body-bg text-cod-gray opacity-0 transition-[opacity,transform] duration-200 group-hover:opacity-100 group-focus-within:opacity-100 motion-safe:-translate-y-1 motion-safe:group-hover:translate-y-0 motion-safe:group-focus-within:translate-y-0"
-            >
-              <ArrowUpRightIcon className="size-5" />
-            </span>
-          )}
+          {!row && affordance}
         </div>
         {/* Grid tiles stay scannable — the description shows in list view only. */}
         {row && (
@@ -117,6 +122,12 @@ export function ProjectCard({
           </p>
         )}
       </div>
+
+      {/* List view (sm+ only, where cards are a row): the arrow lives at the
+          card's trailing edge, vertically centred with the text block
+          (sm:items-center on the article). Hidden on the mobile stack so its
+          empty hover box doesn't reserve space. */}
+      {row && <div className="hidden shrink-0 sm:flex">{affordance}</div>}
 
       {/* One stretched link covers the card, so the whole tile is clickable.
           Coming-soon cards are placeholders, so they get no link. */}
