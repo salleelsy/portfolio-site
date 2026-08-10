@@ -696,7 +696,7 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
     subtitle:
       "Building a 100+ component design system for Wealth Studio — an internal portfolio-management tool for advisors — and what it taught me about where design sits in the sequence now.",
     cardSummary:
-      "A 100+ component design system for an internal advisor tool, built backwards: engineers shipped to Storybook first, and design set the direction from there.",
+      "A 100+ component design system for an internal advisor tool, built the way AI-era teams work: design in code, shipped to Storybook, one pull request at a time.",
     tags: ["Design System", "UI", "AI"],
     cover: "/work/wealth-studio/banner.png",
     banner: {
