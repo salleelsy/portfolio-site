@@ -22,10 +22,9 @@ export function FolderShape({ fill, className }: FolderShapeProps) {
   return (
     <svg
       className={className}
-      width={262}
-      height={83}
       viewBox="-21 0 262 83"
       fill="none"
+      preserveAspectRatio="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
       focusable="false"

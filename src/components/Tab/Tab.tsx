@@ -36,12 +36,9 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
       aria-controls={panelId}
       tabIndex={active ? 0 : -1}
       className={[
-        // clip-path leaves the top + sides open (feet bleed, top shadow shows)
-        // but cuts everything at the bottom edge, so the shadow never casts a
-        // line onto the panel — the tab bottom reads as one flush edge.
-        "group relative block h-[80px] w-[224px] shrink-0 cursor-pointer bg-transparent p-0 [clip-path:inset(-24px_-28px_0_-28px)]",
+        "group relative block h-[80px] w-[224px] cursor-pointer bg-transparent p-0 [clip-path:inset(-24px_-28px_0_-28px)]",
         "outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-panel",
-        active ? "z-20" : "z-0",
+        active ? "z-20 shrink-0" : "z-0",
         className ?? "",
       ].join(" ")}
       {...buttonProps}
@@ -49,7 +46,7 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
       {/* Decorative silhouette — 262 wide, centered on the 224 slot. */}
       <FolderShape
         fill={active ? "var(--color-folder-active)" : "var(--color-folder-inactive)"}
-        className="absolute left-1/2 top-0 -translate-x-1/2"
+        className="absolute left-1/2 top-0 h-[83px] w-[117%] -translate-x-1/2"
       />
 
       {/* Label + index (Figma 782:24596 — centered, top 17, 4px gap;
