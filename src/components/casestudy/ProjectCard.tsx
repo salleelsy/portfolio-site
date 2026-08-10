@@ -41,7 +41,7 @@ export function ProjectCard({
   return (
     <article
       className={[
-        "group relative flex flex-col gap-6 rounded-card border border-hairline bg-paper p-6 drop-shadow-[0px_2px_5px_rgba(0,0,0,0.05)]",
+        "group relative flex flex-col gap-4 rounded-card border border-hairline bg-paper p-4 drop-shadow-[0px_2px_5px_rgba(0,0,0,0.05)]",
         comingSoon ? "" : "transition-shadow hover:drop-shadow-[0px_4px_12px_rgba(0,0,0,0.08)]",
         row ? "sm:flex-row sm:items-start" : "",
       ].join(" ")}

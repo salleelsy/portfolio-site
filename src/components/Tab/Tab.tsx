@@ -36,9 +36,9 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
       aria-controls={panelId}
       tabIndex={active ? 0 : -1}
       className={[
-        "group relative block h-[80px] w-[224px] cursor-pointer bg-transparent p-0 [clip-path:inset(-24px_-28px_0_-28px)]",
+        "group relative block h-[80px] w-[224px] shrink-0 cursor-pointer bg-transparent p-0 [clip-path:inset(-24px_-28px_0_-28px)]",
         "outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-panel",
-        active ? "z-20 shrink-0" : "z-0",
+        active ? "z-20" : "z-0",
         className ?? "",
       ].join(" ")}
       {...buttonProps}
@@ -51,13 +51,13 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
 
       <span
         className={[
-          "absolute inset-x-0 top-0 bottom-[4px] flex flex-col items-center justify-center gap-[2px] px-1 text-center",
-          active ? "whitespace-nowrap text-ink" : "text-[#e4e4e4]",
+          "absolute left-0 right-0 top-[17px] flex flex-col items-center gap-[4px] whitespace-nowrap text-center",
+          active ? "text-ink" : "text-[#e4e4e4]",
         ].join(" ")}
       >
         <span
           className={[
-            "font-sans text-[16px] leading-[1.15]",
+            "font-sans text-[16px] leading-4",
             active ? "font-semibold" : "font-normal",
           ].join(" ")}
         >
