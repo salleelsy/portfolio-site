@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Tab } from "./Tab";
 
 export type TabItem = {
@@ -31,6 +31,11 @@ type TabListProps = {
  * Roving tabindex keeps a single tab stop. Tabs are a uniform 224px wide and
  * abut edge-to-edge (Figma 782:26065 pitch = 224); the 262px shapes overlap
  * their neighbours intrinsically, and the active tab is raised in front.
+ *
+ * The four full-width tabs total ~896px, so they fit side-by-side on desktop
+ * but overflow narrow (mobile) viewports. Rather than squeeze the tabs — which
+ * clips their labels — the strip scrolls horizontally; the selected tab is
+ * scrolled into the centre on change so it's always reachable.
  */
 export function TabList({
   items,
@@ -40,6 +45,26 @@ export function TabList({
   className,
 }: TabListProps) {
   const tabsRef = useRef<Array<HTMLButtonElement | null>>([]);
+  const stripRef = useRef<HTMLDivElement | null>(null);
+  const didMount = useRef(false);
+
+  // Keep the selected tab within view of the (horizontally scrollable) strip.
+  // Scroll the container itself — never scrollIntoView, which would also jump
+  // the page vertically. Instant on first paint, smooth on later changes.
+  useEffect(() => {
+    const strip = stripRef.current;
+    const activeIndex = items.findIndex((it) => it.value === value);
+    const el = tabsRef.current[activeIndex];
+    if (!strip || !el) return;
+    if (strip.scrollWidth <= strip.clientWidth) return; // nothing to scroll
+
+    const target = el.offsetLeft + el.offsetWidth / 2 - strip.clientWidth / 2;
+    strip.scrollTo({
+      left: Math.max(0, target),
+      behavior: didMount.current ? "smooth" : "auto",
+    });
+    didMount.current = true;
+  }, [value, items]);
 
   function focusTab(nextIndex: number) {
     const count = items.length;
@@ -76,11 +101,17 @@ export function TabList({
 
   return (
     <div
+      ref={stripRef}
       role="tablist"
       aria-label={ariaLabel}
       aria-orientation="horizontal"
-      // pl gives the first tab's left foot room to bleed out without clipping.
-      className={["flex items-end pl-6", className ?? ""].join(" ")}
+      // Horizontal scroll when the tabs overflow (mobile); the scrollbar is
+      // hidden so the strip reads as a clean folder edge. px gives the first
+      // and last tabs' feet room to bleed out without clipping.
+      className={[
+        "flex items-end overflow-x-auto px-6 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+        className ?? "",
+      ].join(" ")}
     >
       {items.map((item, i) => (
         <Tab
