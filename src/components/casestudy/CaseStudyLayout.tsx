@@ -20,6 +20,7 @@ const FULL_WIDTH_BLOCKS = new Set([
   "meta", "figureRow", "toolStack", "flip", "pipeline",
   // Card/visual blocks span the column; only prose/list stay at the 700px measure.
   "tierTable", "priorityList", "beforeAfter", "personas", "ideation", "hierarchy", "highlights",
+  "features",
 ]);
 
 /** Caps a block at 700px unless it's a full-width visual block. */

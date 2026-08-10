@@ -627,9 +627,9 @@ export function CaseStudyBlock({ block }: { block: Block }) {
 
     case "highlights": {
       const TONE_STYLES = {
-        red: { dot: "bg-[#dc2626]", header: "bg-[#fef2f2]", border: "border-[#fca5a5]", line: "bg-[#ef4444]" },
-        amber: { dot: "bg-[#f59e0b]", header: "bg-[#fffbeb]", border: "border-[#fde68a]", line: "bg-[#f59e0b]" },
-        blue: { dot: "bg-[#3b82f6]", header: "bg-[#eff6ff]", border: "border-[#93c5fd]", line: "bg-[#3b82f6]" },
+        red: { dot: "bg-[#dc2626]", header: "bg-[#fef2f2]", border: "border-[#fca5a5]" },
+        amber: { dot: "bg-[#f59e0b]", header: "bg-[#fffbeb]", border: "border-[#fde68a]" },
+        blue: { dot: "bg-[#3b82f6]", header: "bg-[#eff6ff]", border: "border-[#93c5fd]" },
       } as const;
       const hasTones = block.items.some((it) => "tone" in it && it.tone);
       return (
@@ -655,7 +655,6 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                         )}
                       </div>
                     </div>
-                    <div className={`h-[2px] ${s.line}`} />
                     <div className="flex flex-col gap-2 px-5 py-4">
                       {item.body.slice(1).map((b, i) => (
                         <p key={i} className="text-[16px] leading-[1.6] text-cod-gray">
@@ -671,7 +670,7 @@ export function CaseStudyBlock({ block }: { block: Block }) {
                   key={item.title}
                   className="flex flex-col gap-3 rounded-card border border-hairline bg-body-bg p-6"
                 >
-                  <p className="text-[20px] font-semibold text-base-blue">
+                  <p className="text-[20px] font-semibold text-ink">
                     {item.title}
                   </p>
                   {item.body.map((b, i) => (
@@ -767,16 +766,25 @@ export function CaseStudyBlock({ block }: { block: Block }) {
           <div className="flex flex-col gap-6">
             {block.eyebrow && <Eyebrow>{block.eyebrow}</Eyebrow>}
             {block.heading && <Heading>{block.heading}</Heading>}
-            <ol className="relative ml-5 flex flex-col gap-0 border-l-2 border-ink pl-8">
-              {block.items.map((item, i) => (
-                <li key={i} className="relative flex flex-col gap-1 py-4">
-                  <span className="absolute -left-[calc(2rem+1px+18px)] top-4 flex size-9 items-center justify-center rounded-full bg-ink text-[15px] font-bold text-paper">
-                    {i + 1}
-                  </span>
-                  <p className="text-[18px] font-semibold text-ink">{item.title}</p>
-                  <p className="text-[16px] leading-[1.6] text-muted">{item.body}</p>
-                </li>
-              ))}
+            <ol className="relative ml-5 flex flex-col gap-0 border-l-2 border-transparent pl-8">
+              {block.items.map((item, i) => {
+                const isLast = i === block.items.length - 1;
+                return (
+                  <li key={i} className="relative flex flex-col gap-1 py-4">
+                    {i > 0 && (
+                      <span className="absolute -left-[calc(2rem+1px)] top-0 h-[calc(1rem+18px)] w-[2px] bg-ink" aria-hidden />
+                    )}
+                    {!isLast && (
+                      <span className="absolute -left-[calc(2rem+1px)] top-[calc(1rem+18px)] bottom-0 w-[2px] bg-ink" aria-hidden />
+                    )}
+                    <span className="absolute -left-[calc(2rem+1px+18px)] top-4 flex size-9 items-center justify-center rounded-full bg-ink text-[15px] font-bold text-paper">
+                      {i + 1}
+                    </span>
+                    <p className="text-[18px] font-semibold text-ink">{item.title}</p>
+                    <p className="text-[16px] leading-[1.6] text-muted">{item.body}</p>
+                  </li>
+                );
+              })}
             </ol>
           </div>
         );

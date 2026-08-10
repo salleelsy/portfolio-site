@@ -1126,9 +1126,9 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
     category: "Product Design",
     title: "Advisor Supervision Dashboard",
     subtitle:
-      "When everything is flagged, nothing feels urgent — redesigning the supervision experience so supervisors can spot high-risk issues, investigate with the right context, and document actions in one place.",
+      "When everything is flagged, nothing feels urgent - redesigning the supervision experience so supervisors can spot high-risk issues, investigate with the right context, and document actions in one place.",
     cardSummary:
-      "From a violation list to a supervision workflow — helping supervisors spot high-risk issues, investigate with context, and document actions in one place.",
+      "From a violation list to a supervision workflow - helping supervisors spot high-risk issues, investigate with context, and document actions in one place.",
     cover: "/work/advisor-supervision/banner.png",
     tags: ["UX", "UI"],
     banner: {
@@ -1155,7 +1155,7 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
       { title: "Challenge 1" },
       { title: "Challenge 2" },
       { title: "Challenge 3" },
-      { title: "What changed", inStepper: false },
+      { title: "What changed" },
     ],
     blocks: [
       // ── Brief ──
@@ -1326,7 +1326,7 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
         src: "/work/advisor-supervision/violation-details.png",
         label: "Violation detail",
         alt: "Violation detail page showing account information, client details, authorities, trade details, and tabs for account details, IPS, KYC, transactions, and violation history.",
-        caption: "Violation detail — Rule context, client profile, investment policy, transaction history, and past violations come together in one view.",
+        caption: "Violation detail - Rule context, client profile, investment policy, transaction history, and past violations come together in one view.",
       },
 
       // ── Challenge 3 ──
@@ -1407,7 +1407,7 @@ const RAW_CASE_STUDIES: CaseStudy[] = [
         heading: "Reflection",
         body: [
           "Compliance work isn’t primarily a data problem. It’s a decision-making problem.",
-          "As the only designer, I learned that the flow had to be resolved before the screens were worth designing. Workshops helped us uncover the real moments where supervisors were forced to leave the decision to find something — whether that was the meaning of a rule, the context behind a trade, or a place to record their reasoning.",
+          "As the only designer, I learned that the flow had to be resolved before the screens were worth designing. Workshops helped us uncover the real moments where supervisors were forced to leave the decision to find something - whether that was the meaning of a rule, the context behind a trade, or a place to record their reasoning.",
           "The redesign closed those gaps by bringing priority, context, action, and accountability into the workflow itself. The result wasn’t simply a faster tool. It was a more complete and defensible record of how supervision decisions were made.",
         ],
       },
