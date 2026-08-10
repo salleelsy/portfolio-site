@@ -107,9 +107,11 @@ export function TabList({
       aria-orientation="horizontal"
       // Horizontal scroll when the tabs overflow (mobile); the scrollbar is
       // hidden so the strip reads as a clean folder edge. px gives the first
-      // and last tabs' feet room to bleed out without clipping.
+      // and last tabs' feet room to bleed out without clipping. overflow-y is
+      // pinned hidden so the shapes' 3px bottom bleed can't add a stray
+      // vertical scroll (overflow-x:auto would otherwise force overflow-y:auto).
       className={[
-        "flex items-end overflow-x-auto px-6 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+        "flex items-end overflow-x-auto overflow-y-hidden px-6 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
         className ?? "",
       ].join(" ")}
     >
