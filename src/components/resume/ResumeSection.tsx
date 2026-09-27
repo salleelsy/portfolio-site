@@ -5,13 +5,6 @@ const RESUME_PDF = "/resume/Sallee-Lee-Resume-2026.pdf";
 const SUMMARY =
   "Product Designer with 6 years of experience designing complex digital products across fintech, digital banking, wealth management, and enterprise platforms. I lead end-to-end UX workflows, from research and journey mapping through high-fidelity design, delivery, and iteration.";
 
-const CONTACT = [
-  { label: "Portfolio", value: "www.salleeee.com", href: "https://www.salleeee.com" },
-  { label: "Email", value: "sallee.lsy@gmail.com", href: "mailto:sallee.lsy@gmail.com" },
-  { label: "Phone", value: "+1 (437) 366 8964", href: "tel:+14373668964" },
-  { label: "Location", value: "Toronto, ON" },
-];
-
 type Job = {
   company: string;
   /** Short monogram shown in the logo tile when there is no logo. */
@@ -177,24 +170,6 @@ export function ResumeSection() {
               Download PDF
             </a>
           </div>
-
-          {/* Contact row */}
-          <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 border-t border-hairline pt-6 text-[16px]">
-            {CONTACT.map((c) => (
-              <li key={c.label} className="flex items-center gap-2">
-                <span className="font-label uppercase tracking-wide text-muted">
-                  {c.label}
-                </span>
-                {c.href ? (
-                  <a href={c.href} className="text-ink hover:underline">
-                    {c.value}
-                  </a>
-                ) : (
-                  <span className="text-ink">{c.value}</span>
-                )}
-              </li>
-            ))}
-          </ul>
 
           {/* Body: experience + sidebar */}
           <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-14">
