@@ -120,7 +120,9 @@ html {
   background: color-mix(in srgb, var(--color-folder-blue-from) 35%, transparent);
 }
 
-/* Tab panels ease in when shown (display:none → block restarts it). */
+/* Tab panels ease in when shown (display:none → block restarts it). Only the
+   content inside each panel section moves — the cream panel background stays
+   put so it stays seamlessly joined to the tabs. */
 @keyframes panel-in {
   from {
     opacity: 0;
@@ -132,7 +134,7 @@ html {
   }
 }
 
-.panel-in:not([hidden]) {
+.panel-in:not([hidden]) > * > * {
   animation: panel-in 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
@@ -163,7 +165,7 @@ body {
   }
   .animate-marquee,
   .hero-float,
-  .panel-in {
+  .panel-in > * > * {
     animation: none !important;
   }
   /* Keep the wall visible when the entrance fade is disabled. */
