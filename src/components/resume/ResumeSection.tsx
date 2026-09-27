@@ -14,8 +14,10 @@ const CONTACT = [
 
 type Job = {
   company: string;
-  /** Short monogram shown in the logo tile. */
+  /** Short monogram shown in the logo tile when there is no logo. */
   mark: string;
+  /** Square logo in /public/resume/logos. */
+  logo?: string;
   title: string;
   dates: string;
   location?: string;
@@ -29,6 +31,7 @@ const EXPERIENCE: Job[] = [
   {
     company: "Fintex Inc.",
     mark: "F",
+    logo: "/resume/logos/fintex.png",
     title: "Intermediate Product Designer",
     dates: "Aug 2025 – Present",
     location: "Toronto",
@@ -43,6 +46,7 @@ const EXPERIENCE: Job[] = [
   {
     company: "EY (Ernst & Young) Mtel Solutions Ltd.",
     mark: "EY",
+    logo: "/resume/logos/ey-mtel.png",
     title: "UX & UI Designer",
     dates: "Mar 2022 – Apr 2023",
     paragraphs: [
@@ -54,6 +58,7 @@ const EXPERIENCE: Job[] = [
   {
     company: "Sallee Studio",
     mark: "S",
+    logo: "/resume/logos/sallee-studio.png",
     title: "Product Designer",
     dates: "Jan 2022 – Present",
     paragraphs: [
@@ -64,6 +69,7 @@ const EXPERIENCE: Job[] = [
   {
     company: "Parc Antique & Lifestyle Ltd.",
     mark: "P",
+    logo: "/resume/logos/parc.png",
     title: "UX Designer",
     dates: "Aug 2020 – Jan 2022",
     paragraphs: [
@@ -203,9 +209,14 @@ export function ResumeSection() {
                     {/* Logo tile */}
                     <div
                       aria-hidden
-                      className="flex size-12 shrink-0 items-center justify-center rounded-[14px] bg-body-bg text-[18px] font-semibold text-ink sm:size-[60px] sm:text-[20px]"
+                      className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-[14px] border border-hairline bg-body-bg text-[18px] font-semibold text-ink sm:size-[60px] sm:text-[20px]"
                     >
-                      {job.mark}
+                      {job.logo ? (
+                        // eslint-disable-next-line @next/next/no-img-element -- tiny static tile
+                        <img src={job.logo} alt="" className="size-full object-cover" />
+                      ) : (
+                        job.mark
+                      )}
                     </div>
 
                     <article className="flex min-w-0 flex-1 flex-col">
