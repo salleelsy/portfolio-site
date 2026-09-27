@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
+import { Snackbar } from "../Snackbar";
 
 const EMAIL = "sallee.lsy@gmail.com";
 
@@ -28,12 +29,7 @@ export function SayHelloSection() {
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<Status>("idle");
 
-  // Hide the snackbar on its own after a few seconds.
-  useEffect(() => {
-    if (status !== "sent" && status !== "error") return;
-    const t = window.setTimeout(() => setStatus("idle"), 5000);
-    return () => window.clearTimeout(t);
-  }, [status]);
+  const closeSnack = useCallback(() => setStatus("idle"), []);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -151,52 +147,17 @@ export function SayHelloSection() {
         </div>
       </section>
 
-      {/* Outside the section so the tab-panel entrance animation (which targets
-          the section's children) never overrides the snackbar's hidden state. */}
-      <Snackbar status={status} onClose={() => setStatus("idle")} />
+      <Snackbar
+        open={status === "sent" || status === "error"}
+        tone={status === "error" ? "error" : "success"}
+        message={
+          status === "error"
+            ? `Something went wrong. Please try again, or email me at ${EMAIL}.`
+            : "Sent! I\u2019ll get back to you as soon as possible."
+        }
+        onClose={closeSnack}
+      />
     </>
   );
 }
 
-/** Bottom-centre toast confirming the send (or explaining a failure). */
-function Snackbar({ status, onClose }: { status: Status; onClose: () => void }) {
-  const open = status === "sent" || status === "error";
-  const text =
-    status === "error"
-      ? `Something went wrong. Please try again, or email me at ${EMAIL}.`
-      : "Sent! I\u2019ll get back to you as soon as possible.";
-
-  return (
-    <div
-      role="status"
-      aria-live="polite"
-      className={[
-        "fixed inset-x-4 bottom-6 z-50 mx-auto flex max-w-[480px] items-center gap-3 rounded-[12px] bg-cod-gray px-5 py-4 text-[16px] text-paper shadow-[0_12px_32px_rgba(0,0,0,0.18)] transition-[opacity,translate] duration-300 ease-out",
-        open ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0",
-      ].join(" ")}
-    >
-      {open && (
-        <>
-          <span
-            aria-hidden
-            className={[
-              "flex size-6 shrink-0 items-center justify-center rounded-full text-[14px] font-bold",
-              status === "error" ? "bg-[#f87171] text-cod-gray" : "bg-[#4ade80] text-cod-gray",
-            ].join(" ")}
-          >
-            {status === "error" ? "!" : "\u2713"}
-          </span>
-          <p className="flex-1">{text}</p>
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Dismiss"
-            className="shrink-0 rounded-full px-2 text-[20px] leading-none text-paper/70 outline-none transition-colors hover:text-paper focus-visible:ring-2 focus-visible:ring-paper"
-          >
-            ×
-          </button>
-        </>
-      )}
-    </div>
-  );
-}

@@ -1,9 +1,12 @@
 // Footer (Figma 846:47762) — "Let's connect", contact links, a numbered nav
 // that jumps to the landing tabs, and a decorative window-wall on the right.
 
+import { EmailLinks } from "./EmailLinks";
+
 const LINKS = [
   { label: "Linkedin", href: "https://www.linkedin.com/in/salleeee/", external: true },
-  { label: "Email", href: "mailto:sallee.lsy@gmail.com", external: false },
+  // Rendered by <EmailLinks />: opens the Say hello form, plus a copy button.
+  { label: "Email", href: "/#hello", external: false },
   {
     label: "Instagram",
     href: "https://www.instagram.com/sallee.studio?igsh=MWkxOXRiamI1cXRobw%3D%3D&utm_source=qr",
@@ -81,13 +84,17 @@ export function ContactSection() {
               <ul className="flex flex-col gap-4 text-[18px] text-ink">
                 {LINKS.map((l) => (
                   <li key={l.label}>
-                    <a
-                      href={l.href}
-                      {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                      className="w-fit underline-offset-4 outline-none transition-colors hover:text-base-blue hover:underline focus-visible:text-base-blue focus-visible:underline"
-                    >
-                      {l.label}
-                    </a>
+                    {l.label === "Email" ? (
+                      <EmailLinks />
+                    ) : (
+                      <a
+                        href={l.href}
+                        {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                        className="w-fit underline-offset-4 outline-none transition-colors hover:text-base-blue hover:underline focus-visible:text-base-blue focus-visible:underline"
+                      >
+                        {l.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
