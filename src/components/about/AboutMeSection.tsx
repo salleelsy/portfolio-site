@@ -53,9 +53,11 @@ export function AboutMeSection() {
           A few things I&rsquo;m into
         </h3>
         <ul className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
-          {INTERESTS.map((item) => (
+          {INTERESTS.map((item, i) => (
             <li
               key={item.title}
+              data-reveal
+              style={{ "--reveal-delay": `${i * 90}ms` } as React.CSSProperties}
               className="flex flex-col gap-4 rounded-card border border-hairline bg-paper p-4"
             >
               <PhotoFrame

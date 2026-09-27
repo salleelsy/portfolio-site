@@ -1,114 +1,99 @@
-// Resume content — from Resume_2026_Sallee.pdf (real). The same PDF is served
-// from /public/resume for the Download button.
+// Resume content — from Resume_Sallee_2026_Senior_product_designer.pdf (real).
+// The same PDF is served from /public/resume for the Download button.
 const RESUME_PDF = "/resume/Sallee-Lee-Resume-2026.pdf";
 
 const SUMMARY =
-  "5 years in product design, specializing in fintech and digital banking. I lead research-driven design, mentor designers, and partner cross-functionally to translate user insights into measurable impact. A detail-oriented strategist who balances empathy, business goals, and technical constraints.";
+  "Product Designer with 6 years of experience designing complex digital products across fintech, digital banking, wealth management, and enterprise platforms. I lead end-to-end UX workflows, from research and journey mapping through high-fidelity design, delivery, and iteration.";
 
-const CONTACT = [
-  { label: "Portfolio", value: "www.salleeee.com", href: "https://www.salleeee.com" },
-  { label: "Email", value: "sallee.lsy@gmail.com", href: "mailto:sallee.lsy@gmail.com" },
-  { label: "Phone", value: "+1 (437) 366 8964", href: "tel:+14373668964" },
-  { label: "Location", value: "Toronto, ON" },
-];
-
-type Role = { title: string; dates: string };
 type Job = {
   company: string;
-  roles: Role[];
-  summary?: string;
-  bullets?: string[];
-  projects?: { name: string; detail: string }[];
+  /** Short monogram shown in the logo tile when there is no logo. */
+  mark: string;
+  /** Square logo in /public/resume/logos. */
+  logo?: string;
+  title: string;
+  dates: string;
+  location?: string;
+  /** Earlier role at the same company (promotion history). */
+  previously?: { title: string; dates: string };
+  /** Paragraphs; wrap a phrase in **double asterisks** to highlight it. */
+  paragraphs: string[];
 };
 
 const EXPERIENCE: Job[] = [
   {
     company: "Fintex Inc.",
-    roles: [
-      { title: "Intermediate Product Designer", dates: "Aug 2025 — Present" },
-      { title: "Product Designer", dates: "Nov 2024 — Jul 2025" },
-    ],
-    bullets: [
-      "Led end-to-end product design for a wealth management and investing platform, spanning desktop and mobile experiences, from discovery through delivery.",
-      "Partnered closely with Product Managers, Engineers, QA, and Business stakeholders to translate complex financial requirements into clear, user-friendly solutions.",
-      "Conducted user research and design validation to identify pain points and inform design decisions across onboarding, dashboards, and planning tools.",
-      "Contributed to the internal design system and workflow optimization using Claude Code, shipping design-to-code implementations as production PRs.",
-      "Designed high-fidelity prototypes and production-ready designs in Figma, ensuring consistency with established design systems and accessibility standards.",
-      "Collaborated cross-functionally to support feature delivery, design QA, and iterative improvements, keeping design intent and development output aligned.",
-      "Presented design rationale and trade-offs to internal stakeholders, balancing user needs, technical constraints, and business goals.",
-      "Mentored junior designers on problem-solving methodology and cross-functional advocacy.",
-    ],
-    projects: [
-      {
-        name: "Tangerine Digital Wealth Platform (MVP)",
-        detail:
-          "Led launch of the core investing and planning experience, driving 22.3% adoption (+12.3 pts MoM) and 46.6% mobile engagement with 67.2k active clients. Diagnosed and solved three critical friction points through research and iteration — entry-point discovery, external-asset completion, and projection accuracy via insight-driven prompts — owning the end-to-end research-to-analytics feedback cycle.",
-      },
-      {
-        name: "Enterprise Supervision & Compliance Platform (RBC Wealth Management)",
-        detail:
-          "Designed enterprise compliance tools for supervisors to monitor advisor activity, review regulatory exceptions, and manage investment rules. Simplified complex workflows through intuitive dashboards, data tables, and rule-management interfaces, delivering scalable UX, high-fidelity prototypes, and developer-ready specs.",
-      },
+    mark: "F",
+    logo: "/resume/logos/fintex.png",
+    title: "Intermediate Product Designer",
+    dates: "Aug 2025 – Present",
+    location: "Toronto",
+    previously: { title: "Product Designer", dates: "Nov 2024 – Jul 2025" },
+    paragraphs: [
+      "Leading end-to-end product design for a wealth management and investing platform across desktop and mobile, owning journeys from **onboarding and account opening** through investing, transfers, dashboards, and financial planning.",
+      "Launched the **Tangerine Digital Wealth Platform (MVP)**, driving **22.3% adoption (+12.3 pts MoM)** and **46.6% mobile engagement** across **67.2K active clients**, then owned the research-to-design-to-analytics loop that resolved its key friction points.",
+      "Designed **RBC Wealth Management’s supervision & compliance platform**, simplifying how supervisors monitor advisor activity, review regulatory exceptions, and manage investment rules.",
+      "Shipping **design-to-code with Claude Code** as production GitHub PRs, contributing to design-system standards, and mentoring junior designers.",
     ],
   },
   {
-    company: "EY Mtel Solutions Ltd.",
-    roles: [{ title: "UX & UI Designer", dates: "Mar 2022 — Apr 2023" }],
-    bullets: [
-      "Led end-to-end design — from scratch and revamps — of web/mobile (iOS & Android) products for corporate clients.",
-      "Collaborated on in-depth research, conducted user interviews, and ran usability testing to identify pain points and deliver effective design solutions.",
-      "Communicated with cross-functional teams and developers, and presented to clients, ensuring successful project execution and launches.",
-      "Facilitated design-thinking workshops for major corporations, promoting innovation and user-centric design.",
-      "Created and maintained UI design guidelines for the entire product for consistency.",
-    ],
-    projects: [
-      {
-        name: "Loyalty Membership App",
-        detail:
-          "Led a successful launch with 46K+ downloads in the inaugural season — orchestrating user engagement, membership integration, and a seamless in-app points conversion for improved experience and retention.",
-      },
-      {
-        name: "Electric Utility Website",
-        detail:
-          "Achieved a 50% reduction in bounce rate and a 95% positive feedback rate, creating a user-friendly platform for global investors to easily understand the business.",
-      },
+    company: "EY (Ernst & Young) Mtel Solutions Ltd.",
+    mark: "EY",
+    logo: "/resume/logos/ey-mtel.png",
+    title: "UX & UI Designer",
+    dates: "Mar 2022 – Apr 2023",
+    paragraphs: [
+      "Led end-to-end UX/UI design for web and mobile products across **banking, real estate, logistics, and utilities**, from early discovery through launch, and facilitated design-thinking workshops with major corporate clients.",
+      "Designed **Kerry Logistics’ emissions reporting platform** for 300+ business units, contributing to **50% less form-management time**, **70% fewer incomplete submissions**, and **80% faster reporting**.",
+      "Launched the **Chinachem Group loyalty membership app** with **46K+ downloads** in its inaugural season.",
     ],
   },
   {
-    company: "Sallee Studio Ltd.",
-    roles: [{ title: "Product Designer", dates: "Jan 2022 — Present" }],
-    summary:
+    company: "Sallee Studio",
+    mark: "S",
+    logo: "/resume/logos/sallee-studio.png",
+    title: "Product Designer",
+    dates: "Jan 2022 – Present",
+    paragraphs: [
       "Creating impactful digital products, websites, and visuals tailored to client needs.",
-    projects: [
-      {
-        name: "Heima 1996 Ltd. (Select Store)",
-        detail:
-          "Ran a comprehensive evaluation from scratch, repositioned the brand, and redesigned the website — a 35% increase in traffic and a 25% sales boost, with improved project efficiency and budget evaluation.",
-      },
-      {
-        name: "Health Coach Howard Ltd. (Health Service)",
-        detail:
-          "Implemented a streamlined booking system, cutting steps from 5 to 2 and improving booking actions and scheduling efficiency with engagement strategies.",
-      },
+      "Repositioned the brand and redesigned the website for Heima 1996 (Select Store), achieving a **35% increase in traffic** and a **25% sales boost**; streamlined a health-coaching booking flow **from 5 steps to 2**.",
+    ],
+  },
+  {
+    company: "Parc Antique & Lifestyle Ltd.",
+    mark: "P",
+    logo: "/resume/logos/parc.png",
+    title: "UX Designer",
+    dates: "Aug 2020 – Jan 2022",
+    paragraphs: [
+      "Established **UX and visual design standards**, reusable UI patterns, and guidelines across retail and wedding-service digital experiences.",
+      "Designed responsive websites, user flows, and prototypes for **e-commerce and service-booking** experiences, partnering with developers on content-management features.",
     ],
   },
 ];
 
 const SKILLS = [
   {
-    label: "Core",
+    label: "Product Design",
     items: [
-      "Figma (flows, design systems)", "User research", "Usability testing",
-      "Analytics & measurement", "Accessibility (WCAG 2.1 AA)",
+      "End-to-end UX", "Complex workflows", "User journeys", "Prototyping",
+      "High-fidelity UI", "Usability testing", "Research", "Analytics & measurement",
     ],
   },
   {
-    label: "Technical",
-    items: ["Design-to-code (Claude Code)", "GitHub", "Storybook", "Jira"],
+    label: "Design Systems",
+    items: [
+      "Figma", "Reusable components & patterns", "UI guidelines",
+      "Accessibility (WCAG 2.1 AA)", "Design QA", "Developer-ready specs",
+    ],
   },
   {
-    label: "Domain expertise",
-    items: ["Fintech", "Digital banking", "Wealth management"],
+    label: "GenAI & Technical",
+    items: ["Claude Code", "ChatGPT", "Vercel", "Design-to-code", "GitHub", "Storybook", "Jira"],
+  },
+  {
+    label: "Domain",
+    items: ["Fintech", "Digital banking", "Wealth management", "Enterprise platforms", "B2C & B2B"],
   },
 ];
 
@@ -119,6 +104,23 @@ const EDUCATION = {
     "Higher Diploma of Multimedia Design and Technology",
   ],
 };
+
+/** Renders "**phrase**" segments as highlighted (dark, medium-weight) text. */
+function Highlighted({ text }: { text: string }) {
+  return (
+    <>
+      {text.split("**").map((part, i) =>
+        i % 2 === 1 ? (
+          <strong key={i} className="font-medium text-ink">
+            {part}
+          </strong>
+        ) : (
+          part
+        ),
+      )}
+    </>
+  );
+}
 
 function DownloadIcon({ className }: { className?: string }) {
   return (
@@ -153,7 +155,7 @@ export function ResumeSection() {
                 Sallee Lee
               </h2>
               <p className="text-[18px] font-semibold text-muted">
-                Product Designer · Fintech &amp; Digital Banking
+                Product Designer · Fintech, Wealth &amp; Enterprise Platforms
               </p>
               <p className="max-w-[640px] text-[16px] leading-[1.6] text-cod-gray">
                 {SUMMARY}
@@ -169,24 +171,6 @@ export function ResumeSection() {
             </a>
           </div>
 
-          {/* Contact row */}
-          <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 border-t border-hairline pt-6 text-[16px]">
-            {CONTACT.map((c) => (
-              <li key={c.label} className="flex items-center gap-2">
-                <span className="font-label uppercase tracking-wide text-muted">
-                  {c.label}
-                </span>
-                {c.href ? (
-                  <a href={c.href} className="text-ink hover:underline">
-                    {c.value}
-                  </a>
-                ) : (
-                  <span className="text-ink">{c.value}</span>
-                )}
-              </li>
-            ))}
-          </ul>
-
           {/* Body: experience + sidebar */}
           <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-14">
             {/* Experience */}
@@ -194,76 +178,53 @@ export function ResumeSection() {
               <h3 className="font-label text-[16px] uppercase tracking-wide text-muted">
                 Experience
               </h3>
-              {/* Timeline — a rail with a node per role, so the career reads
-                  top-to-bottom at a glance and each job has room to breathe. */}
-              <ol className="mt-8 flex flex-col">
-                {EXPERIENCE.map((job, i) => {
-                  const last = i === EXPERIENCE.length - 1;
-                  return (
-                    <li key={job.company} className="flex gap-5">
-                      {/* Rail + node */}
-                      <div aria-hidden className="flex flex-col items-center">
-                        <span className="mt-[6px] size-[13px] shrink-0 rounded-full border-[3px] border-base-blue bg-paper" />
-                        {!last && <span className="w-px flex-1 bg-hairline" />}
+              <ol className="mt-8 flex flex-col gap-14">
+                {EXPERIENCE.map((job) => (
+                  <li key={job.company} data-reveal className="flex gap-4 sm:gap-6">
+                    {/* Logo tile */}
+                    <div
+                      aria-hidden
+                      className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-[14px] border border-hairline bg-body-bg text-[18px] font-semibold text-ink sm:size-[60px] sm:text-[20px]"
+                    >
+                      {job.logo ? (
+                        // eslint-disable-next-line @next/next/no-img-element -- tiny static tile
+                        <img src={job.logo} alt="" className="size-full object-cover" />
+                      ) : (
+                        job.mark
+                      )}
+                    </div>
+
+                    <article className="flex min-w-0 flex-1 flex-col">
+                      <p className="text-[16px] leading-tight text-cod-gray sm:text-[18px]">
+                        {job.company}
+                      </p>
+                      <h4 className="mt-1 text-[24px] font-medium leading-tight tracking-[-0.5px] text-ink sm:text-[30px]">
+                        {job.title}
+                      </h4>
+                      <p className="mt-3 flex flex-wrap items-center gap-x-2 text-[15px] font-medium text-cod-gray">
+                        <span>{job.dates}</span>
+                        {job.location && (
+                          <>
+                            <span aria-hidden>•</span>
+                            <span>{job.location}</span>
+                          </>
+                        )}
+                      </p>
+                      {job.previously && (
+                        <p className="mt-1 text-[14px] text-muted">
+                          Previously {job.previously.title}, {job.previously.dates}
+                        </p>
+                      )}
+                      <div className="mt-3 flex flex-col gap-4 text-[16px] leading-[1.6] text-muted">
+                        {job.paragraphs.map((para, j) => (
+                          <p key={j}>
+                            <Highlighted text={para} />
+                          </p>
+                        ))}
                       </div>
-
-                      {/* Content */}
-                      <article className={`flex flex-1 flex-col gap-4 ${last ? "" : "pb-12"}`}>
-                        <div className="flex flex-col gap-2">
-                          <p className="text-[20px] font-semibold leading-tight text-ink">
-                            {job.company}
-                          </p>
-                          {job.roles.map((role) => (
-                            <div
-                              key={role.title + role.dates}
-                              className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1"
-                            >
-                              <p className="text-[16px] font-medium text-cod-gray">
-                                {role.title}
-                              </p>
-                              <p className="font-label text-[14px] uppercase tracking-wide text-muted">
-                                {role.dates}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-
-                        {job.summary && (
-                          <p className="text-[16px] leading-[1.7] text-muted">
-                            {job.summary}
-                          </p>
-                        )}
-
-                        {job.bullets && (
-                          <ul className="flex flex-col gap-[10px]">
-                            {job.bullets.map((b, j) => (
-                              <li
-                                key={j}
-                                className="relative pl-5 text-[16px] leading-[1.7] text-cod-gray before:absolute before:left-0 before:top-[10px] before:size-[5px] before:rounded-full before:bg-line"
-                              >
-                                {b}
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-
-                        {job.projects && (
-                          <div className="mt-2 flex flex-col gap-3 rounded-[12px] bg-body-bg p-5">
-                            <p className="font-label text-[14px] uppercase tracking-wide text-muted">
-                              Selected projects
-                            </p>
-                            {job.projects.map((p) => (
-                              <p key={p.name} className="text-[16px] leading-[1.7] text-cod-gray">
-                                <span className="font-medium text-ink">{p.name}:</span>{" "}
-                                {p.detail}
-                              </p>
-                            ))}
-                          </div>
-                        )}
-                      </article>
-                    </li>
-                  );
-                })}
+                    </article>
+                  </li>
+                ))}
               </ol>
             </div>
 
