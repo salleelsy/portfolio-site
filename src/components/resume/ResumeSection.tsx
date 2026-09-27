@@ -205,7 +205,7 @@ export function ResumeSection() {
               </h3>
               <ol className="mt-8 flex flex-col gap-14">
                 {EXPERIENCE.map((job) => (
-                  <li key={job.company} className="flex gap-4 sm:gap-6">
+                  <li key={job.company} data-reveal className="flex gap-4 sm:gap-6">
                     {/* Logo tile */}
                     <div
                       aria-hidden

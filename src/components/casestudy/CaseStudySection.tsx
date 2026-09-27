@@ -109,12 +109,14 @@ export function CaseStudySection() {
               : "mt-8 flex flex-col gap-4"
           }
         >
-          {visible.map((project) => (
-            <ProjectCard
+          {visible.map((project, i) => (
+            <div
               key={project.href}
-              {...project}
-              layout={view === "grid" ? "column" : "row"}
-            />
+              data-reveal
+              style={{ "--reveal-delay": `${(i % 2) * 90}ms` } as React.CSSProperties}
+            >
+              <ProjectCard {...project} layout={view === "grid" ? "column" : "row"} />
+            </div>
           ))}
         </div>
 

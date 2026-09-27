@@ -55,7 +55,7 @@ export function ProjectCard({
     <article
       className={[
         "group relative flex flex-col gap-4 rounded-card border border-hairline bg-paper p-4 drop-shadow-[0px_2px_5px_rgba(0,0,0,0.05)]",
-        comingSoon ? "" : "transition-shadow hover:drop-shadow-[0px_4px_12px_rgba(0,0,0,0.08)]",
+        comingSoon ? "" : "transition-[filter,translate] duration-300 ease-out hover:drop-shadow-[0px_10px_24px_rgba(0,0,0,0.08)] motion-safe:hover:-translate-y-1",
         row ? "sm:flex-row sm:items-center" : "",
       ].join(" ")}
     >

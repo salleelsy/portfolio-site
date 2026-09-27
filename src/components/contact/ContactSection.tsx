@@ -71,7 +71,7 @@ export function ContactSection() {
             ))}
           </div>
 
-          <div className="relative z-10 flex flex-col gap-12">
+          <div data-reveal className="relative z-10 flex flex-col gap-12">
             <h2 id="footer-heading" className="text-[40px] font-semibold text-ink sm:text-[48px]">
               Let&rsquo;s connect
             </h2>

@@ -89,7 +89,7 @@ export function PortfolioTabs() {
                the strip's z-20) so the container box surfaces in front: its top
                edge covers the tabs' feet by 2px, tucking the inactive tabs
                behind it and merging the active tab into the panel — no seam. */
-            className="relative z-30 -mt-[2px]"
+            className="panel-in relative z-30 -mt-[2px]"
           >
             <Panel />
           </div>

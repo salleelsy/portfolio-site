@@ -110,6 +110,47 @@
   will-change: transform, opacity;
 }
 
+/* ── Soft motion ──────────────────────────────────────────────────────────
+   One gentle easing curve for everything so the site moves as one. */
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-folder-blue-from) 35%, transparent);
+}
+
+/* Tab panels ease in when shown (display:none → block restarts it). */
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.panel-in:not([hidden]) {
+  animation: panel-in 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+/* Scroll reveal — see components/motion/ScrollReveal.tsx. Hidden only once
+   JS has flagged <html>, so content never disappears without it. */
+.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) var(--reveal-delay, 0s),
+    transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) var(--reveal-delay, 0s);
+}
+
+.reveal-ready [data-reveal][data-revealed] {
+  opacity: 1;
+  transform: none;
+}
+
 body {
   background: var(--color-paper);
   color: var(--color-cod-gray);
@@ -117,8 +158,12 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   .animate-marquee,
-  .hero-float {
+  .hero-float,
+  .panel-in {
     animation: none !important;
   }
   /* Keep the wall visible when the entrance fade is disabled. */
